@@ -15,5 +15,6 @@ target 'RSDemoProject' do
   # FB SDK ---
   pod 'FBSDKCoreKit', '~> 5.5.0'
   pod 'FBSDKLoginKit', '~> 5.5.0'
+  pod 'RSFormView', '~> 2.1.1'
   # ------
 end

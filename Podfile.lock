@@ -74,6 +74,8 @@ PODS:
   - Result (4.1.0)
   - RSFontSizes (1.0.2):
     - Device (~> 3.1.2)
+  - RSFormView (2.1.1):
+    - IQKeyboardManagerSwift (~> 6.1.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.8.1)
@@ -86,6 +88,7 @@ DEPENDENCIES:
   - Moya (~> 13.0)
   - R.swift (~> 5.0.3)
   - RSFontSizes (~> 1.0.2)
+  - RSFormView (~> 2.1.1)
 
 SPEC REPOS:
   trunk:
@@ -108,6 +111,7 @@ SPEC REPOS:
     - R.swift.Library
     - Result
     - RSFontSizes
+    - RSFormView
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -129,7 +133,8 @@ SPEC CHECKSUMS:
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RSFontSizes: cf14ae41c2807b66573f7064528ccff8c98251c9
+  RSFormView: 19259f1b1bcca729d403805f099f8e20c8204ebb
 
-PODFILE CHECKSUM: 48aa80e868353522813c028cfe5617d606138369
+PODFILE CHECKSUM: 0b4a6c5148541d754189a4c0ffc4b3688f25f7d1
 
 COCOAPODS: 1.9.1

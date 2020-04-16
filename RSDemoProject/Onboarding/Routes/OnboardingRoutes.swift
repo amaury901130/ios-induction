@@ -34,7 +34,7 @@ enum OnboardingRoutes: Route {
   }
 
   private func buildSignUpViewController() -> UIViewController {
-    guard let signUp = R.storyboard.main.signUpViewController() else {
+    guard let signUp = R.storyboard.main.createAccountViewController() else {
       return UIViewController()
     }
     signUp.viewModel = SignUpViewModelWithEmail()

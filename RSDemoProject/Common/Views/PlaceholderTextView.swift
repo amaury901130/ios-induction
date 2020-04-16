@@ -20,6 +20,7 @@ class PlaceholderTextView: UITextView {
       textColor = text == placeholder ? placeholderColor : fontColor
     }
   }
+  
   @IBInspectable var placeholder: String = "" {
     didSet {
       if text.isEmpty {
@@ -28,6 +29,7 @@ class PlaceholderTextView: UITextView {
       }
     }
   }
+  
   @IBInspectable var placeholderColor: UIColor? = .lightGray
   var fontColor: UIColor = .black
   
@@ -44,10 +46,14 @@ class PlaceholderTextView: UITextView {
     textColor = text == placeholder ? placeholderColor : fontColor
   }
   
+  override init(frame: CGRect, textContainer: NSTextContainer?) {
+    super.init(frame: frame, textContainer: textContainer)
+  }
+  
   convenience init(
     frame: CGRect, placeholder: String = "", placeholderColor: UIColor = .lightGray
   ) {
-    self.init(frame: frame)
+    self.init(frame: frame, textContainer: nil)
     self.placeholderColor = placeholderColor
     self.placeholder = placeholder
     if let txtC = textColor {
@@ -70,5 +76,13 @@ class PlaceholderTextView: UITextView {
       textColor = placeholderColor
     }
     return super.resignFirstResponder()
+  }
+  
+  override var contentSize: CGSize {
+      didSet {
+          var topCorrection = (bounds.size.height - contentSize.height * zoomScale) / 2.0
+          topCorrection = max(0, topCorrection)
+          contentInset = UIEdgeInsets(top: topCorrection, left: 0, bottom: 0, right: 0)
+      }
   }
 }
