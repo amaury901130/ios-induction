@@ -1,0 +1,6 @@
+coverage_service: cobertura_xml
+workspace: RSDemoProject.xcworkspace
+xcodeproj: RSDemoProject.xcodeproj
+scheme: RSDemoProject-develop
+ignore:
+  - Pods/*
