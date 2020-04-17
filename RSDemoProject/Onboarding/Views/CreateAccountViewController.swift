@@ -16,11 +16,21 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var passwordField: CustomTextView!
     @IBOutlet weak var repeatPassword: CustomTextView!
     @IBOutlet weak var signUpBtn: UIButton!
+    @IBOutlet weak var topLeftImage: UIImageView!
+    @IBOutlet weak var topRightImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTopImage()
         initView()
+    }
+    
+    func setupTopImage() {
+        topLeftImage.layer.backgroundColor = UIColor(red: 0.937, green: 0.776, blue: 0.22, alpha: 1).cgColor
+        topRightImage.layer.backgroundColor = UIColor(red: 0.184, green: 0.737, blue: 0.969, alpha: 1).cgColor
+        topRightImage.layer.compositingFilter = "multiplyBlendMode"
+        [topLeftImage, topRightImage].forEach({ $0?.setRoundBorders(175) })
     }
     
     func initView() {

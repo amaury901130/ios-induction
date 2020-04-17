@@ -5,13 +5,12 @@
 //  Created by Rootstrap on 5/22/17.
 //  Copyright © 2017 Rootstrap. All rights reserved.
 //
-
 import UIKit
 
 class SignUpViewController: UIViewController {
   
   // MARK: - Outlets
-  var formContainer = UIStackView()
+  
   @IBOutlet weak var signUp: UIButton!
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var passwordField: UITextField!
@@ -23,8 +22,9 @@ class SignUpViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    signUp.setRoundBorders(22)
     viewModel.delegate = self
-    addTextViewFields()
+    setSignUpButton(enabled: false)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -55,32 +55,6 @@ class SignUpViewController: UIViewController {
     signUp.alpha = enabled ? 1 : 0.5
     signUp.isEnabled = enabled
   }
-    
-    func addTextViewFields() {
-        let customEmailField = CustomTextView()
-        let customEmailField2 = CustomTextView()
-        let customEmailField3 = CustomTextView()
-        let customEmailField4 = CustomTextView()
-        
-        formContainer.axis = .vertical
-        formContainer.distribution = .fillProportionally
-        formContainer.spacing = 4
-        formContainer.frame = CGRect(x: 0, y: 0, width: 500, height: 100)
-        formContainer.addArrangedSubview(customEmailField)
-        formContainer.addArrangedSubview(customEmailField2)
-        formContainer.addArrangedSubview(customEmailField3)
-        formContainer.addArrangedSubview(customEmailField4)
-        
-        view.addSubview(formContainer)
-        
-        formContainer.translatesAutoresizingMaskIntoConstraints = true
-    
-        setupConstraints()
-    }
-    
-    func setupConstraints() {
-        // todo
-    }
 }
 
 extension SignUpViewController: SignUpViewModelDelegate {
