@@ -10,47 +10,37 @@ import UIKit
 
 class CreateAccountViewController: UIViewController {
 
-    var viewModel: SignUpViewModelWithEmail!
-    @IBOutlet weak var nameField: CustomTextView!
-    @IBOutlet weak var emailField: CustomTextView!
-    @IBOutlet weak var passwordField: CustomTextView!
-    @IBOutlet weak var repeatPassword: CustomTextView!
-    @IBOutlet weak var signUpBtn: UIButton!
-    @IBOutlet weak var topLeftImage: UIImageView!
-    @IBOutlet weak var topRightImage: UIImageView!
+  var viewModel: SignUpViewModelWithEmail!
+  @IBOutlet weak var nameField: CustomFormField!
+  @IBOutlet weak var emailField: CustomFormField!
+  @IBOutlet weak var passwordField: CustomFormField!
+  @IBOutlet weak var repeatPassword: CustomFormField!
+  @IBOutlet weak var signUpButton: UIButton!
+  @IBOutlet weak var topLeftImage: UIView!
+  @IBOutlet weak var topRightImage: UIView!
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupTopImage()
-        initView()
-    }
-    
-    func setupTopImage() {
-        topLeftImage.layer.backgroundColor = UIColor(red: 0.937, green: 0.776, blue: 0.22, alpha: 1).cgColor
-        topRightImage.layer.backgroundColor = UIColor(red: 0.184, green: 0.737, blue: 0.969, alpha: 1).cgColor
-        topRightImage.layer.compositingFilter = "multiplyBlendMode"
-        [topLeftImage, topRightImage].forEach({ $0?.setRoundBorders(175) })
-    }
-    
-    func initView() {
-        // TODO: get this text from localise
-        nameField.labelText = "NAME"
-        emailField.labelText = "EMAIL"
-        passwordField.labelText = "PASSWORD"
-        repeatPassword.labelText = "REPEAT PASSWORD"
-        
-        passwordField.placeholder = "MIN 6 CHARACTERS LONG"
-    }
+    setupTopImage()
+    initView()
+  }
+  
+  func setupTopImage() {
+    topLeftImage.layer.backgroundColor = App.topLeftColor
+    topRightImage.layer.backgroundColor = App.topRightColor
+    topRightImage.layer.compositingFilter = "multiplyBlendMode"
+    [topLeftImage, topRightImage].forEach { $0?.setRoundBorders(175) }
+  }
+  
+  func initView() {
+    //labels
+    nameField.labelText = App.getString(key: "labelFieldName")
+    emailField.labelText = App.getString(key: "labelFieldEmail")
+    passwordField.labelText = App.getString(key: "labelFieldPassword")
+    repeatPassword.labelText =  App.getString(key: "labelFieldConfirmPassword")
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    // placeholders
+    passwordField.placeholder =  App.getString(key: "placeholderPassword")
+  }
 }
