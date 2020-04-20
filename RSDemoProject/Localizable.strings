@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings (English).strings
+  RSDemoProject
+
+  Created by Amaury Ricardo on 4/20/20.
+  Copyright © 2020 TopTier labs. All rights reserved.
+*/
+
+"labelFieldName" = "NAME";
+"labelFieldPassword" = "PASSWORD";
+"labelFieldConfirmPassword" = "CONFIRM PASSWORD";
+"labelFieldEmail" = "EMAIL";
+"placeholderPassword" = "MIN. 6 CHARACTERS LONG";

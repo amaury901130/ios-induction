@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 //Add global constants here
 
 struct App {
@@ -21,6 +21,12 @@ struct App {
                    code: code ?? 0,
                    userInfo: [NSLocalizedDescriptionKey: localizedDescription])
   }
+
+  static let yellowColor = UIColor(red: 0.937, green: 0.776, blue: 0.22, alpha: 1).cgColor
+  static let blueColor = UIColor(red: 0.184, green: 0.737, blue: 0.969, alpha: 1).cgColor
+  static let errorColor = UIColor(red: 0.896, green: 0.177, blue: 0.177, alpha:1).cgColor
+  
+  static let textFieldFont = "OpenSans-Regular"
 }
 
 enum ErrorDomain: String {

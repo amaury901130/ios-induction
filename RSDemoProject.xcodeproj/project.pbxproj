@@ -15,6 +15,13 @@
 		07741D72218CDED600DB3B97 /* FirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07741D71218CDED600DB3B97 /* FirstViewModel.swift */; };
 		0A6990351F9F82A300F4BAC7 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6990341F9F82A300F4BAC7 /* UIApplicationExtension.swift */; };
 		0ABFB8901FA366D90098F751 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ABFB8921FA366D90098F751 /* Main.storyboard */; };
+		460F984B244DF66A001151F6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 460F984A244DF66A001151F6 /* Localizable.strings */; };
+		460F984D244E0762001151F6 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F984C244E0762001151F6 /* UILabelExtension.swift */; };
+		460F984F244E121E001151F6 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F984E244E121E001151F6 /* TextField.swift */; };
+		465021102448AE4600B35C95 /* CustomFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650210F2448AE4600B35C95 /* CustomFormField.swift */; };
+		465021122448E2AC00B35C95 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465021112448E2AC00B35C95 /* CreateAccountViewController.swift */; };
+		46502119244A214700B35C95 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46502118244A214700B35C95 /* OpenSans-Regular.ttf */; };
+		4650211B244A223800B35C95 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4650211A244A223800B35C95 /* OpenSans-Bold.ttf */; };
 		4AF323FC2D560D49FED0BE7F /* Pods_RSDemoProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2214860CE2390D2C2B6056B0 /* Pods_RSDemoProject.framework */; };
 		9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */; };
 		9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */; };
@@ -87,6 +94,13 @@
 		18C57D0B131511ACAD07441F /* Pods_AcceptanceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AcceptanceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2214860CE2390D2C2B6056B0 /* Pods_RSDemoProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSDemoProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F7782D67A29B3F015B36B72 /* Pods-RSDemoProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSDemoProject.debug.xcconfig"; path = "Target Support Files/Pods-RSDemoProject/Pods-RSDemoProject.debug.xcconfig"; sourceTree = "<group>"; };
+		460F984A244DF66A001151F6 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		460F984C244E0762001151F6 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
+		460F984E244E121E001151F6 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		4650210F2448AE4600B35C95 /* CustomFormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFormField.swift; sourceTree = "<group>"; };
+		465021112448E2AC00B35C95 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		46502118244A214700B35C95 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../../../../../Downloads/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		4650211A244A223800B35C95 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Bold.ttf"; path = "../../../../../Downloads/Open_Sans/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		492292317C9AA84D410C67C2 /* Pods-RSDemoProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSDemoProject.release.xcconfig"; path = "Target Support Files/Pods-RSDemoProject/Pods-RSDemoProject.release.xcconfig"; sourceTree = "<group>"; };
 		85FF9D270B540FD7BDB842CF /* Pods-RSDemoProject.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSDemoProject.staging.xcconfig"; path = "Target Support Files/Pods-RSDemoProject/Pods-RSDemoProject.staging.xcconfig"; sourceTree = "<group>"; };
 		9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -241,6 +255,7 @@
 				9B3AA39A1ED35013005A4D26 /* SignUpViewController.swift */,
 				9B3AA3981ED35007005A4D26 /* SignInViewController.swift */,
 				FA54D5871E11C59600F0DBEA /* FirstViewController.swift */,
+				465021112448E2AC00B35C95 /* CreateAccountViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -258,8 +273,19 @@
 			isa = PBXGroup;
 			children = (
 				9B715A451E28083600C0C039 /* PlaceholderTextView.swift */,
+				4650210F2448AE4600B35C95 /* CustomFormField.swift */,
+				460F984E244E121E001151F6 /* TextField.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		46502117244A210C00B35C95 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4650211A244A223800B35C95 /* OpenSans-Bold.ttf */,
+				46502118244A214700B35C95 /* OpenSans-Regular.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		506A29AE0C7D2BF634BD7D7D /* Pods */ = {
@@ -278,6 +304,7 @@
 		9B0C72511C738C3100BAF3B1 /* RSDemoProject */ = {
 			isa = PBXGroup;
 			children = (
+				46502117244A210C00B35C95 /* fonts */,
 				078642F222E6691B0027BF11 /* Common */,
 				078642EB22E668520027BF11 /* Home */,
 				078642EA22E668120027BF11 /* Onboarding */,
@@ -294,6 +321,7 @@
 				9B0C726D1C738D3400BAF3B1 /* Info.plist */,
 				9BFA84F21C776827009F64E4 /* LaunchScreen.storyboard */,
 				0ABFB8921FA366D90098F751 /* Main.storyboard */,
+				460F984A244DF66A001151F6 /* Localizable.strings */,
 			);
 			path = RSDemoProject;
 			sourceTree = "<group>";
@@ -416,6 +444,7 @@
 				071CD2612228544700E6D385 /* FontExtension.swift */,
 				FE251D0622A7FE0F00E0DE90 /* DataExtension.swift */,
 				9B5EAB49232C146D00B9CE3C /* UITextFieldExtension.swift */,
+				460F984C244E0762001151F6 /* UILabelExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -539,10 +568,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46502119244A214700B35C95 /* OpenSans-Regular.ttf in Resources */,
 				0ABFB8901FA366D90098F751 /* Main.storyboard in Resources */,
+				4650211B244A223800B35C95 /* OpenSans-Bold.ttf in Resources */,
 				9BFA84F31C776827009F64E4 /* LaunchScreen.storyboard in Resources */,
 				9B8D306B20AB456C0050697F /* Localization.strings in Resources */,
 				9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */,
+				460F984B244DF66A001151F6 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,7 +668,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -694,16 +726,19 @@
 				9B8D307020AB47E90050697F /* JSONEncodingExtension.swift in Sources */,
 				FE4D636422B2CDF700685161 /* ViewModelState.swift in Sources */,
 				E81171921DE5EFB7003D3DF5 /* UIViewControllerExtension.swift in Sources */,
+				465021122448E2AC00B35C95 /* CreateAccountViewController.swift in Sources */,
 				9B3AA3991ED35007005A4D26 /* SignInViewController.swift in Sources */,
 				E8FBB1BF1DD21A32000D6740 /* Session.swift in Sources */,
 				0A6990351F9F82A300F4BAC7 /* UIApplicationExtension.swift in Sources */,
 				9B77E0731E2FB6350020E450 /* User.swift in Sources */,
+				460F984F244E121E001151F6 /* TextField.swift in Sources */,
 				FA54D5881E11C59600F0DBEA /* FirstViewController.swift in Sources */,
 				FABDC9221EE1EB2B000DDAC3 /* ConfigurationManager.swift in Sources */,
 				9B8574D7212C81950063A3E2 /* SignUpViewModel.swift in Sources */,
 				FEE8081022A6C10900743D1B /* UserService.swift in Sources */,
 				9BE3669D1F101737007CAECD /* MultipartMedia.swift in Sources */,
 				9B8574D9212C84130063A3E2 /* UIImageExtension.swift in Sources */,
+				460F984D244E0762001151F6 /* UILabelExtension.swift in Sources */,
 				FE583F0A22AFC9E000EF3CDA /* AnalyticsManager.swift in Sources */,
 				9B3AA39B1ED35013005A4D26 /* SignUpViewController.swift in Sources */,
 				9B5EAB4A232C146D00B9CE3C /* UITextFieldExtension.swift in Sources */,
@@ -717,6 +752,7 @@
 				FE583F1022AFC9FA00EF3CDA /* AnalyticsEvent.swift in Sources */,
 				FE4D635E22B2CAFF00685161 /* AppNavigator.swift in Sources */,
 				E8FBB1C11DD21D18000D6740 /* SessionManager.swift in Sources */,
+				465021102448AE4600B35C95 /* CustomFormField.swift in Sources */,
 				9BE3669F1F10175E007CAECD /* Base64Media.swift in Sources */,
 				9BAFB7C32114E3CD0099DC61 /* SignInViewModel.swift in Sources */,
 				9B88CC671CAB305900AE60C5 /* Constants.swift in Sources */,

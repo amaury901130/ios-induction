@@ -20,6 +20,7 @@ class PlaceholderTextView: UITextView {
       textColor = text == placeholder ? placeholderColor : fontColor
     }
   }
+  
   @IBInspectable var placeholder: String = "" {
     didSet {
       if text.isEmpty {
@@ -28,6 +29,7 @@ class PlaceholderTextView: UITextView {
       }
     }
   }
+  
   @IBInspectable var placeholderColor: UIColor? = .lightGray
   var fontColor: UIColor = .black
   
@@ -71,4 +73,5 @@ class PlaceholderTextView: UITextView {
     }
     return super.resignFirstResponder()
   }
+
 }
