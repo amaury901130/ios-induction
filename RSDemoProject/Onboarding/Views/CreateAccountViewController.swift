@@ -18,6 +18,7 @@ class CreateAccountViewController: UIViewController {
   @IBOutlet weak var signUpButton: UIButton!
   @IBOutlet weak var topLeftImage: UIView!
   @IBOutlet weak var topRightImage: UIView!
+  @IBOutlet weak var screenTitle: UILabel!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,20 +28,22 @@ class CreateAccountViewController: UIViewController {
   }
   
   func setupTopImage() {
-    topLeftImage.layer.backgroundColor = App.topLeftColor
-    topRightImage.layer.backgroundColor = App.topRightColor
+    topLeftImage.layer.backgroundColor = App.yellowColor
+    topRightImage.layer.backgroundColor = App.blueColor
     topRightImage.layer.compositingFilter = "multiplyBlendMode"
     [topLeftImage, topRightImage].forEach { $0?.setRoundBorders(175) }
   }
   
   func initView() {
     //labels
-    nameField.labelText = App.getString(key: "labelFieldName")
-    emailField.labelText = App.getString(key: "labelFieldEmail")
-    passwordField.labelText = App.getString(key: "labelFieldPassword")
-    repeatPassword.labelText =  App.getString(key: "labelFieldConfirmPassword")
+    nameField.labelText = "labelFieldName".localized
+    emailField.labelText = "labelFieldEmail".localized
+    passwordField.labelText = "labelFieldPassword".localized
+    repeatPassword.labelText =  "labelFieldConfirmPassword".localized
 
     // placeholders
-    passwordField.placeholder =  App.getString(key: "placeholderPassword")
+    passwordField.placeholder =  "placeholderPassword".localized
+    
+    screenTitle.addSpacing(kernValue: 3)
   }
 }

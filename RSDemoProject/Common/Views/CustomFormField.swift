@@ -16,8 +16,8 @@ class CustomFormField: UIStackView {
   let textFieldSise: Float = 16
   let placeHolderSize: Float = 14
   let labelSize: Float = 11
-  
-  
+  let labelLetterSpacing = 1.5
+
   @IBInspectable var placeholder: String = "" {
     didSet {
       if let textViewField = textView {
@@ -41,12 +41,14 @@ class CustomFormField: UIStackView {
   @IBInspectable var labelText: String = "" {
     didSet {
       label.text = labelText
+      label.addSpacing(kernValue: labelLetterSpacing)
     }
   }
   
   @IBInspectable var errorText: String = "" {
     didSet {
       errorLabel.text = errorText
+      errorLabel.addSpacing(kernValue: labelLetterSpacing)
       if let txtView = textView {
         txtView.layer.borderColor = errorText.isEmpty ? UIColor.black.cgColor : App.errorColor
         txtView.layer.borderWidth = 1
@@ -94,21 +96,4 @@ class CustomFormField: UIStackView {
     self.addArrangedSubview(errorLabel)
     errorText = ""
   }
-}
-
-class TextField: UITextField {
-
-    let padding = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
-
-    override open func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
-    }
-
-    override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
-    }
-
-    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
-    }
 }
