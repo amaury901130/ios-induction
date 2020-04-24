@@ -45,4 +45,9 @@ extension String {
     let predicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
     return predicate.evaluate(with: self)
   }
+  
+  func validate(_ pattern: String) -> Bool{
+    let predicate = NSPredicate(format: "SELF MATCHES %@", pattern)
+    return predicate.evaluate(with: self)
+  }
 }

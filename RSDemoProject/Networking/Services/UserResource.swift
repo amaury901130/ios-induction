@@ -12,8 +12,8 @@ import Moya
 enum UserResource: TargetType {
 
   case login(String, String)
-  case signup(String, String, UIImage)
-  case signupMultipart(String, String, UIImage)
+  case signup(String, String, String, UIImage)
+  case signupMultipart(String, String, String, UIImage)
   case profile
   case fbLogin(String)
   case logout
@@ -62,12 +62,12 @@ enum UserResource: TargetType {
     case .login(let email, let password):
       let parameters = getLoginParams(email: email, password: password)
       return requestParameters(parameters: parameters)
-    case .signup(let email, let password, let avatar64):
-      let parameters = getSignUpParams(email: email, password: password, avatar: avatar64)
+    case .signup(let email, let name, let password, let avatar64):
+      let parameters = getSignUpParams(email: email, name: name, password: password, avatar: avatar64)
       return requestParameters(parameters: parameters)
-    case .signupMultipart(let email, let password, let avatar):
+    case .signupMultipart(let email, let name, let password, let avatar):
       let parameters = getSignUpMultipartParams(
-        email: email, password: password, avatar: avatar
+        email: email, name: name, password: password, avatar: avatar
       )
       return .uploadMultipart(multipartData(from: parameters, rootKey: "user"))
     case .fbLogin(let token):
@@ -90,12 +90,13 @@ enum UserResource: TargetType {
   }
 
   private func getSignUpParams(
-    email: String, password: String, avatar: UIImage
+    email: String, name: String, password: String, avatar: UIImage
   ) -> [String: Any] {
     let picData = avatar.jpegData(compressionQuality: 0.75) ?? Data()
     return [
       "user": [
         "email": email,
+        "username": name,
         "password": password,
         "password_confirmation": password,
         "image": picData.asBase64Param()
@@ -104,10 +105,11 @@ enum UserResource: TargetType {
   }
 
   private func getSignUpMultipartParams(
-    email: String, password: String, avatar: UIImage
+    email: String, name: String, password: String, avatar: UIImage
   ) -> [String: Any] {
     return [
       "email": email,
+      "username": name,
       "password": password,
       "password_confirmation": password,
       "image": avatar.jpegData(compressionQuality: 0.75) ?? Data()

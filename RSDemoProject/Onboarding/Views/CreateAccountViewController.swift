@@ -8,14 +8,16 @@
 
 import UIKit
 
-class CreateAccountViewController: UIViewController {
+class CreateAccountViewController: UIViewController, SignUpViewModelDelegate {
 
   var viewModel: SignUpViewModelWithEmail!
+  
   @IBOutlet weak var nameField: CustomFormField!
   @IBOutlet weak var emailField: CustomFormField!
   @IBOutlet weak var passwordField: CustomFormField!
   @IBOutlet weak var repeatPassword: CustomFormField!
   @IBOutlet weak var signUpButton: UIButton!
+  @IBOutlet weak var signInButton: UIButton!
   @IBOutlet weak var topLeftImage: UIView!
   @IBOutlet weak var topRightImage: UIView!
   @IBOutlet weak var screenTitle: UILabel!
@@ -23,6 +25,7 @@ class CreateAccountViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    viewModel.delegate = self
     setupTopImage()
     initView()
   }
@@ -35,15 +38,84 @@ class CreateAccountViewController: UIViewController {
   }
   
   func initView() {
+    [nameField, emailField, passwordField, repeatPassword].forEach { $0?.mandatory = true}
     //labels
     nameField.labelText = "labelFieldName".localized
     emailField.labelText = "labelFieldEmail".localized
     passwordField.labelText = "labelFieldPassword".localized
     repeatPassword.labelText =  "labelFieldConfirmPassword".localized
-
+    
+    //set text field types
+    [passwordField, repeatPassword].forEach { $0.isSecure() }
+    emailField.setKeyboardType(type: .emailAddress)
+    nameField.setKeyboardType(type: .namePhonePad)
+    
+    //set errors
+    nameField.mandatoryText = "errorFieldName".localized
+    emailField.mandatoryText = "errorEmptyEmail".localized
+    passwordField.mandatoryText = "errorEmptyPassword".localized
+    repeatPassword.mandatoryText = "errorEmptyRepeat".localized
+    passwordField.errorText = "errorFieldPassword".localized
+    repeatPassword.errorText = "errorFieldConfirmPassword".localized
+    emailField.errorText = "errorFieldEmail".localized
+    
+    //set validations
+    emailField.validationPattern = Validations.emailPattern
+    passwordField.validationPattern = Validations.passwordPattern
     // placeholders
     passwordField.placeholder =  "placeholderPassword".localized
     
+    //adding title spacing
     screenTitle.addSpacing(kernValue: 3)
+
+  }
+  
+  @IBAction func tapOnSignUpButton(_ sender: Any) {
+    if(validateForm()) {
+      viewModel.signup(name: nameField.text(), email: emailField.text(), password: passwordField.text())
+    }
+  }
+  
+  // I need to validate all fields at the same time
+  private func validateForm() -> Bool {
+    var formError = false
+    
+    [nameField, emailField, passwordField, repeatPassword].forEach {
+      formError = !$0.validate() || formError
+    }
+
+    return !(!validateRepeatPassword() || formError)
+  }
+  
+  private func validateRepeatPassword() -> Bool {
+    guard passwordField.text() == repeatPassword.text() else {
+      repeatPassword.showError()
+      return false
+    }
+    
+    return true
+  }
+  
+  @IBAction func tapOnSignInButton(_ sender: Any) {
+    viewModel.signIn()
+  }
+  
+  func formDidChange() {
+    
+  }
+  
+  func didUpdateState() {
+    switch viewModel.state {
+      case .loading:
+        [signUpButton, signInButton].forEach { ($0 as UIButton).shouldEnable(enable: false)}
+        UIApplication.showNetworkActivity()
+      case .error(let errorDescription):
+        UIApplication.hideNetworkActivity()
+        [signUpButton, signInButton].forEach { ($0 as UIButton).shouldEnable()}
+        showMessage(title: "Error", message: errorDescription)
+      case .idle:
+        UIApplication.hideNetworkActivity()
+        [signUpButton, signInButton].forEach { ($0 as UIButton).shouldEnable(enable: false)}
+    }
   }
 }

@@ -10,31 +10,26 @@ import UIKit
 
 class CustomFormField: UIStackView {
   var label = UILabel()
-  var textView: UITextField!
+  var textView = TextField()
   var errorLabel = UILabel()
   
   let textFieldSise: Float = 16
   let placeHolderSize: Float = 14
   let labelSize: Float = 11
   let labelLetterSpacing = 1.5
-
+  
+  var validationPattern: String = ""
+  var errorText: String = ""
+  var mandatory: Bool = false
+  var mandatoryText: String = ""
+  
   @IBInspectable var placeholder: String = "" {
     didSet {
-      if let textViewField = textView {
-        textViewField.placeholder = placeholder
-        textViewField.font = UIFont(
-          name: App.textFieldFont,
-          size: CGFloat(placeholder.isEmpty ? textFieldSise : placeHolderSize)
-        )
-      }
-    }
-  }
-  
-  @IBInspectable var text: String = "" {
-    didSet {
-      if let textViewField = textView {
-        textViewField.text = text
-      }
+      textView.placeholder = placeholder
+      textView.font = UIFont(
+        name: App.textFieldFont,
+        size: CGFloat(placeholder.isEmpty ? textFieldSise : placeHolderSize)
+      )
     }
   }
   
@@ -45,15 +40,54 @@ class CustomFormField: UIStackView {
     }
   }
   
-  @IBInspectable var errorText: String = "" {
-    didSet {
-      errorLabel.text = errorText
-      errorLabel.addSpacing(kernValue: labelLetterSpacing)
-      if let txtView = textView {
-        txtView.layer.borderColor = errorText.isEmpty ? UIColor.black.cgColor : App.errorColor
-        txtView.layer.borderWidth = 1
+  open func showError(_ show: Bool = true) {
+    errorLabel.text = show ? errorText : ""
+    errorLabel.addSpacing(kernValue: labelLetterSpacing)
+    textView.layer.borderColor = show ? App.errorColor : UIColor.black.cgColor
+  }
+  
+  open func setKeyboardType(type: UIKeyboardType) {
+    textView.keyboardType = type
+  }
+  
+  open func isSecure(isSecure: Bool = true) {
+    textView.isSecureTextEntry = isSecure
+  }
+  
+  private func showMandatoryError() {
+    errorLabel.text = mandatoryText
+    errorLabel.addSpacing(kernValue: labelLetterSpacing)
+    textView.layer.borderColor = App.errorColor
+  }
+  
+  open func validate() -> Bool {
+    guard validationPattern.isEmpty else {
+      if let text = textView.text {
+        guard text.isEmpty else {
+          let valid = text.validate(validationPattern)
+          showError(!valid)
+          return valid
+        }
       }
+      
+      return validateMandatory()
     }
+    
+    return validateMandatory()
+  }
+  
+  private func validateMandatory() -> Bool {
+    if mandatory && textView.text!.isEmpty {
+      showMandatoryError()
+      return false
+    }
+    
+    showError(false)
+    return true
+  }
+  
+  open func text() -> String {
+    return textView.text ?? ""
   }
   
   override init(frame: CGRect) {
@@ -68,8 +102,8 @@ class CustomFormField: UIStackView {
   
   private func initCustomView() {
     self.axis = .vertical
-    self.distribution = .fill
-    self.spacing = 2
+    self.distribution = .equalCentering
+    self.spacing = 4
     
     addLabel()
     addTextView()
@@ -84,8 +118,9 @@ class CustomFormField: UIStackView {
   }
   
   private func addTextView() {
-    textView = TextField()
     textView.font = UIFont(name: App.textFieldFont, size: CGFloat(textFieldSise))
+    textView.layer.borderColor = UIColor.black.cgColor
+    textView.layer.borderWidth = 1
     self.addArrangedSubview(textView)
   }
   
