@@ -8,27 +8,29 @@
 
 import UIKit
 
-class CustomFormField: UIStackView {
-  var label = UILabel()
-  var textView = TextField()
-  var errorLabel = UILabel()
+class CustomFormField: UIStackView, UITextFieldDelegate {
+  lazy var label = UILabel()
+  lazy var textView = TextField()
+  lazy var errorLabel = UILabel()
   
-  let textFieldSise: Float = 16
+  let textFieldSize: Float = 16
   let placeHolderSize: Float = 14
   let labelSize: Float = 11
   let labelLetterSpacing = 1.5
+  let itemSpacing = CGFloat(4)
   
-  var validationPattern: String = ""
-  var errorText: String = ""
-  var mandatory: Bool = false
-  var mandatoryText: String = ""
+  var validationPattern = ""
+  var errorText = ""
+  var mandatory = false
+  var mandatoryText = ""
+  var text = ""
   
   @IBInspectable var placeholder: String = "" {
     didSet {
       textView.placeholder = placeholder
       textView.font = UIFont(
         name: App.textFieldFont,
-        size: CGFloat(placeholder.isEmpty ? textFieldSise : placeHolderSize)
+        size: CGFloat(placeholder.isEmpty ? textFieldSize : placeHolderSize)
       )
     }
   }
@@ -61,33 +63,23 @@ class CustomFormField: UIStackView {
   }
   
   open func validate() -> Bool {
-    guard validationPattern.isEmpty else {
-      if let text = textView.text {
-        guard text.isEmpty else {
-          let valid = text.validate(validationPattern)
-          showError(!valid)
-          return valid
-        }
-      }
-      
-      return validateMandatory()
+    guard textView.text?.isEmpty ?? true, validationPattern.isEmpty else {
+      let valid = textView.text?.validate(validationPattern) ?? false
+      showError(!valid)
+      return valid
     }
     
     return validateMandatory()
   }
   
   private func validateMandatory() -> Bool {
-    if mandatory && textView.text!.isEmpty {
+    guard !mandatory, textView.text?.isEmpty ?? false else {
       showMandatoryError()
       return false
     }
     
     showError(false)
     return true
-  }
-  
-  open func text() -> String {
-    return textView.text ?? ""
   }
   
   override init(frame: CGRect) {
@@ -101,9 +93,9 @@ class CustomFormField: UIStackView {
   }
   
   private func initCustomView() {
-    self.axis = .vertical
-    self.distribution = .equalCentering
-    self.spacing = 4
+    axis = .vertical
+    distribution = .equalCentering
+    spacing = itemSpacing
     
     addLabel()
     addTextView()
@@ -114,21 +106,26 @@ class CustomFormField: UIStackView {
     label.textColor = .black
     label.font = UIFont(name: App.textFieldFont, size: CGFloat(labelSize))
     label.textAlignment = .center
-    self.addArrangedSubview(label)
+    addArrangedSubview(label)
   }
   
   private func addTextView() {
-    textView.font = UIFont(name: App.textFieldFont, size: CGFloat(textFieldSise))
+    textView.font = UIFont(name: App.textFieldFont, size: CGFloat(textFieldSize))
     textView.layer.borderColor = UIColor.black.cgColor
     textView.layer.borderWidth = 1
-    self.addArrangedSubview(textView)
+    textView.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    addArrangedSubview(textView)
+  }
+  
+  @objc func textFieldDidChange(_ textField: UITextField) {
+    text = textField.text ?? ""
   }
   
   private func addErrorLabel() {
     errorLabel.textColor = UIColor.red
     errorLabel.textAlignment = .center
     errorLabel.font = UIFont(name: App.textFieldFont, size: CGFloat(labelSize))
-    self.addArrangedSubview(errorLabel)
+    addArrangedSubview(errorLabel)
     errorText = ""
   }
 }

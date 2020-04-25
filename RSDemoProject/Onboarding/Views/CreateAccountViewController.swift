@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateAccountViewController: UIViewController, SignUpViewModelDelegate {
+class CreateAccountViewController: UIViewController {
 
   var viewModel: SignUpViewModelWithEmail!
   
@@ -71,8 +71,8 @@ class CreateAccountViewController: UIViewController, SignUpViewModelDelegate {
   }
   
   @IBAction func tapOnSignUpButton(_ sender: Any) {
-    if(validateForm()) {
-      viewModel.signup(name: nameField.text(), email: emailField.text(), password: passwordField.text())
+    if validateForm() {
+      viewModel.signup(name: nameField.text, email: emailField.text, password: passwordField.text)
     }
   }
   
@@ -84,11 +84,11 @@ class CreateAccountViewController: UIViewController, SignUpViewModelDelegate {
       formError = !$0.validate() || formError
     }
 
-    return !(!validateRepeatPassword() || formError)
+    return !formError && validateRepeatPassword()
   }
   
   private func validateRepeatPassword() -> Bool {
-    guard passwordField.text() == repeatPassword.text() else {
+    guard passwordField.text == repeatPassword.text else {
       repeatPassword.showError()
       return false
     }
@@ -99,23 +99,23 @@ class CreateAccountViewController: UIViewController, SignUpViewModelDelegate {
   @IBAction func tapOnSignInButton(_ sender: Any) {
     viewModel.signIn()
   }
-  
-  func formDidChange() {
-    
-  }
-  
+
+}
+
+extension CreateAccountViewController: SignUpViewModelDelegate {
+  func formDidChange() {}
   func didUpdateState() {
     switch viewModel.state {
       case .loading:
-        [signUpButton, signInButton].forEach { ($0 as UIButton).shouldEnable(enable: false)}
         UIApplication.showNetworkActivity()
+        [signUpButton, signInButton].forEach { $0.setEnable(false) }
       case .error(let errorDescription):
         UIApplication.hideNetworkActivity()
-        [signUpButton, signInButton].forEach { ($0 as UIButton).shouldEnable()}
+        [signUpButton, signInButton].forEach { $0.setEnable() }
         showMessage(title: "Error", message: errorDescription)
       case .idle:
         UIApplication.hideNetworkActivity()
-        [signUpButton, signInButton].forEach { ($0 as UIButton).shouldEnable(enable: false)}
+        [signUpButton, signInButton].forEach { $0.setEnable(false) }
     }
   }
 }
