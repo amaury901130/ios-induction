@@ -38,7 +38,9 @@ class CreateAccountViewController: UIViewController {
   }
   
   func initView() {
-    [nameField, emailField, passwordField, repeatPassword].forEach { $0?.mandatory = true }
+    [nameField, emailField, passwordField, repeatPassword].forEach {
+      $0?.mandatory = true
+    }
     //labels
     nameField.labelText = "labelFieldName".localized
     emailField.labelText = "labelFieldEmail".localized
@@ -71,9 +73,10 @@ class CreateAccountViewController: UIViewController {
   
   @IBAction func tapOnSignUpButton(_ sender: Any) {
     if validateForm() {
-      viewModel.signup(name: nameField.text,
-                       email: emailField.text,
-                       password: passwordField.text)
+      viewModel.signup(
+        name: nameField.text,
+        email: emailField.text,
+        password: passwordField.text)
     }
   }
 
@@ -97,13 +100,19 @@ class CreateAccountViewController: UIViewController {
   }
   
   @IBAction func tapOnSignInButton(_ sender: Any) {
-    AppNavigator.shared.navigate(to: OnboardingRoutes.signIn, with: .changeRoot)
+    navigate(to: OnboardingRoutes.signIn)
   }
 }
 
 extension CreateAccountViewController: SignUpViewModelDelegate {
   func formDidChange() {}
   
+  func navigate(to: Route) {
+    AppNavigator.shared.navigate(
+      to: to,
+      with: .changeRoot)
+  }
+    
   func didUpdateState() {
     switch viewModel.state {
     case .loading:

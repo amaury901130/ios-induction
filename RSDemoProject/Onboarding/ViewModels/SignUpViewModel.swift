@@ -11,6 +11,7 @@ import UIKit
 
 protocol SignUpViewModelDelegate: class {
   func formDidChange()
+  func navigate(to: Route)
   func didUpdateState()
 }
 
@@ -62,7 +63,7 @@ class SignUpViewModelWithEmail {
         self.state = .idle
         AnalyticsManager.shared.identifyUser(with: self.email)
         AnalyticsManager.shared.log(event: Event.registerSuccess(email: self.email))
-        AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
+        self.delegate?.navigate(to: HomeRoutes.home)
       },
       failure: { [weak self] error in
         if let apiError = error as? APIError {

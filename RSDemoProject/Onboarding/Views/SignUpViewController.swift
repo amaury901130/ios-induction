@@ -62,6 +62,8 @@ extension SignUpViewController: SignUpViewModelDelegate {
     setSignUpButton(enabled: viewModel.hasValidData)
   }
   
+  func navigate(to: Route) {}
+  
   func didUpdateState() {
     switch viewModel.state {
     case .loading:
