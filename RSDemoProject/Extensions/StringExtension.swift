@@ -39,10 +39,11 @@ extension String {
   
   //Regex fulfill RFC 5322 Internet Message format
   func isEmailFormatted() -> Bool {
-    // swiftlint:disable line_length
-    let emailRegex = "[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@([A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?"
-    // swiftlint:enable line_length
-    let predicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+    return validate(Validations.emailPattern)
+  }
+  
+  func validate(_ pattern: String) -> Bool {
+    let predicate = NSPredicate(format: "SELF MATCHES %@", pattern)
     return predicate.evaluate(with: self)
   }
 }

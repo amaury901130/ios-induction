@@ -11,3 +11,11 @@
 "labelFieldConfirmPassword" = "CONFIRM PASSWORD";
 "labelFieldEmail" = "EMAIL";
 "placeholderPassword" = "MIN. 6 CHARACTERS LONG";
+
+"errorFieldName" = "you forgot to put your name!";
+"errorEmptyEmail" = "you forgot to put your email!";
+"errorEmptyPassword" = "you forgot to put your password!";
+"errorEmptyRepeat" = "you forgot to confirm your password!";
+"errorFieldPassword" = "the password must be 6 characters long";
+"errorFieldConfirmPassword" = "passwords don't match";
+"errorFieldEmail" = "oops! this email is not valid";

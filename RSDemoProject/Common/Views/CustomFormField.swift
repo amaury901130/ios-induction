@@ -8,33 +8,32 @@
 
 import UIKit
 
-class CustomFormField: UIStackView {
-  var label = UILabel()
-  var textView: UITextField!
-  var errorLabel = UILabel()
+class CustomFormField: UIStackView, UITextFieldDelegate {
+  lazy var label = UILabel()
+  lazy var textView = TextField()
+  lazy var errorLabel = UILabel()
   
-  let textFieldSise: Float = 16
+  let textFieldSize: Float = 16
   let placeHolderSize: Float = 14
   let labelSize: Float = 11
   let labelLetterSpacing = 1.5
-
-  @IBInspectable var placeholder: String = "" {
-    didSet {
-      if let textViewField = textView {
-        textViewField.placeholder = placeholder
-        textViewField.font = UIFont(
-          name: App.textFieldFont,
-          size: CGFloat(placeholder.isEmpty ? textFieldSise : placeHolderSize)
-        )
-      }
-    }
+  let itemSpacing: CGFloat = 4
+  
+  var validationPattern = ""
+  var errorText = ""
+  var mandatory = false
+  var mandatoryText = ""
+  var text: String {
+    textView.text ?? ""
   }
   
-  @IBInspectable var text: String = "" {
+  @IBInspectable var placeholder: String = "" {
     didSet {
-      if let textViewField = textView {
-        textViewField.text = text
-      }
+      textView.placeholder = placeholder
+      textView.font = UIFont(
+        name: App.textFieldFont,
+        size: CGFloat(placeholder.isEmpty ? textFieldSize : placeHolderSize)
+      )
     }
   }
   
@@ -45,15 +44,44 @@ class CustomFormField: UIStackView {
     }
   }
   
-  @IBInspectable var errorText: String = "" {
-    didSet {
-      errorLabel.text = errorText
-      errorLabel.addSpacing(kernValue: labelLetterSpacing)
-      if let txtView = textView {
-        txtView.layer.borderColor = errorText.isEmpty ? UIColor.black.cgColor : App.errorColor
-        txtView.layer.borderWidth = 1
-      }
+  open func showError(_ show: Bool = true) {
+    errorLabel.text = show ? errorText : ""
+    errorLabel.addSpacing(kernValue: labelLetterSpacing)
+    textView.layer.borderColor = show ? App.errorColor : UIColor.black.cgColor
+  }
+  
+  open func setKeyboardType(type: UIKeyboardType) {
+    textView.keyboardType = type
+  }
+  
+  open func isSecure(isSecure: Bool = true) {
+    textView.isSecureTextEntry = isSecure
+  }
+  
+  private func showMandatoryError() {
+    errorLabel.text = mandatoryText
+    errorLabel.addSpacing(kernValue: labelLetterSpacing)
+    textView.layer.borderColor = App.errorColor
+  }
+  
+  open func validate() -> Bool {
+    if !validationPattern.isEmpty && !text.isEmpty {
+      let valid = text.validate(validationPattern)
+      showError(!valid)
+      return valid
     }
+    
+    return validateMandatory()
+  }
+  
+  private func validateMandatory() -> Bool {
+    if mandatory && textView.text?.isEmpty ?? true {
+      showMandatoryError()
+      return false
+    }
+    
+    showError(false)
+    return true
   }
   
   override init(frame: CGRect) {
@@ -67,9 +95,9 @@ class CustomFormField: UIStackView {
   }
   
   private func initCustomView() {
-    self.axis = .vertical
-    self.distribution = .fill
-    self.spacing = 2
+    axis = .vertical
+    distribution = .equalCentering
+    spacing = itemSpacing
     
     addLabel()
     addTextView()
@@ -80,20 +108,21 @@ class CustomFormField: UIStackView {
     label.textColor = .black
     label.font = UIFont(name: App.textFieldFont, size: CGFloat(labelSize))
     label.textAlignment = .center
-    self.addArrangedSubview(label)
+    addArrangedSubview(label)
   }
   
   private func addTextView() {
-    textView = TextField()
-    textView.font = UIFont(name: App.textFieldFont, size: CGFloat(textFieldSise))
-    self.addArrangedSubview(textView)
+    textView.font = UIFont(name: App.textFieldFont, size: CGFloat(textFieldSize))
+    textView.layer.borderColor = UIColor.black.cgColor
+    textView.layer.borderWidth = 1
+    addArrangedSubview(textView)
   }
   
   private func addErrorLabel() {
     errorLabel.textColor = UIColor.red
     errorLabel.textAlignment = .center
     errorLabel.font = UIFont(name: App.textFieldFont, size: CGFloat(labelSize))
-    self.addArrangedSubview(errorLabel)
+    addArrangedSubview(errorLabel)
     errorText = ""
   }
 }

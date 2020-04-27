@@ -39,11 +39,12 @@ class UserService: BaseApiService<UserResource> {
   }
 
   func signup(_ email: String,
+              name: String,
               password: String,
               avatar64: UIImage,
               success: @escaping () -> Void,
               failure: @escaping (_ error: Error) -> Void) {
-    request(for: .signup(email, password, avatar64),
+    request(for: .signup(email, name, password, avatar64),
             at: "user",
             onSuccess: { [weak self] (result: User, response) -> Void in
               guard let headers = response.response?.allHeaderFields else {

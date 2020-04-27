@@ -48,7 +48,7 @@ class SignUpViewController: UIViewController {
   }
   
   @IBAction func tapOnSignUpButton(_ sender: Any) {
-    viewModel.signup()
+    //viewModel.signup()
   }
   
   func setSignUpButton(enabled: Bool) {
@@ -61,6 +61,8 @@ extension SignUpViewController: SignUpViewModelDelegate {
   func formDidChange() {
     setSignUpButton(enabled: viewModel.hasValidData)
   }
+  
+  func navigate(to: Route) {}
   
   func didUpdateState() {
     switch viewModel.state {

@@ -30,6 +30,12 @@ class SignUpViewModelWithEmail {
     }
   }
   
+  var name = "" {
+    didSet {
+      delegate?.formDidChange()
+    }
+  }
+  
   var password = "" {
     didSet {
       delegate?.formDidChange()
@@ -47,16 +53,16 @@ class SignUpViewModelWithEmail {
       email.isEmailFormatted() && !password.isEmpty && password == passwordConfirmation
   }
   
-  func signup() {
+  func signup(name: String, email: String, password: String) {
     state = .loading
     UserService.sharedInstance.signup(
-      email, password: password, avatar64: UIImage.random(),
+      email, name: name, password: password, avatar64: UIImage.random(),
       success: { [weak self] in
         guard let self = self else { return }
         self.state = .idle
         AnalyticsManager.shared.identifyUser(with: self.email)
         AnalyticsManager.shared.log(event: Event.registerSuccess(email: self.email))
-        AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
+        self.state = .signedUp
       },
       failure: { [weak self] error in
         if let apiError = error as? APIError {

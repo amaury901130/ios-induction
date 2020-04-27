@@ -18,6 +18,8 @@
 		460F984B244DF66A001151F6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 460F984A244DF66A001151F6 /* Localizable.strings */; };
 		460F984D244E0762001151F6 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F984C244E0762001151F6 /* UILabelExtension.swift */; };
 		460F984F244E121E001151F6 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F984E244E121E001151F6 /* TextField.swift */; };
+		460F9853244F26AA001151F6 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F9852244F26AA001151F6 /* UIButtonExtension.swift */; };
+		460F98552451E37E001151F6 /* ValidationPatterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F98542451E37E001151F6 /* ValidationPatterns.swift */; };
 		465021102448AE4600B35C95 /* CustomFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650210F2448AE4600B35C95 /* CustomFormField.swift */; };
 		465021122448E2AC00B35C95 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465021112448E2AC00B35C95 /* CreateAccountViewController.swift */; };
 		46502119244A214700B35C95 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46502118244A214700B35C95 /* OpenSans-Regular.ttf */; };
@@ -97,6 +99,8 @@
 		460F984A244DF66A001151F6 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		460F984C244E0762001151F6 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		460F984E244E121E001151F6 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		460F9852244F26AA001151F6 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		460F98542451E37E001151F6 /* ValidationPatterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationPatterns.swift; sourceTree = "<group>"; };
 		4650210F2448AE4600B35C95 /* CustomFormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFormField.swift; sourceTree = "<group>"; };
 		465021112448E2AC00B35C95 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		46502118244A214700B35C95 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../../../../../Downloads/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -409,6 +413,7 @@
 			isa = PBXGroup;
 			children = (
 				9B88CC661CAB305900AE60C5 /* Constants.swift */,
+				460F98542451E37E001151F6 /* ValidationPatterns.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -445,6 +450,7 @@
 				FE251D0622A7FE0F00E0DE90 /* DataExtension.swift */,
 				9B5EAB49232C146D00B9CE3C /* UITextFieldExtension.swift */,
 				460F984C244E0762001151F6 /* UILabelExtension.swift */,
+				460F9852244F26AA001151F6 /* UIButtonExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -729,6 +735,7 @@
 				465021122448E2AC00B35C95 /* CreateAccountViewController.swift in Sources */,
 				9B3AA3991ED35007005A4D26 /* SignInViewController.swift in Sources */,
 				E8FBB1BF1DD21A32000D6740 /* Session.swift in Sources */,
+				460F98552451E37E001151F6 /* ValidationPatterns.swift in Sources */,
 				0A6990351F9F82A300F4BAC7 /* UIApplicationExtension.swift in Sources */,
 				9B77E0731E2FB6350020E450 /* User.swift in Sources */,
 				460F984F244E121E001151F6 /* TextField.swift in Sources */,
@@ -752,6 +759,7 @@
 				FE583F1022AFC9FA00EF3CDA /* AnalyticsEvent.swift in Sources */,
 				FE4D635E22B2CAFF00685161 /* AppNavigator.swift in Sources */,
 				E8FBB1C11DD21D18000D6740 /* SessionManager.swift in Sources */,
+				460F9853244F26AA001151F6 /* UIButtonExtension.swift in Sources */,
 				465021102448AE4600B35C95 /* CustomFormField.swift in Sources */,
 				9BE3669F1F10175E007CAECD /* Base64Media.swift in Sources */,
 				9BAFB7C32114E3CD0099DC61 /* SignInViewModel.swift in Sources */,
