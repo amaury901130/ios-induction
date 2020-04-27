@@ -105,8 +105,8 @@ class CreateAccountViewController: UIViewController {
   
   private func navigateTo(_ to: Route) {
     AppNavigator.shared.navigate(
-    to: to,
-    with: .changeRoot)
+      to: to,
+      with: .changeRoot)
   }
 }
 
