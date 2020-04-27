@@ -100,21 +100,24 @@ class CreateAccountViewController: UIViewController {
   }
   
   @IBAction func tapOnSignInButton(_ sender: Any) {
-    navigate(to: OnboardingRoutes.signIn)
+    navigateTo(OnboardingRoutes.signIn)
+  }
+  
+  private func navigateTo(_ to: Route) {
+    AppNavigator.shared.navigate(
+    to: to,
+    with: .changeRoot)
   }
 }
 
 extension CreateAccountViewController: SignUpViewModelDelegate {
   func formDidChange() {}
   
-  func navigate(to: Route) {
-    AppNavigator.shared.navigate(
-      to: to,
-      with: .changeRoot)
-  }
-    
   func didUpdateState() {
     switch viewModel.state {
+    case .signedUp:
+      UIApplication.hideNetworkActivity()
+      navigateTo(HomeRoutes.home)
     case .loading:
       UIApplication.showNetworkActivity()
       [signUpButton, signInButton].forEach { $0.setEnable(false) }
