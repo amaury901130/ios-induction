@@ -103,10 +103,10 @@ class CreateAccountViewController: UIViewController {
     navigateTo(OnboardingRoutes.signIn)
   }
   
-  private func navigateTo(_ to: Route) {
+  private func navigateTo(_ route: Route) {
     AppNavigator.shared.navigate(
-      to: to,
-      with: .changeRoot)
+      to: route,
+      with: .push)
   }
 }
 

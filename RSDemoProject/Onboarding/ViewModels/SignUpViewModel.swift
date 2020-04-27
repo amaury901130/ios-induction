@@ -14,9 +14,16 @@ protocol SignUpViewModelDelegate: class {
   func didUpdateState()
 }
 
+enum SignUpViewModelState: Equatable {
+  case loading
+  case error(String)
+  case idle
+  case signedUp
+}
+
 class SignUpViewModelWithEmail {
   
-  var state: ViewModelState = .idle {
+  var state: SignUpViewModelState = .idle {
     didSet {
       delegate?.didUpdateState()
     }

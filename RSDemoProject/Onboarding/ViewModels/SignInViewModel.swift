@@ -9,13 +9,19 @@
 import Foundation
 
 protocol SignInViewModelDelegate: class {
-  func didUpdateCredentials()
   func didUpdateState()
+}
+
+enum SignInViewModelState: Equatable {
+  case loading
+  case error(String)
+  case idle
+  case signedIn
 }
 
 class SignInViewModelWithCredentials {
   
-  var state: ViewModelState = .idle {
+  var state: SignInViewModelState = .idle {
     didSet {
       delegate?.didUpdateState()
     }
@@ -23,33 +29,20 @@ class SignInViewModelWithCredentials {
   
   weak var delegate: SignInViewModelDelegate?
   
-  var email = "" {
-    didSet {
-      delegate?.didUpdateCredentials()
-    }
+  func facebookLogin() {
+    //todo
   }
   
-  var password = "" {
-    didSet {
-      delegate?.didUpdateCredentials()
-    }
-  }
-  
-  var hasValidCredentials: Bool {
-    return email.isEmailFormatted() && !password.isEmpty
-  }
-  
-  func login() {
+  func login(email: String, password: String) {
     state = .loading
     UserService.sharedInstance
       .login(email,
              password: password,
              success: { [weak self] in
               guard let self = self else { return }
-              self.state = .idle
-              AnalyticsManager.shared.identifyUser(with: self.email)
+              self.state = .signedIn
+              AnalyticsManager.shared.identifyUser(with: email)
               AnalyticsManager.shared.log(event: Event.login)
-              AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
              },
              failure: { [weak self] error in
                self?.state = .error(error.localizedDescription)
