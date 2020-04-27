@@ -189,7 +189,7 @@ RS iOS BASE.</string>
                                             <action selector="tapOnSignInButton:" destination="8qd-iW-5fg" eventType="touchUpInside" id="Gr9-sV-EZf"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1f2-4a-uwh">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1f2-4a-uwh" customClass="FBSDKLoginButton" customModule="RSDemoProject">
                                         <rect key="frame" x="105.5" y="316" width="132" height="30"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <accessibility key="accessibilityConfiguration" identifier="SignUpButton"/>

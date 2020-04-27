@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FBSDKCoreKit
 
 protocol SignInViewModelDelegate: class {
   func didUpdateState()
@@ -29,8 +30,19 @@ class SignInViewModelWithCredentials {
   
   weak var delegate: SignInViewModelDelegate?
   
-  func facebookLogin() {
-    //todo
+  func facebookLoginRequestSucceded() {
+    guard let token = AccessToken.current else {
+      return
+    }
+    
+    UserService.sharedInstance.loginWithFacebook(
+      token: token.tokenString,
+      success: { [weak self] in
+        self?.state = .signedIn
+      },
+      failure: { [weak self] error in
+        self?.state = .error(error.localizedDescription)
+    })
   }
   
   func login(email: String, password: String) {
@@ -46,6 +58,6 @@ class SignInViewModelWithCredentials {
              },
              failure: { [weak self] error in
                self?.state = .error(error.localizedDescription)
-             })
+      })
   }
 }

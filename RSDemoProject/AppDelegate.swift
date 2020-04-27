@@ -51,6 +51,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                   sourceApplication: sourceApplication,
                                                   annotation: annotation)
   }
+
+  func application(
+        _ app: UIApplication,
+        open url: URL,
+        options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+    ) -> Bool {
+
+        ApplicationDelegate.shared.application(
+            app,
+            open: url,
+            sourceApplication: options[.sourceApplication] as? String,
+            annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+        )
+
+    }  
+
   
   func unexpectedLogout() {
     UserDataManager.deleteUser()

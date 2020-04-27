@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class SignInViewController: UIViewController {
   
+  let facebookPermissions = ["email"]
   // MARK: - Outlets
   
   var viewModel: SignInViewModelWithCredentials!
@@ -70,11 +72,28 @@ class SignInViewController: UIViewController {
   }
   
   @IBAction func facebookLogin() {
-    viewModel.facebookLogin()
+    let loginManager = LoginManager()
+    loginManager.logIn(
+      permissions: facebookPermissions,
+      from: self) { [weak self] (result, error) in
+        guard error == nil else {
+          self?.showMessage(
+            title: "Error",
+            message: error?.localizedDescription ?? "errorFBLogin".localized)
+          return
+        }
+
+        guard let result = result, !result.isCancelled else {
+            return
+        }
+        
+        self?.viewModel.facebookLoginRequestSucceded()
+    }
   }
-  
+
   func validateForm() -> Bool {
     var formError = false
+    
     [emailField, passwordField].forEach {
       formError = !$0.validate() || formError
     }
