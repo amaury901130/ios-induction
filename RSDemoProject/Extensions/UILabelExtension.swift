@@ -10,9 +10,11 @@ import UIKit
 
 extension UILabel {
   func addSpacing(kernValue: Double) {
-    if let labelText = text, labelText.count > 0 {
+    if let labelText = text, !labelText.isEmpty {
       let attributedString = NSMutableAttributedString(string: labelText)
-      attributedString.addAttribute(.kern, value: kernValue, range: NSRange(location: 0, length: attributedString.length))
+      attributedString.addAttribute(.kern,
+                                    value: kernValue,
+                                    range: NSRange(location: 0, length: attributedString.length))
       attributedText = attributedString
     }
   }

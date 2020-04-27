@@ -9,6 +9,8 @@
 import Foundation
 
 struct Validations {
+  // swiftlint:disable line_length
   static let emailPattern = "[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@([A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?"
+  // swiftlint:enable line_length
   static let passwordPattern = "[A-Z0-9a-z._%+-]{6,}"
 }

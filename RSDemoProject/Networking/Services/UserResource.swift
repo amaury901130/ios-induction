@@ -63,7 +63,10 @@ enum UserResource: TargetType {
       let parameters = getLoginParams(email: email, password: password)
       return requestParameters(parameters: parameters)
     case .signup(let email, let name, let password, let avatar64):
-      let parameters = getSignUpParams(email: email, name: name, password: password, avatar: avatar64)
+      let parameters = getSignUpParams(email: email,
+                                       name: name,
+                                       password: password,
+                                       avatar: avatar64)
       return requestParameters(parameters: parameters)
     case .signupMultipart(let email, let name, let password, let avatar):
       let parameters = getSignUpMultipartParams(

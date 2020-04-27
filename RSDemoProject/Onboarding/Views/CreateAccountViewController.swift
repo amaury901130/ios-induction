@@ -38,7 +38,7 @@ class CreateAccountViewController: UIViewController {
   }
   
   func initView() {
-    [nameField, emailField, passwordField, repeatPassword].forEach { $0?.mandatory = true}
+    [nameField, emailField, passwordField, repeatPassword].forEach { $0?.mandatory = true }
     //labels
     nameField.labelText = "labelFieldName".localized
     emailField.labelText = "labelFieldEmail".localized
@@ -67,27 +67,27 @@ class CreateAccountViewController: UIViewController {
     
     //adding title spacing
     screenTitle.addSpacing(kernValue: 3)
-
   }
   
   @IBAction func tapOnSignUpButton(_ sender: Any) {
     if validateForm() {
-      viewModel.signup(name: nameField.text, email: emailField.text, password: passwordField.text)
+      viewModel.signup(name: nameField.text,
+                       email: emailField.text,
+                       password: passwordField.text)
     }
   }
-  
-  // I need to validate all fields at the same time
+
   private func validateForm() -> Bool {
     var formError = false
     
     [nameField, emailField, passwordField, repeatPassword].forEach {
       formError = !$0.validate() || formError
     }
-
-    return !formError && validateRepeatPassword()
+    
+    return !formError && validatePassword()
   }
   
-  private func validateRepeatPassword() -> Bool {
+  private func validatePassword() -> Bool {
     guard passwordField.text == repeatPassword.text else {
       repeatPassword.showError()
       return false
@@ -97,25 +97,25 @@ class CreateAccountViewController: UIViewController {
   }
   
   @IBAction func tapOnSignInButton(_ sender: Any) {
-    viewModel.signIn()
+    AppNavigator.shared.navigate(to: OnboardingRoutes.signIn, with: .changeRoot)
   }
-
 }
 
 extension CreateAccountViewController: SignUpViewModelDelegate {
   func formDidChange() {}
+  
   func didUpdateState() {
     switch viewModel.state {
-      case .loading:
-        UIApplication.showNetworkActivity()
-        [signUpButton, signInButton].forEach { $0.setEnable(false) }
-      case .error(let errorDescription):
-        UIApplication.hideNetworkActivity()
-        [signUpButton, signInButton].forEach { $0.setEnable() }
-        showMessage(title: "Error", message: errorDescription)
-      case .idle:
-        UIApplication.hideNetworkActivity()
-        [signUpButton, signInButton].forEach { $0.setEnable(false) }
+    case .loading:
+      UIApplication.showNetworkActivity()
+      [signUpButton, signInButton].forEach { $0.setEnable(false) }
+    case .error(let errorDescription):
+      UIApplication.hideNetworkActivity()
+      [signUpButton, signInButton].forEach { $0.setEnable() }
+      showMessage(title: "Error", message: errorDescription)
+    case .idle:
+      UIApplication.hideNetworkActivity()
+      [signUpButton, signInButton].forEach { $0.setEnable(false) }
     }
   }
 }

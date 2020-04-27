@@ -17,13 +17,15 @@ class CustomFormField: UIStackView, UITextFieldDelegate {
   let placeHolderSize: Float = 14
   let labelSize: Float = 11
   let labelLetterSpacing = 1.5
-  let itemSpacing = CGFloat(4)
+  let itemSpacing: CGFloat = 4
   
   var validationPattern = ""
   var errorText = ""
   var mandatory = false
   var mandatoryText = ""
-  var text = ""
+  var text: String {
+    textView.text ?? ""
+  }
   
   @IBInspectable var placeholder: String = "" {
     didSet {
@@ -63,8 +65,8 @@ class CustomFormField: UIStackView, UITextFieldDelegate {
   }
   
   open func validate() -> Bool {
-    guard textView.text?.isEmpty ?? true, validationPattern.isEmpty else {
-      let valid = textView.text?.validate(validationPattern) ?? false
+    if !validationPattern.isEmpty && !text.isEmpty {
+      let valid = text.validate(validationPattern)
       showError(!valid)
       return valid
     }
@@ -73,7 +75,7 @@ class CustomFormField: UIStackView, UITextFieldDelegate {
   }
   
   private func validateMandatory() -> Bool {
-    guard !mandatory, textView.text?.isEmpty ?? false else {
+    if mandatory && textView.text?.isEmpty ?? true {
       showMandatoryError()
       return false
     }
@@ -113,12 +115,7 @@ class CustomFormField: UIStackView, UITextFieldDelegate {
     textView.font = UIFont(name: App.textFieldFont, size: CGFloat(textFieldSize))
     textView.layer.borderColor = UIColor.black.cgColor
     textView.layer.borderWidth = 1
-    textView.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     addArrangedSubview(textView)
-  }
-  
-  @objc func textFieldDidChange(_ textField: UITextField) {
-    text = textField.text ?? ""
   }
   
   private func addErrorLabel() {

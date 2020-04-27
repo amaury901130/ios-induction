@@ -53,18 +53,7 @@ class SignUpViewModelWithEmail {
       email.isEmailFormatted() && !password.isEmpty && password == passwordConfirmation
   }
   
-  func signIn() {
-    AppNavigator.shared.navigate(to: OnboardingRoutes.signIn, with: .changeRoot)
-  }
-  
   func signup(name: String, email: String, password: String) {
-    self.name = name
-    self.email = email
-    self.password = password
-    signup()
-  }
-  
-  func signup() {
     state = .loading
     UserService.sharedInstance.signup(
       email, name: name, password: password, avatar64: UIImage.random(),

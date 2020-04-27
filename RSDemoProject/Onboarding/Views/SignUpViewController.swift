@@ -48,7 +48,7 @@ class SignUpViewController: UIViewController {
   }
   
   @IBAction func tapOnSignUpButton(_ sender: Any) {
-    viewModel.signup()
+    //viewModel.signup()
   }
   
   func setSignUpButton(enabled: Bool) {
