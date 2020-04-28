@@ -19,4 +19,4 @@
 "errorFieldPassword" = "the password must be 6 characters long";
 "errorFieldConfirmPassword" = "passwords don't match";
 "errorFieldEmail" = "oops! this email is not valid";
-"errorFBLogin" = "Opps something is wrong, try again!";
+"errorFBLogin" = "oops! something is wrong, try again!";

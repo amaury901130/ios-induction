@@ -10,7 +10,7 @@ import Foundation
 
 protocol HomeViewModelDelegate: class {
   func didUpdateHomeState()
-  func didViewModelState()
+  func didUpdateViewModelState()
 }
 
 enum HomeViewModelState: Equatable {
@@ -25,7 +25,7 @@ class HomeViewModel {
   
   var state: ViewModelState = .idle {
     didSet {
-      delegate?.didViewModelState()
+      delegate?.didUpdateViewModelState()
     }
   }
   

@@ -94,8 +94,9 @@ class UserService: BaseApiService<UserResource> {
   }
   
   func logout(
-    _ success: @escaping () -> Void, failure: @escaping (_ error: Error)
-    -> Void) {
+    _ success: @escaping () -> Void,
+    failure: @escaping (_ error: Error) -> Void
+  ) {
     request(for: UserResource.logout,
             onSuccess: { _ in
               UserDataManager.deleteUser()

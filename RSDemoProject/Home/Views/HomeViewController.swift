@@ -33,24 +33,19 @@ class HomeViewController: UIViewController {
   @IBAction func tapOnLogOutButton(_ sender: Any) {
     viewModel.logoutUser()
   }
-  
-  private func navigateTo(_ route: Route) {
-    AppNavigator.shared.navigate(
-      to: route,
-      with: .push)
-  }
 }
 
 extension HomeViewController: HomeViewModelDelegate {
   func didUpdateHomeState() {
     switch viewModel.homeState {
     case .logOut:
-      navigateTo(OnboardingRoutes.signIn)
-    case .none: break
+      navigateTo(OnboardingRoutes.signIn, with: .push)
+    case .none:
+      break
     }
   }
   
-  func didViewModelState() {
+  func didUpdateViewModelState() {
     switch viewModel.state {
     case .idle:
       UIApplication.hideNetworkActivity()
@@ -61,7 +56,8 @@ extension HomeViewController: HomeViewModelDelegate {
       UIApplication.hideNetworkActivity()
       showMessage(
         title: "My Profile",
-        message: "email: \(viewModel.userEmail ?? "") error: \(errorDescription)")
+        message: "email: \(viewModel.userEmail ?? "") error: \(errorDescription)"
+      )
     }
   }
 }

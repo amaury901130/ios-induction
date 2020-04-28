@@ -15,20 +15,21 @@ extension UIButton {
   }
   
   func addSpacing(kernValue: Double) {
-    let attributedString: NSMutableAttributedString!
+    var attributedString = NSMutableAttributedString(string: self.titleLabel?.text ?? "")
+    
     if let currentAttrString = attributedTitle(for: .normal) {
       attributedString = NSMutableAttributedString(attributedString: currentAttrString)
-    } else {
-      attributedString = NSMutableAttributedString(string: self.titleLabel?.text ?? "")
-      setTitle(.none, for: .normal)
     }
+    
+    setTitle(.none, for: .normal)
     
     attributedString.addAttribute(
       .kern,
       value: kernValue,
       range: NSRange(
         location: 0,
-        length: attributedString.length))
+        length: attributedString.length
+    ))
     
     setAttributedTitle(attributedString, for: .normal)
   }

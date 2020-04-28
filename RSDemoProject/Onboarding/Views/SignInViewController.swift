@@ -41,8 +41,6 @@ class SignInViewController: UIViewController {
   }
   
   func initView() {
-    navigationController?.setNavigationBarHidden(true, animated: false)
-    
     [emailField, passwordField].forEach {
       $0?.mandatory = true
     }
@@ -77,7 +75,8 @@ class SignInViewController: UIViewController {
     let loginManager = LoginManager()
     loginManager.logIn(
       permissions: facebookPermissions,
-      from: self) { [weak self] (result, error) in
+      from: self
+    ) { [weak self] (result, error) in
         guard error == nil else {
           self?.showMessage(
             title: "Error",
@@ -103,14 +102,17 @@ class SignInViewController: UIViewController {
     return !formError
   }
   
-  @IBAction func tapOnSignUpButton(_ sender: Any) {
-    navigateTo(OnboardingRoutes.signUp)
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.setNavigationBarHidden(true, animated: false)
   }
   
-  private func navigateTo(_ route: Route) {
-    AppNavigator.shared.navigate(
-      to: route,
-      with: .push)
+  @IBAction func tapOnSignUpButton(_ sender: Any) {
+    navigateTo(OnboardingRoutes.signUp, with: .push)
+  }
+  
+  private func enableButtons(_ disable: Bool = true) {
+    [signInButton, signUpButton, connectWithFacebook].forEach { $0?.setEnable(disable) }
   }
 }
 
@@ -119,13 +121,14 @@ extension SignInViewController: SignInViewModelDelegate {
     switch viewModel.state {
     case .loading:
       UIApplication.showNetworkActivity()
+      enableButtons(false)
       [signInButton, signUpButton, connectWithFacebook].forEach { $0?.setEnable(false) }
     case .idle:
       UIApplication.hideNetworkActivity()
-      [signInButton, signUpButton, connectWithFacebook].forEach { $0?.setEnable() }
+      enableButtons()
     case .error(let errorDescription):
       UIApplication.hideNetworkActivity()
-      [signInButton, signUpButton, connectWithFacebook].forEach { $0?.setEnable() }
+      enableButtons()
       showMessage(title: "Error", message: errorDescription)
     }
   }
@@ -134,7 +137,7 @@ extension SignInViewController: SignInViewModelDelegate {
     switch viewModel.signInState {
     case .signedIn:
       UIApplication.hideNetworkActivity()
-      navigateTo(HomeRoutes.home)
+      navigateTo(HomeRoutes.home, with: .push)
     case .none: break
     }
   }

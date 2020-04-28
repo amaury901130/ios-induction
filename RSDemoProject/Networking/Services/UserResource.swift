@@ -57,7 +57,8 @@ enum UserResource: TargetType {
     case .signup(
       let email,
       let name,
-      let password):
+      let password
+      ):
       let parameters = getSignUpParams(
         email: email,
         name: name,

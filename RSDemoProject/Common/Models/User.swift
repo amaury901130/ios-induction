@@ -14,7 +14,7 @@ struct User: Codable {
   var email: String?
   var provider: String
   var uid: String
-  var allowPasswordChange: Bool? = false
+  var allowPasswordChange = false
   var firstName: String
   var lastName: String
   var gender: String?

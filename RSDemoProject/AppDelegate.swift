@@ -51,7 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       application,
       open: url,
       sourceApplication: sourceApplication,
-      annotation: annotation)
+      annotation: annotation
+    )
   }
 
   func application(
