@@ -20,7 +20,6 @@
 		460F9853244F26AA001151F6 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F9852244F26AA001151F6 /* UIButtonExtension.swift */; };
 		460F98552451E37E001151F6 /* ValidationPatterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F98542451E37E001151F6 /* ValidationPatterns.swift */; };
 		460F98572457ADEA001151F6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F98562457ADEA001151F6 /* Image.swift */; };
-		460F9860245875B3001151F6 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F985F245875B3001151F6 /* UserResponse.swift */; };
 		465021102448AE4600B35C95 /* CustomFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650210F2448AE4600B35C95 /* CustomFormField.swift */; };
 		465021122448E2AC00B35C95 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465021112448E2AC00B35C95 /* CreateAccountViewController.swift */; };
 		46502119244A214700B35C95 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46502118244A214700B35C95 /* OpenSans-Regular.ttf */; };
@@ -100,7 +99,6 @@
 		460F9852244F26AA001151F6 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		460F98542451E37E001151F6 /* ValidationPatterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationPatterns.swift; sourceTree = "<group>"; };
 		460F98562457ADEA001151F6 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		460F985F245875B3001151F6 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		4650210F2448AE4600B35C95 /* CustomFormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFormField.swift; sourceTree = "<group>"; };
 		465021112448E2AC00B35C95 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		46502118244A214700B35C95 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../../../../../Downloads/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -278,14 +276,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		460F985E2458757F001151F6 /* Responses */ = {
-			isa = PBXGroup;
-			children = (
-				460F985F245875B3001151F6 /* UserResponse.swift */,
-			);
-			path = Responses;
-			sourceTree = "<group>";
-		};
 		46502117244A210C00B35C95 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,7 +364,6 @@
 		9BDA91DF1C7390C10003877D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				460F985E2458757F001151F6 /* Responses */,
 				9BE3669B1F1016BD007CAECD /* Models */,
 				9BFA84F11C776817009F64E4 /* Services */,
 				FEE8080922A6ACFF00743D1B /* APIService.swift */,
@@ -737,7 +726,6 @@
 				FE4D636422B2CDF700685161 /* ViewModelState.swift in Sources */,
 				E81171921DE5EFB7003D3DF5 /* UIViewControllerExtension.swift in Sources */,
 				465021122448E2AC00B35C95 /* CreateAccountViewController.swift in Sources */,
-				460F9860245875B3001151F6 /* UserResponse.swift in Sources */,
 				9B3AA3991ED35007005A4D26 /* SignInViewController.swift in Sources */,
 				E8FBB1BF1DD21A32000D6740 /* Session.swift in Sources */,
 				460F98552451E37E001151F6 /* ValidationPatterns.swift in Sources */,

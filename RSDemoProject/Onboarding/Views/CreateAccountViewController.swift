@@ -100,7 +100,7 @@ class CreateAccountViewController: UIViewController {
   }
   
   @IBAction func tapOnSignInButton(_ sender: Any) {
-    navigateTo(OnboardingRoutes.signIn)
+    navigateTo(OnboardingRoutes.signIn, with: .push)
   }
 }
 

@@ -77,7 +77,7 @@ open class BaseApiService<T>: APIService where T: TargetType {
    */
   open var jsonDecoder: JSONDecoder {
     let decoder = JSONDecoder()
-    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    decoder.keyDecodingStrategy = .useDefaultKeys
     decoder.dateDecodingStrategy = .millisecondsSince1970
     return decoder
   }
@@ -136,7 +136,12 @@ open class BaseApiService<T>: APIService where T: TargetType {
     where T: Decodable {
       do {
         let filteredResponse = try response.filterSuccessfulStatusCodes()
-        let decodedResult = try JSONDecoder().decode(T.self, from: response.data)
+        let decodedResult = try filteredResponse.map(
+          T.self,
+          atKeyPath: keyPath,
+          using: jsonDecoder,
+          failsOnEmptyData: false
+        )
         onSuccess(decodedResult, filteredResponse)
       } catch let error {
         handleError(with: error, onFailure)

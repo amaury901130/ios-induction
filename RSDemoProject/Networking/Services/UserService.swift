@@ -25,12 +25,13 @@ class UserService: BaseApiService<UserResource> {
              success: @escaping () -> Void,
              failure: @escaping (_ error: Error) -> Void) {
     request(for: .login(email, password),
-            onSuccess: { [weak self] (result: UserResponse, response) -> Void in
+            at: "data",
+            onSuccess: { [weak self] (result: User, response) -> Void in
               guard let headers = response.response?.allHeaderFields else {
                 failure(UserServiceError.noResponse)
                 return
               }
-              self?.saveUserSession(user: result.data, headers: headers)
+              self?.saveUserSession(user: result, headers: headers)
               success()
       }, onFailure: { error, _ in
         failure(error)
@@ -73,12 +74,13 @@ class UserService: BaseApiService<UserResource> {
     token: String, success: @escaping () -> Void, failure: @escaping (_ error: Error)
     -> Void) {
     request(for: .fbLogin(token),
-            onSuccess: { [weak self] (result: UserResponse, response) -> Void in
+            at: "data",
+            onSuccess: { [weak self] (result: User, response) -> Void in
               guard let headers = response.response?.allHeaderFields else {
                 failure(UserServiceError.noResponse)
                 return
               }
-              self?.saveUserSession(user: result.data, headers: headers)
+              self?.saveUserSession(user: result, headers: headers)
               success()
       },
             onFailure: { error, _ in
