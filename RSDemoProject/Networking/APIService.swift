@@ -33,7 +33,7 @@ public protocol APIService {
   associatedtype ProviderType: TargetType
   /// The MoyaProvider instance used to make the network requests.
   var provider: MoyaProvider<ProviderType> { get }
-   /// The JSON decoding strategy used for JSON Responses.
+  /// The JSON decoding strategy used for JSON Responses.
   var jsonDecoder: JSONDecoder { get }
 }
 
@@ -47,17 +47,17 @@ public protocol APIService {
  */
 open class BaseApiService<T>: APIService where T: TargetType {
   public typealias ProviderType = T
-
+  
   private var sharedProvider: MoyaProvider<T>!
-
+  
   private var plugins: [PluginType] {
-    return [
+    [
       NetworkLoggerPlugin(
         verbose: true, responseDataFormatter: JSONResponseDataFormatter
       )
     ]
   }
-
+  
   /**
    Default provider implementation as a singleton. It provides networking
    loggin out of the box and you can override it if you want to add more middleware.
@@ -69,7 +69,7 @@ open class BaseApiService<T>: APIService where T: TargetType {
     }
     return provider
   }
-
+  
   /**
    Default JSON decoder setup, uses the most common case of keyDecoding,
    converting from camel_case to snakeCase before attempting to match
@@ -81,9 +81,9 @@ open class BaseApiService<T>: APIService where T: TargetType {
     decoder.dateDecodingStrategy = .millisecondsSince1970
     return decoder
   }
-
+  
   public required init () {}
-
+  
   /**
    Makes a request to the provided target and tries to decode its response
    using the provided keyPath and return type and returning it on the onSuccess callback.
@@ -98,7 +98,7 @@ open class BaseApiService<T>: APIService where T: TargetType {
                        onFailure: ((Error, Response?) -> Void)? = nil) where T: Codable {
     provider.request(target, completion: { [weak self] result in
       guard let self = self else { return }
-
+      
       switch result {
       case let .success(moyaResponse):
         self.handleSuccess(
@@ -109,7 +109,7 @@ open class BaseApiService<T>: APIService where T: TargetType {
       }
     })
   }
-
+  
   /**
    Makes a request to the provided target
    */
@@ -118,7 +118,7 @@ open class BaseApiService<T>: APIService where T: TargetType {
                     onFailure: ((Error, Response?) -> Void)? = nil) {
     provider.request(target, completion: { [weak self] result in
       guard let self = self else { return }
-
+      
       switch result {
       case let .success(moyaResponse):
         onSuccess(moyaResponse)
@@ -127,26 +127,22 @@ open class BaseApiService<T>: APIService where T: TargetType {
       }
     })
   }
-
+  
   private func handleSuccess<T>(
     with response: Response,
     at keyPath: String? = nil,
     onSuccess: @escaping (_ result: T, _ response: Response) -> Void,
     onFailure: ((Error, Response?) -> Void)? = nil)
-  where T: Decodable {
-    do {
-      let filteredResponse = try response.filterSuccessfulStatusCodes()
-      let decodedResult = try filteredResponse.map(T.self,
-                                                   atKeyPath: keyPath,
-                                                   using: jsonDecoder,
-                                                   failsOnEmptyData: true)
-
-      onSuccess(decodedResult, filteredResponse)
-    } catch (let error) {
-      handleError(with: error, onFailure)
-    }
+    where T: Decodable {
+      do {
+        let filteredResponse = try response.filterSuccessfulStatusCodes()
+        let decodedResult = try JSONDecoder().decode(T.self, from: response.data)
+        onSuccess(decodedResult, filteredResponse)
+      } catch let error {
+        handleError(with: error, onFailure)
+      }
   }
-
+  
   private func handleError(
     with error: Error, _ onFailure: ((Error, Response?) -> Void)? = nil
   ) {
@@ -175,7 +171,7 @@ open class BaseApiService<T>: APIService where T: TargetType {
       onFailure?(error, nil)
     }
   }
-
+  
   private func JSONResponseDataFormatter(_ data: Data) -> Data {
     do {
       let dataAsJSON = try JSONSerialization.jsonObject(with: data)

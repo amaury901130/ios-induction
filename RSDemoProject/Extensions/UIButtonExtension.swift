@@ -13,4 +13,23 @@ extension UIButton {
     isEnabled = enable
     alpha = isEnabled ? 1 : 0.5
   }
+  
+  func addSpacing(kernValue: Double) {
+    let attributedString: NSMutableAttributedString!
+    if let currentAttrString = attributedTitle(for: .normal) {
+      attributedString = NSMutableAttributedString(attributedString: currentAttrString)
+    } else {
+      attributedString = NSMutableAttributedString(string: self.titleLabel?.text ?? "")
+      setTitle(.none, for: .normal)
+    }
+    
+    attributedString.addAttribute(
+      .kern,
+      value: kernValue,
+      range: NSRange(
+        location: 0,
+        length: attributedString.length))
+    
+    setAttributedTitle(attributedString, for: .normal)
+  }
 }

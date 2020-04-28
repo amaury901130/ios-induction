@@ -10,72 +10,53 @@ import Foundation
 import UIKit
 
 protocol SignUpViewModelDelegate: class {
-  func formDidChange()
+  func didUpdateSignUpState()
   func didUpdateState()
 }
 
 enum SignUpViewModelState: Equatable {
-  case loading
-  case error(String)
-  case idle
   case signedUp
 }
 
 class SignUpViewModelWithEmail {
-  
-  var state: SignUpViewModelState = .idle {
+  var networkState: ViewModelState = .idle {
     didSet {
       delegate?.didUpdateState()
     }
   }
   
+  var state: SignUpViewModelState? {
+    didSet {
+      delegate?.didUpdateSignUpState()
+    }
+  }
+  
   weak var delegate: SignUpViewModelDelegate?
   
-  var email = "" {
-    didSet {
-      delegate?.formDidChange()
-    }
-  }
-  
-  var name = "" {
-    didSet {
-      delegate?.formDidChange()
-    }
-  }
-  
-  var password = "" {
-    didSet {
-      delegate?.formDidChange()
-    }
-  }
-  
-  var passwordConfirmation = "" {
-    didSet {
-      delegate?.formDidChange()
-    }
-  }
+  var email = ""
+  var name = ""
+  var password = ""
+  var passwordConfirmation = ""
   
   var hasValidData: Bool {
-    return
-      email.isEmailFormatted() && !password.isEmpty && password == passwordConfirmation
+    email.isEmailFormatted() && !password.isEmpty && password == passwordConfirmation
   }
   
   func signup(name: String, email: String, password: String) {
-    state = .loading
+    networkState = .loading
     UserService.sharedInstance.signup(
-      email, name: name, password: password, avatar64: UIImage.random(),
+      email, name: name, password: password,
       success: { [weak self] in
         guard let self = self else { return }
-        self.state = .idle
         AnalyticsManager.shared.identifyUser(with: self.email)
         AnalyticsManager.shared.log(event: Event.registerSuccess(email: self.email))
         self.state = .signedUp
       },
       failure: { [weak self] error in
         if let apiError = error as? APIError {
-          self?.state = .error(apiError.firstError ?? "") // show the first error
+          self?.networkState = .error(apiError.firstError ?? "") // show the first error
         } else {
-          self?.state = .error(error.localizedDescription)
+          self?.networkState = .error(error.localizedDescription)
         }
     })
   }

@@ -11,41 +11,38 @@ import Moya
 
 enum UserServiceError: Error {
   case noResponse
-
+  
   var localizedDescription: String {
-    return String(describing: self)
+    String(describing: self)
   }
 }
 
 class UserService: BaseApiService<UserResource> {
   static let sharedInstance = UserService()
-
+  
   func login(_ email: String,
              password: String,
              success: @escaping () -> Void,
              failure: @escaping (_ error: Error) -> Void) {
     request(for: .login(email, password),
-            at: "user",
-            onSuccess: { [weak self] (result: User, response) -> Void in
+            onSuccess: { [weak self] (result: UserResponse, response) -> Void in
               guard let headers = response.response?.allHeaderFields else {
                 failure(UserServiceError.noResponse)
                 return
               }
-              self?.saveUserSession(user: result, headers: headers)
+              self?.saveUserSession(user: result.data, headers: headers)
               success()
-            }, onFailure: { error, _ in
-              failure(error)
-            })
+      }, onFailure: { error, _ in
+        failure(error)
+    })
   }
-
+  
   func signup(_ email: String,
               name: String,
               password: String,
-              avatar64: UIImage,
               success: @escaping () -> Void,
               failure: @escaping (_ error: Error) -> Void) {
-    request(for: .signup(email, name, password, avatar64),
-            at: "user",
+    request(for: .signup(email, name, password),
             onSuccess: { [weak self] (result: User, response) -> Void in
               guard let headers = response.response?.allHeaderFields else {
                 failure(UserServiceError.noResponse)
@@ -53,11 +50,11 @@ class UserService: BaseApiService<UserResource> {
               }
               self?.saveUserSession(user: result, headers: headers)
               success()
-            }, onFailure: { error, _ in
-              failure(error)
-            })
+      }, onFailure: { error, _ in
+        failure(error)
+    })
   }
-
+  
   func getMyProfile(
     _ success: @escaping (_ user: User) -> Void,
     failure: @escaping (_ error: Error) -> Void
@@ -66,46 +63,46 @@ class UserService: BaseApiService<UserResource> {
             at: "user",
             onSuccess: { (result: User, _) -> Void in
               success(result)
-            },
+    },
             onFailure: { error, _ in
               failure(error)
-            })
+    })
   }
-
+  
   func loginWithFacebook(
     token: String, success: @escaping () -> Void, failure: @escaping (_ error: Error)
-  -> Void) {
+    -> Void) {
     request(for: .fbLogin(token),
-            onSuccess: { [weak self] (result: User, response) -> Void in
+            onSuccess: { [weak self] (result: UserResponse, response) -> Void in
               guard let headers = response.response?.allHeaderFields else {
                 failure(UserServiceError.noResponse)
                 return
               }
-              self?.saveUserSession(user: result, headers: headers)
+              self?.saveUserSession(user: result.data, headers: headers)
               success()
-            },
+      },
             onFailure: { error, _ in
               failure(error)
-            })
+    })
   }
-
+  
   func saveUserSession(user: User, headers: [AnyHashable: Any]) {
     UserDataManager.currentUser = user
     if let headers = headers as? [String: Any] {
       SessionManager.currentSession = Session(headers: headers)
     }
   }
-
+  
   func logout(
     _ success: @escaping () -> Void, failure: @escaping (_ error: Error)
-  -> Void) {
+    -> Void) {
     request(for: UserResource.logout,
             onSuccess: { _ in
               UserDataManager.deleteUser()
               SessionManager.deleteSession()
               success()
-            }, onFailure: { error, _ in
-              failure(error)
-            })
+    }, onFailure: { error, _ in
+      failure(error)
+    })
   }
 }

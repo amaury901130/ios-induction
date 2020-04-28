@@ -47,27 +47,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication, open url: URL,
     sourceApplication: String?, annotation: Any
   ) -> Bool {
-    return ApplicationDelegate.shared.application(application, open: url,
-                                                  sourceApplication: sourceApplication,
-                                                  annotation: annotation)
+    ApplicationDelegate.shared.application(
+      application,
+      open: url,
+      sourceApplication: sourceApplication,
+      annotation: annotation)
   }
 
   func application(
         _ app: UIApplication,
         open url: URL,
-        options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+        options: [UIApplication.OpenURLOptionsKey: Any] = [:]
     ) -> Bool {
-
         ApplicationDelegate.shared.application(
             app,
             open: url,
             sourceApplication: options[.sourceApplication] as? String,
             annotation: options[UIApplication.OpenURLOptionsKey.annotation]
         )
-
     }  
 
-  
   func unexpectedLogout() {
     UserDataManager.deleteUser()
     SessionManager.deleteSession()
@@ -75,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //Take user to onboarding if needed, do NOT redirect the user
     // if is already in the landing to avoid losing the current VC stack state.
     if window?.rootViewController is HomeViewController {
-      AppNavigator.shared.navigate(to: OnboardingRoutes.firstScreen, with: .changeRoot)
+      AppNavigator.shared.navigate(to: OnboardingRoutes.signIn, with: .changeRoot)
     }
   }
 }

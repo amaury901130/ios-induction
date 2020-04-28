@@ -111,23 +111,27 @@ class CreateAccountViewController: UIViewController {
 }
 
 extension CreateAccountViewController: SignUpViewModelDelegate {
-  func formDidChange() {}
-  
   func didUpdateState() {
-    switch viewModel.state {
-    case .signedUp:
-      UIApplication.hideNetworkActivity()
-      navigateTo(HomeRoutes.home)
+    switch viewModel.networkState {
     case .loading:
       UIApplication.showNetworkActivity()
+      [signUpButton, signInButton].forEach { $0.setEnable(false) }
+    case .idle:
+      UIApplication.hideNetworkActivity()
       [signUpButton, signInButton].forEach { $0.setEnable(false) }
     case .error(let errorDescription):
       UIApplication.hideNetworkActivity()
       [signUpButton, signInButton].forEach { $0.setEnable() }
       showMessage(title: "Error", message: errorDescription)
-    case .idle:
+    }
+  }
+  
+  func didUpdateSignUpState() {
+    switch viewModel.state {
+    case .signedUp:
       UIApplication.hideNetworkActivity()
-      [signUpButton, signInButton].forEach { $0.setEnable(false) }
+      navigateTo(HomeRoutes.home)
+    case .none: break
     }
   }
 }

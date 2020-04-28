@@ -29,14 +29,28 @@ class HomeViewController: UIViewController {
   @IBAction func tapOnGetMyProfile(_ sender: Any) {
     viewModel.loadUserProfile()
   }
-
+  
   @IBAction func tapOnLogOutButton(_ sender: Any) {
     viewModel.logoutUser()
+  }
+  
+  private func navigateTo(_ route: Route) {
+    AppNavigator.shared.navigate(
+      to: route,
+      with: .push)
   }
 }
 
 extension HomeViewController: HomeViewModelDelegate {
-  func didUpdateState() {
+  func didUpdateHomeState() {
+    switch viewModel.homeState {
+    case .logOut:
+      navigateTo(OnboardingRoutes.signIn)
+    case .none: break
+    }
+  }
+  
+  func didViewModelState() {
     switch viewModel.state {
     case .idle:
       UIApplication.hideNetworkActivity()
@@ -45,7 +59,9 @@ extension HomeViewController: HomeViewModelDelegate {
       UIApplication.showNetworkActivity()
     case .error(let errorDescription):
       UIApplication.hideNetworkActivity()
-      print(errorDescription)
+      showMessage(
+        title: "My Profile",
+        message: "email: \(viewModel.userEmail ?? "") error: \(errorDescription)")
     }
   }
 }

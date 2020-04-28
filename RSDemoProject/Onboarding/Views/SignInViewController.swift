@@ -63,6 +63,8 @@ class SignInViewController: UIViewController {
     emailField.validationPattern = Validations.emailPattern
     //adding title spacing
     screenTitle.addSpacing(kernValue: 3)
+    //adding facebook button spacing
+    connectWithFacebook.addSpacing(kernValue: 2.4)
   }
   
   @IBAction func tapOnSignInButton(_ sender: Any) {
@@ -82,22 +84,22 @@ class SignInViewController: UIViewController {
             message: error?.localizedDescription ?? "errorFBLogin".localized)
           return
         }
-
+        
         guard let result = result, !result.isCancelled else {
-            return
+          return
         }
         
         self?.viewModel.facebookLoginRequestSucceded()
     }
   }
-
+  
   func validateForm() -> Bool {
     var formError = false
     
     [emailField, passwordField].forEach {
       formError = !$0.validate() || formError
     }
-
+    
     return !formError
   }
   
@@ -117,17 +119,23 @@ extension SignInViewController: SignInViewModelDelegate {
     switch viewModel.state {
     case .loading:
       UIApplication.showNetworkActivity()
-      [signInButton, signUpButton].forEach { $0?.setEnable(false)}
-    case .error(let errorDescription):
-      UIApplication.hideNetworkActivity()
-      [signInButton, signUpButton].forEach { $0?.setEnable()}
-      showMessage(title: "Error", message: errorDescription)
+      [signInButton, signUpButton, connectWithFacebook].forEach { $0?.setEnable(false) }
     case .idle:
       UIApplication.hideNetworkActivity()
-      [signInButton, signUpButton].forEach { $0?.setEnable()}
+      [signInButton, signUpButton, connectWithFacebook].forEach { $0?.setEnable() }
+    case .error(let errorDescription):
+      UIApplication.hideNetworkActivity()
+      [signInButton, signUpButton, connectWithFacebook].forEach { $0?.setEnable() }
+      showMessage(title: "Error", message: errorDescription)
+    }
+  }
+  
+  func didUpdateSignInState() {
+    switch viewModel.signInState {
     case .signedIn:
       UIApplication.hideNetworkActivity()
-      navigateTo(OnboardingRoutes.firstScreen)
+      navigateTo(HomeRoutes.home)
+    case .none: break
     }
   }
 }

@@ -9,7 +9,12 @@
 import Foundation
 
 protocol HomeViewModelDelegate: class {
-  func didUpdateState()
+  func didUpdateHomeState()
+  func didViewModelState()
+}
+
+enum HomeViewModelState: Equatable {
+  case logOut
 }
 
 class HomeViewModel {
@@ -20,7 +25,13 @@ class HomeViewModel {
   
   var state: ViewModelState = .idle {
     didSet {
-      delegate?.didUpdateState()
+      delegate?.didViewModelState()
+    }
+  }
+  
+  var homeState: HomeViewModelState? {
+    didSet {
+      delegate?.didUpdateHomeState()
     }
   }
   
@@ -37,9 +48,8 @@ class HomeViewModel {
   func logoutUser() {
     state = .loading
     UserService.sharedInstance.logout({ [weak self] in
-      self?.state = .idle
-      AppNavigator.shared.navigate(to: OnboardingRoutes.firstScreen, with: .changeRoot)
       AnalyticsManager.shared.reset()
+      self?.homeState = .logOut
     }, failure: { [weak self] error in
       self?.state = .error(error.localizedDescription)
     })
