@@ -53,6 +53,7 @@ extension UIViewController {
   func navigateTo(_ route: Route, with: TransitionType) {
     AppNavigator.shared.navigate(
       to: route,
-      with: .push)
+      with: .push
+    )
   }
 }

@@ -23,7 +23,8 @@ class UserService: BaseApiService<UserResource> {
   func login(_ email: String,
              password: String,
              success: @escaping () -> Void,
-             failure: @escaping (_ error: Error) -> Void) {
+             failure: @escaping (_ error: Error) -> Void
+  ) {
     request(for: .login(email, password),
             at: "data",
             onSuccess: { [weak self] (result: User, response) -> Void in
@@ -42,7 +43,8 @@ class UserService: BaseApiService<UserResource> {
               name: String,
               password: String,
               success: @escaping () -> Void,
-              failure: @escaping (_ error: Error) -> Void) {
+              failure: @escaping (_ error: Error) -> Void
+  ) {
     request(for: .signup(email, name, password),
             onSuccess: { [weak self] (result: User, response) -> Void in
               guard let headers = response.response?.allHeaderFields else {
@@ -71,8 +73,10 @@ class UserService: BaseApiService<UserResource> {
   }
   
   func loginWithFacebook(
-    token: String, success: @escaping () -> Void, failure: @escaping (_ error: Error)
-    -> Void) {
+    token: String,
+    success: @escaping () -> Void,
+    failure: @escaping (_ error: Error) -> Void
+  ) {
     request(for: .fbLogin(token),
             at: "data",
             onSuccess: { [weak self] (result: User, response) -> Void in
@@ -88,7 +92,10 @@ class UserService: BaseApiService<UserResource> {
     })
   }
   
-  func saveUserSession(user: User, headers: [AnyHashable: Any]) {
+  func saveUserSession(
+    user: User,
+    headers: [AnyHashable: Any]
+  ) {
     UserDataManager.currentUser = user
     if let headers = headers as? [String: Any] {
       SessionManager.currentSession = Session(headers: headers)
