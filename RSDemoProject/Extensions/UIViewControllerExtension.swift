@@ -49,4 +49,11 @@ extension UIViewController {
       navigationController?.pushViewController(viewController, animated: true)
     }
   }
+  
+  func navigateTo(_ route: Route, with: TransitionType) {
+    AppNavigator.shared.navigate(
+      to: route,
+      with: .push
+    )
+  }
 }

@@ -7,10 +7,15 @@
 //
 
 import Foundation
+import FBSDKCoreKit
 
 protocol SignInViewModelDelegate: class {
-  func didUpdateCredentials()
+  func didUpdateSignInState()
   func didUpdateState()
+}
+
+enum SignInViewModelState: Equatable {
+  case signedIn
 }
 
 class SignInViewModelWithCredentials {
@@ -20,39 +25,43 @@ class SignInViewModelWithCredentials {
       delegate?.didUpdateState()
     }
   }
+
+  var signInState: SignInViewModelState? {
+    didSet {
+      delegate?.didUpdateSignInState()
+    }
+  }
   
   weak var delegate: SignInViewModelDelegate?
   
-  var email = "" {
-    didSet {
-      delegate?.didUpdateCredentials()
+  func facebookLoginRequestSucceded() {
+    guard let token = AccessToken.current else {
+      return
     }
+    
+    UserService.sharedInstance.loginWithFacebook(
+      token: token.tokenString,
+      success: { [weak self] in
+        self?.signInState = .signedIn
+      },
+      failure: { [weak self] error in
+        self?.state = .error(error.localizedDescription)
+    })
   }
   
-  var password = "" {
-    didSet {
-      delegate?.didUpdateCredentials()
-    }
-  }
-  
-  var hasValidCredentials: Bool {
-    return email.isEmailFormatted() && !password.isEmpty
-  }
-  
-  func login() {
+  func login(email: String, password: String) {
     state = .loading
     UserService.sharedInstance
       .login(email,
              password: password,
              success: { [weak self] in
               guard let self = self else { return }
-              self.state = .idle
-              AnalyticsManager.shared.identifyUser(with: self.email)
+              self.signInState = .signedIn
+              AnalyticsManager.shared.identifyUser(with: email)
               AnalyticsManager.shared.log(event: Event.login)
-              AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
-             },
+        },
              failure: { [weak self] error in
-               self?.state = .error(error.localizedDescription)
-             })
+              self?.state = .error(error.localizedDescription)
+      })
   }
 }

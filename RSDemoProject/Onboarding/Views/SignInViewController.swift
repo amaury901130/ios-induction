@@ -7,68 +7,138 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class SignInViewController: UIViewController {
   
+  let facebookPermissions = ["email"]
   // MARK: - Outlets
-  
-  @IBOutlet weak var logIn: UIButton!
-  @IBOutlet weak var emailField: UITextField!
-  @IBOutlet weak var passwordField: UITextField!
   
   var viewModel: SignInViewModelWithCredentials!
   
-  // MARK: - Lifecycle Events
+  @IBOutlet weak var topLeftImage: UIView!
+  @IBOutlet weak var topRightImage: UIView!
+  @IBOutlet weak var emailField: CustomFormField!
+  @IBOutlet weak var passwordField: CustomFormField!
+  @IBOutlet weak var signUpButton: UIButton!
+  @IBOutlet weak var signInButton: UIButton!
+  @IBOutlet weak var screenTitle: UILabel!
+  @IBOutlet weak var connectWithFacebook: UIButton!
   
+  // MARK: - Lifecycle Events
   override func viewDidLoad() {
     super.viewDidLoad()
-    logIn.setRoundBorders(22)
     viewModel.delegate = self
-    setLoginButton(enabled: false)
+    setupTopImage()
+    initView()
+  }
+  
+  func setupTopImage() {
+    topLeftImage.layer.backgroundColor = App.yellowColor
+    topRightImage.layer.backgroundColor = App.blueColor
+    topRightImage.layer.compositingFilter = "multiplyBlendMode"
+    [topLeftImage, topRightImage].forEach { $0?.setRoundBorders(175) }
+  }
+  
+  func initView() {
+    [emailField, passwordField].forEach {
+      $0?.mandatory = true
+    }
+    //labels
+    emailField.labelText = "labelFieldEmail".localized
+    passwordField.labelText = "labelFieldPassword".localized
+    
+    //set text field types
+    passwordField.isSecure()
+    emailField.setKeyboardType(type: .emailAddress)
+    
+    //set errors
+    emailField.mandatoryText = "errorEmptyEmail".localized
+    passwordField.mandatoryText = "errorEmptyPassword".localized
+    emailField.errorText = "errorFieldEmail".localized
+    
+    //set validations
+    emailField.validationPattern = Validations.emailPattern
+    //adding title spacing
+    screenTitle.addSpacing(kernValue: 3)
+    //adding facebook button spacing
+    connectWithFacebook.addSpacing(kernValue: 2.4)
+  }
+  
+  @IBAction func tapOnSignInButton(_ sender: Any) {
+    if validateForm() {
+      viewModel.login(email: emailField.text, password: passwordField.text)
+    }
+  }
+  
+  @IBAction func facebookLogin() {
+    let loginManager = LoginManager()
+    loginManager.logIn(
+      permissions: facebookPermissions,
+      from: self
+    ) { [weak self] (result, error) in
+        guard error == nil else {
+          self?.showMessage(
+            title: "Error",
+            message: error?.localizedDescription ?? "errorFBLogin".localized)
+          return
+        }
+        
+        guard let result = result, !result.isCancelled else {
+          return
+        }
+        
+        self?.viewModel.facebookLoginRequestSucceded()
+    }
+  }
+  
+  func validateForm() -> Bool {
+    var formError = false
+    
+    [emailField, passwordField].forEach {
+      formError = !$0.validate() || formError
+    }
+    
+    return !formError
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    navigationController?.setNavigationBarHidden(false, animated: true)
+    navigationController?.setNavigationBarHidden(true, animated: false)
   }
   
-  // MARK: - Actions
-  
-  @IBAction func credentialsChanged(_ sender: UITextField) {
-    let newValue = sender.text ?? ""
-    switch sender {
-    case emailField:
-      viewModel.email = newValue
-    case passwordField:
-      viewModel.password = newValue
-    default: break
-    }
+  @IBAction func tapOnSignUpButton(_ sender: Any) {
+    navigateTo(OnboardingRoutes.signUp, with: .push)
   }
   
-  @IBAction func tapOnSignInButton(_ sender: Any) {
-    viewModel.login()
-  }
-  
-  func setLoginButton(enabled: Bool) {
-    logIn.alpha = enabled ? 1 : 0.5
-    logIn.isEnabled = enabled
+  private func enableButtons(_ disable: Bool = true) {
+    [signInButton, signUpButton, connectWithFacebook].forEach { $0?.setEnable(disable) }
   }
 }
 
 extension SignInViewController: SignInViewModelDelegate {
-  func didUpdateCredentials() {
-    setLoginButton(enabled: viewModel.hasValidCredentials)
-  }
-  
   func didUpdateState() {
     switch viewModel.state {
     case .loading:
       UIApplication.showNetworkActivity()
-    case .error(let errorDescription):
-      UIApplication.hideNetworkActivity()
-      showMessage(title: "Error", message: errorDescription)
+      enableButtons(false)
+      [signInButton, signUpButton, connectWithFacebook].forEach { $0?.setEnable(false) }
     case .idle:
       UIApplication.hideNetworkActivity()
+      enableButtons()
+    case .error(let errorDescription):
+      UIApplication.hideNetworkActivity()
+      enableButtons()
+      showMessage(title: "Error", message: errorDescription)
+    }
+  }
+  
+  func didUpdateSignInState() {
+    switch viewModel.signInState {
+    case .signedIn:
+      UIApplication.hideNetworkActivity()
+      navigateTo(HomeRoutes.home, with: .push)
+    case .none: break
     }
   }
 }
