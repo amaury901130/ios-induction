@@ -137,7 +137,7 @@ extension SignInViewController: SignInViewModelDelegate {
     switch viewModel.signInState {
     case .signedIn:
       UIApplication.hideNetworkActivity()
-      navigateTo(HomeRoutes.home, with: .push)
+      navigateTo(HomeRoutes.main, with: .push)
     case .none: break
     }
   }

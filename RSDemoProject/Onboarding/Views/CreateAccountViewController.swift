@@ -124,7 +124,7 @@ extension CreateAccountViewController: SignUpViewModelDelegate {
     switch viewModel.state {
     case .signedUp:
       UIApplication.hideNetworkActivity()
-      navigateTo(HomeRoutes.home, with: .push)
+      navigateTo(HomeRoutes.main, with: .push)
     case .none: break
     }
   }

@@ -235,6 +235,38 @@
             </objects>
             <point key="canvasLocation" x="1944.8" y="428.63568215892059"/>
         </scene>
+        <!--Main View Controller-->
+        <scene sceneID="o2t-b3-kXG">
+            <objects>
+                <viewController storyboardIdentifier="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="w6u-rK-12N" customClass="MainViewController" customModule="RSDemoProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="N7S-6P-8KC"/>
+                        <viewControllerLayoutGuide type="bottom" id="b5h-mP-sdd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fXW-ab-rtd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AJc-DD-T0z">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="AJc-DD-T0z" firstAttribute="top" secondItem="N7S-6P-8KC" secondAttribute="bottom" id="2f9-TC-Yd0"/>
+                            <constraint firstAttribute="trailing" secondItem="AJc-DD-T0z" secondAttribute="trailing" id="6FH-Dd-ARr"/>
+                            <constraint firstItem="AJc-DD-T0z" firstAttribute="leading" secondItem="fXW-ab-rtd" secondAttribute="leading" id="T6P-Hv-m3J"/>
+                            <constraint firstItem="b5h-mP-sdd" firstAttribute="top" secondItem="AJc-DD-T0z" secondAttribute="bottom" id="U9O-pP-VsE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="AJc-DD-T0z" id="Oc4-Jh-ZOo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OC1-lK-F6L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="356" y="1076"/>
+        </scene>
         <!--Create Account View Controller-->
         <scene sceneID="Xe0-Cn-9Hx">
             <objects>

@@ -11,7 +11,8 @@ import UIKit
 
 enum HomeRoutes: Route {
   case home
-
+  case main
+  
   var screen: UIViewController {
     switch self {
     case .home:
@@ -20,6 +21,12 @@ enum HomeRoutes: Route {
       }
       home.viewModel = HomeViewModel()
       return home
+    case .main:
+      guard let main = R.storyboard.main.mainViewController() else {
+        return UIViewController()
+      }
+      main.viewModel = MainViewModel()
+      return main
     }
   }
 }
