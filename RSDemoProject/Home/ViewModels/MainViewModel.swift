@@ -16,7 +16,7 @@ protocol MainViewModelDelegate: class {
 class MainViewModel {
   
   var currentLocation: CLLocation?
-  var delegate: MainViewModelDelegate?
+  weak var delegate: MainViewModelDelegate?
   var locationManager = LocationManager.shared
 
   func requestCurrentLocation() {

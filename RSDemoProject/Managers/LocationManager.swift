@@ -53,10 +53,10 @@ extension LocationManager: CLLocationManagerDelegate {
     _ manager: CLLocationManager,
     didUpdateLocations locations: [CLLocation]
   ) {
-    guard let location = locations.last,
-      let listener = locationUpdateListener  else {
-      return
-    }
+    guard
+      let location = locations.last,
+      let listener = locationUpdateListener
+    else { return }
     
     listener(location)
     manager.stopUpdatingLocation()
