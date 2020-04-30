@@ -30,6 +30,11 @@ class MainViewController: UIViewController {
       manager.desiredAccuracy = kCLLocationAccuracyBest
     }
   }
+  
+  private func displayCurrentLocation(_ location: CLLocation) {
+    mapView.center(location)
+    mapView.addAnnotation(location: location)
+  }
 }
 
 extension MainViewController: CLLocationManagerDelegate {
@@ -53,25 +58,7 @@ extension MainViewController: CLLocationManagerDelegate {
     didUpdateLocations locations: [CLLocation]
   ) {
     if let location = locations.last {
-      let center = CLLocationCoordinate2D(
-        latitude: location.coordinate.latitude,
-        longitude: location.coordinate.longitude
-      )
-      
-      let region = MKCoordinateRegion(
-        center: center,
-        span: MKCoordinateSpan(
-          latitudeDelta: 0.02,
-          longitudeDelta: 0.02
-      ))
-      
-      //todo: add custom pin
-      let annotation = MKPointAnnotation()
-      annotation.coordinate = location.coordinate
-      annotation.title = "You are here"
-      
-      mapView.setRegion(region, animated: true)
-      mapView.addAnnotation(annotation)
+      displayCurrentLocation(location)
       manager.stopUpdatingLocation()
     }
   }

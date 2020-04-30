@@ -26,6 +26,7 @@
 		465021122448E2AC00B35C95 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465021112448E2AC00B35C95 /* CreateAccountViewController.swift */; };
 		46502119244A214700B35C95 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46502118244A214700B35C95 /* OpenSans-Regular.ttf */; };
 		4650211B244A223800B35C95 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4650211A244A223800B35C95 /* OpenSans-Bold.ttf */; };
+		4652204D245A711E00960D60 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4652204C245A711E00960D60 /* MKMapViewExtension.swift */; };
 		4AF323FC2D560D49FED0BE7F /* Pods_RSDemoProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2214860CE2390D2C2B6056B0 /* Pods_RSDemoProject.framework */; };
 		9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */; };
 		9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */; };
@@ -105,6 +106,7 @@
 		465021112448E2AC00B35C95 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		46502118244A214700B35C95 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../../../../../Downloads/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		4650211A244A223800B35C95 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Bold.ttf"; path = "../../../../../Downloads/Open_Sans/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		4652204C245A711E00960D60 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
 		492292317C9AA84D410C67C2 /* Pods-RSDemoProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSDemoProject.release.xcconfig"; path = "Target Support Files/Pods-RSDemoProject/Pods-RSDemoProject.release.xcconfig"; sourceTree = "<group>"; };
 		85FF9D270B540FD7BDB842CF /* Pods-RSDemoProject.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSDemoProject.staging.xcconfig"; path = "Target Support Files/Pods-RSDemoProject/Pods-RSDemoProject.staging.xcconfig"; sourceTree = "<group>"; };
 		9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -445,6 +447,7 @@
 				9B5EAB49232C146D00B9CE3C /* UITextFieldExtension.swift */,
 				460F984C244E0762001151F6 /* UILabelExtension.swift */,
 				460F9852244F26AA001151F6 /* UIButtonExtension.swift */,
+				4652204C245A711E00960D60 /* MKMapViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -744,6 +747,7 @@
 				FE06840322CE7ED400C6294F /* R.generated.swift in Sources */,
 				FEE8080A22A6ACFF00743D1B /* APIService.swift in Sources */,
 				FE4D635C22B2C75400685161 /* Navigator.swift in Sources */,
+				4652204D245A711E00960D60 /* MKMapViewExtension.swift in Sources */,
 				FEE8081222A6D3FA00743D1B /* UserResource.swift in Sources */,
 				460F98572457ADEA001151F6 /* Image.swift in Sources */,
 				FE251D0722A7FE0F00E0DE90 /* DataExtension.swift in Sources */,
