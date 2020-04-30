@@ -108,7 +108,7 @@ class SignInViewController: UIViewController {
   }
   
   @IBAction func tapOnSignUpButton(_ sender: Any) {
-    navigateTo(OnboardingRoutes.signUp, with: .push)
+    navigateTo(OnboardingRoutes.signUp)
   }
   
   private func enableButtons(_ disable: Bool = true) {
@@ -137,7 +137,7 @@ extension SignInViewController: SignInViewModelDelegate {
     switch viewModel.signInState {
     case .signedIn:
       UIApplication.hideNetworkActivity()
-      navigateTo(HomeRoutes.main, with: .push)
+      navigateTo(HomeRoutes.main)
     case .none: break
     }
   }

@@ -7,7 +7,24 @@
 //
 
 import Foundation
+import CoreLocation
+
+protocol MainViewModelDelegate: class {
+  func didUpdateLocation(_ location: CLLocation)
+}
 
 class MainViewModel {
   
+  var currentLocation: CLLocation?
+  var delegate: MainViewModelDelegate?
+  var locationManager = LocationManager.shared
+
+  func requestCurrentLocation() {
+    locationManager.requestCurrentLocation(listener: updateCurrentLocation(_:))
+  }
+  
+  private func updateCurrentLocation(_ location: CLLocation) {
+    currentLocation = location
+    delegate?.didUpdateLocation(location)
+  }
 }

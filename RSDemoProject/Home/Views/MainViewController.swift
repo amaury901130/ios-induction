@@ -7,59 +7,31 @@
 //
 
 import UIKit
-import CoreLocation
 import MapKit
 
 class MainViewController: UIViewController {
   
   var viewModel: MainViewModel!
-  var locationManager: CLLocationManager?
   @IBOutlet weak var mapView: MKMapView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    initLocationManager()
+    viewModel = MainViewModel()
+    initMap()
   }
   
-  private func initLocationManager() {
-    locationManager = CLLocationManager()
-    
-    if let manager = locationManager {
-      manager.delegate = self
-      manager.desiredAccuracy = kCLLocationAccuracyBest
-    }
+  private func initMap() {
+    viewModel.requestCurrentLocation()
   }
   
-  private func displayCurrentLocation(_ location: CLLocation) {
-    mapView.center(location)
+  private func addCurrentLocation(_ location: CLLocation) {
     mapView.addAnnotation(location: location)
   }
 }
 
-extension MainViewController: CLLocationManagerDelegate {
-  
-  func locationManager(
-    _ manager: CLLocationManager,
-    didChangeAuthorization status: CLAuthorizationStatus
-  ) {
-    switch status {
-    case .authorizedWhenInUse:
-      manager.startUpdatingLocation()
-    case .notDetermined:
-      manager.requestWhenInUseAuthorization()
-    default:
-      break
-    }
-  }
-  
-  func locationManager(
-    _ manager: CLLocationManager,
-    didUpdateLocations locations: [CLLocation]
-  ) {
-    if let location = locations.last {
-      displayCurrentLocation(location)
-      manager.stopUpdatingLocation()
-    }
+extension MainViewController: MainViewModelDelegate {
+  func didUpdateLocation(_ location: CLLocation) {
+    addCurrentLocation(location)
   }
 }

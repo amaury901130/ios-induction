@@ -22,6 +22,7 @@
 		460F98572457ADEA001151F6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F98562457ADEA001151F6 /* Image.swift */; };
 		460F9864245A1316001151F6 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F9863245A1316001151F6 /* MainViewModel.swift */; };
 		460F9866245A1325001151F6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F9865245A1325001151F6 /* MainViewController.swift */; };
+		462E0FF8245B066D0080A075 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462E0FF7245B066D0080A075 /* LocationManager.swift */; };
 		465021102448AE4600B35C95 /* CustomFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650210F2448AE4600B35C95 /* CustomFormField.swift */; };
 		465021122448E2AC00B35C95 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465021112448E2AC00B35C95 /* CreateAccountViewController.swift */; };
 		46502119244A214700B35C95 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46502118244A214700B35C95 /* OpenSans-Regular.ttf */; };
@@ -102,6 +103,7 @@
 		460F98562457ADEA001151F6 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		460F9863245A1316001151F6 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		460F9865245A1325001151F6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		462E0FF7245B066D0080A075 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		4650210F2448AE4600B35C95 /* CustomFormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFormField.swift; sourceTree = "<group>"; };
 		465021112448E2AC00B35C95 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		46502118244A214700B35C95 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../../../../../Downloads/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				FABDC9211EE1EB2B000DDAC3 /* ConfigurationManager.swift */,
 				E8FBB1C01DD21D18000D6740 /* SessionManager.swift */,
 				9B77E0741E2FB66F0020E450 /* UserDataManager.swift */,
+				462E0FF7245B066D0080A075 /* LocationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 				9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */,
 				FEE8080C22A6AE9900743D1B /* TargetType+Base.swift in Sources */,
 				FE06840322CE7ED400C6294F /* R.generated.swift in Sources */,
+				462E0FF8245B066D0080A075 /* LocationManager.swift in Sources */,
 				FEE8080A22A6ACFF00743D1B /* APIService.swift in Sources */,
 				FE4D635C22B2C75400685161 /* Navigator.swift in Sources */,
 				4652204D245A711E00960D60 /* MKMapViewExtension.swift in Sources */,

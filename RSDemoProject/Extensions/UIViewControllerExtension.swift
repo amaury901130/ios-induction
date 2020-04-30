@@ -50,10 +50,10 @@ extension UIViewController {
     }
   }
   
-  func navigateTo(_ route: Route, with: TransitionType) {
+  func navigateTo(_ route: Route, withTransition transition: TransitionType = .push) {
     AppNavigator.shared.navigate(
       to: route,
-      with: .push
+      with: transition
     )
   }
 }

@@ -100,7 +100,7 @@ class CreateAccountViewController: UIViewController {
   }
   
   @IBAction func tapOnSignInButton(_ sender: Any) {
-    navigateTo(OnboardingRoutes.signIn, with: .push)
+    navigateTo(OnboardingRoutes.signIn)
   }
 }
 
@@ -124,7 +124,7 @@ extension CreateAccountViewController: SignUpViewModelDelegate {
     switch viewModel.state {
     case .signedUp:
       UIApplication.hideNetworkActivity()
-      navigateTo(HomeRoutes.main, with: .push)
+      navigateTo(HomeRoutes.main)
     case .none: break
     }
   }
