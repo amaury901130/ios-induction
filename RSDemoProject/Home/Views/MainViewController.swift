@@ -41,9 +41,9 @@ extension MainViewController: CLLocationManagerDelegate {
     switch status {
     case .authorizedWhenInUse:
       manager.startUpdatingLocation()
-    case .restricted, .denied, .notDetermined:
+    case .notDetermined:
       manager.requestWhenInUseAuthorization()
-    @unknown default:
+    default:
       break
     }
   }

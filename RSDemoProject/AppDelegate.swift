@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //Clear any local data if needed
     //Take user to onboarding if needed, do NOT redirect the user
     // if is already in the landing to avoid losing the current VC stack state.
-    if window?.rootViewController is HomeViewController {
+    if window?.rootViewController is MainViewController {
       AppNavigator.shared.navigate(to: OnboardingRoutes.signIn, with: .changeRoot)
     }
   }

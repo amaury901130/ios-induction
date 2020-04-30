@@ -10,17 +10,10 @@ import Foundation
 import UIKit
 
 enum HomeRoutes: Route {
-  case home
   case main
   
   var screen: UIViewController {
     switch self {
-    case .home:
-      guard let home = R.storyboard.main.homeViewController() else {
-        return UIViewController()
-      }
-      home.viewModel = HomeViewModel()
-      return home
     case .main:
       guard let main = R.storyboard.main.mainViewController() else {
         return UIViewController()
