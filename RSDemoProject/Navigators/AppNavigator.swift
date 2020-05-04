@@ -13,7 +13,7 @@ class AppNavigator: BaseNavigator {
 
   init() {
     let initialRoute: Route = SessionManager.validSession ?
-      HomeRoutes.home : OnboardingRoutes.signIn
+      HomeRoutes.main : OnboardingRoutes.signIn
     super.init(with: initialRoute)
   }
 
