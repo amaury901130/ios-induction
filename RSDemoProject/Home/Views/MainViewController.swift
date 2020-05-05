@@ -16,9 +16,9 @@ class MainViewController: UIViewController {
   
   var viewModel: MainViewModel!
   @IBOutlet weak var mapView: MKMapView!
-  @IBOutlet weak var mainTItle: UILabel!
+  @IBOutlet weak var mainTitle: UILabel!
   @IBOutlet weak var createTargetLabel: UILabel!
-  @IBOutlet weak var createNewTargetButton: UIView!
+  @IBOutlet weak var createNewTarget: UIView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -34,7 +34,7 @@ class MainViewController: UIViewController {
   
   private func initView() {
     createTargetLabel.addSpacing(kernValue: createTargetLabelSpacing)
-    mainTItle.addSpacing(kernValue: mainTitleSpacing)
+    mainTitle.addSpacing(kernValue: mainTitleSpacing)
   }
   
   private func addCurrentLocation(_ location: CLLocation) {
