@@ -273,6 +273,78 @@
             </objects>
             <point key="canvasLocation" x="356" y="1075.4122938530736"/>
         </scene>
+        <!--Create Target View Controller-->
+        <scene sceneID="xNf-Zh-IT6">
+            <objects>
+                <viewController storyboardIdentifier="CreateTargetViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JdV-wh-Z5Y" customClass="CreateTargetViewController" customModule="RSDemoProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8aK-Jw-YTw"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ybj-1n-5bE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cc1-S4-D8L">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="f7P-3C-rch">
+                                <rect key="frame" x="16" y="0.0" width="343" height="400"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BRN-Pb-xUj" customClass="CustomFormField" customModule="RSDemoProject" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="0.0" width="279" height="100"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z9N-Wu-AeD" customClass="CustomFormField" customModule="RSDemoProject" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="112" width="279" height="107"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YU6-vh-kmw" customClass="CustomFormField" customModule="RSDemoProject" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="231" width="279" height="100"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tD9-he-6jw">
+                                        <rect key="frame" x="93.5" y="363" width="156" height="37"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="SignUpButton"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="156" id="OXz-8A-pj0"/>
+                                            <constraint firstAttribute="height" constant="37" id="bDh-HW-lKv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
+                                        <state key="normal" title="SAVE TARGET">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapOnSignUpButton:" destination="J75-M7-3Xl" eventType="touchUpInside" id="jtJ-b9-d8H"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="YU6-vh-kmw" firstAttribute="top" secondItem="z9N-Wu-AeD" secondAttribute="bottom" constant="12" id="ExP-0F-b2T"/>
+                                    <constraint firstItem="YU6-vh-kmw" firstAttribute="leading" secondItem="f7P-3C-rch" secondAttribute="leading" constant="32" id="O9G-xa-smw"/>
+                                    <constraint firstItem="z9N-Wu-AeD" firstAttribute="leading" secondItem="f7P-3C-rch" secondAttribute="leading" constant="32" id="OSY-VK-6S3"/>
+                                    <constraint firstAttribute="trailing" secondItem="z9N-Wu-AeD" secondAttribute="trailing" constant="32" id="QIw-22-e88"/>
+                                    <constraint firstItem="tD9-he-6jw" firstAttribute="top" secondItem="YU6-vh-kmw" secondAttribute="bottom" constant="32" id="RDF-2X-s74"/>
+                                    <constraint firstItem="z9N-Wu-AeD" firstAttribute="top" secondItem="BRN-Pb-xUj" secondAttribute="bottom" constant="12" id="UUF-qB-vwr"/>
+                                    <constraint firstItem="BRN-Pb-xUj" firstAttribute="top" secondItem="f7P-3C-rch" secondAttribute="top" constant="24" id="e5m-RK-HSU"/>
+                                    <constraint firstAttribute="trailing" secondItem="BRN-Pb-xUj" secondAttribute="trailing" constant="32" id="f7c-m4-3dg"/>
+                                    <constraint firstAttribute="trailing" secondItem="YU6-vh-kmw" secondAttribute="trailing" constant="32" id="q4K-or-Qza"/>
+                                    <constraint firstItem="BRN-Pb-xUj" firstAttribute="leading" secondItem="f7P-3C-rch" secondAttribute="leading" constant="32" id="yON-IX-2XM"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="f7P-3C-rch" firstAttribute="leading" secondItem="cc1-S4-D8L" secondAttribute="leadingMargin" id="edt-1U-qhG"/>
+                            <constraint firstItem="f7P-3C-rch" firstAttribute="top" secondItem="8aK-Jw-YTw" secondAttribute="bottom" id="lvT-bR-CG0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="f7P-3C-rch" secondAttribute="trailing" id="y3e-Iy-EJL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="targetAreaField" destination="BRN-Pb-xUj" id="cIZ-Iq-EJZ"/>
+                        <outlet property="targetTitleField" destination="z9N-Wu-AeD" id="mTu-0G-OpI"/>
+                        <outlet property="targetTopicField" destination="YU6-vh-kmw" id="9NI-Z0-hob"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VZJ-zv-Uuy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1003" y="1449"/>
+        </scene>
         <!--Create Account View Controller-->
         <scene sceneID="Xe0-Cn-9Hx">
             <objects>

@@ -20,3 +20,9 @@
 "errorFieldConfirmPassword" = "passwords don't match";
 "errorFieldEmail" = "oops! this email is not valid";
 "errorFBLogin" = "oops! something is wrong, try again!";
+
+"createTargetAreaLable" = "SPECIFY AREA LENGHT";
+"createTargetTitleLable" = "TARGET TITLE";
+"createTargetTitlePlaceholder" = "Chose the title for your target";
+"createTargetTopicLable" = "SELECT A TOPIC";
+"createTargetTopicTitle" = "Select Topic";

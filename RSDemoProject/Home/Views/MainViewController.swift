@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import PanModal
 
 class MainViewController: UIViewController {
   
@@ -27,7 +28,7 @@ class MainViewController: UIViewController {
     initMap()
     initView()
   }
-  
+
   private func initMap() {
     viewModel.requestCurrentLocation()
   }
@@ -35,6 +36,21 @@ class MainViewController: UIViewController {
   private func initView() {
     createTargetLabel.addSpacing(kernValue: createTargetLabelSpacing)
     mainTitle.addSpacing(kernValue: mainTitleSpacing)
+    
+    createNewTarget.addGestureRecognizer(
+      UITapGestureRecognizer(
+        target: self,
+        action: #selector(self.showCreateTargetView)
+    ))
+  }
+  
+  //WIP
+  @objc private func showCreateTargetView() {
+    // swiftlint:disable force_cast
+    let drawerViewController =
+      HomeRoutes.createTarget.screen as! CreateTargetViewController
+    presentPanModal(drawerViewController)
+    // swiftlint:enable force_cast
   }
   
   private func addCurrentLocation(_ location: CLLocation) {
