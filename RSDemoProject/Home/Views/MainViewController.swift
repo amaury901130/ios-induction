@@ -8,7 +8,6 @@
 
 import UIKit
 import MapKit
-import PanModal
 
 class MainViewController: UIViewController {
   
@@ -20,6 +19,7 @@ class MainViewController: UIViewController {
   @IBOutlet weak var mainTitle: UILabel!
   @IBOutlet weak var createTargetLabel: UILabel!
   @IBOutlet weak var createNewTarget: UIView!
+  let createTargetForm = HomeRoutes.createTarget.screen
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,17 +40,15 @@ class MainViewController: UIViewController {
     createNewTarget.addGestureRecognizer(
       UITapGestureRecognizer(
         target: self,
-        action: #selector(self.showCreateTargetView)
+        action: #selector(showCreateTargetForm)
     ))
   }
   
   //WIP
-  @objc private func showCreateTargetView() {
-    // swiftlint:disable force_cast
-    let drawerViewController =
-      HomeRoutes.createTarget.screen as! CreateTargetViewController
-    presentPanModal(drawerViewController)
-    // swiftlint:enable force_cast
+  @objc private func showCreateTargetForm() {
+    createTargetForm.modalPresentationStyle = .overCurrentContext
+    //WIP
+    present(createTargetForm, animated: true, completion: nil)
   }
   
   private func addCurrentLocation(_ location: CLLocation) {
