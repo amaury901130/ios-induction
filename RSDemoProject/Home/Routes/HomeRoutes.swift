@@ -8,10 +8,11 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 enum HomeRoutes: Route {
   case main
-  case createTarget
+  case createTarget(_ location: CLLocation)
   
   var screen: UIViewController {
     switch self {
@@ -21,10 +22,12 @@ enum HomeRoutes: Route {
       }
       main.viewModel = MainViewModel()
       return main
-    case .createTarget:
+    case .createTarget(let location):
       guard let createTarget = R.storyboard.main.createTargetViewController() else {
         return UIViewController()
       }
+      createTarget.viewModel = CreateTargetViewModel(location)
+      
       return createTarget
     }
   }

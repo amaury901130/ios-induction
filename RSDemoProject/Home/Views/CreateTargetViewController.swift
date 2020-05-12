@@ -7,18 +7,21 @@
 //
 
 import UIKit
-import PanModal
 
 class CreateTargetViewController: UIViewController {
   
   let contentHeight: CGFloat = 340
+  var viewModel: CreateTargetViewModel!
   
   @IBOutlet weak var targetAreaField: CustomFormField!
   @IBOutlet weak var targetTitleField: CustomFormField!
   @IBOutlet weak var targetTopicField: CustomFormField!
+  @IBOutlet weak var addTargetButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    viewModel.delegate = self
     initView()
   }
   
@@ -30,6 +33,11 @@ class CreateTargetViewController: UIViewController {
     //WIP
     targetAreaField.textView.text = "200 m"
     targetAreaField.textView.isEnabled = false
+    targetAreaField.addGestureRecognizer(
+      UITapGestureRecognizer(
+        target: self,
+        action: #selector(selectArea)
+    ))
     
     targetTitleField.labelText = "createTargetTitleLable".localized
     targetTitleField.labelTextAlignment = .left
@@ -41,32 +49,49 @@ class CreateTargetViewController: UIViewController {
     targetTopicField.textFieldTextAlignment = .center
     targetTopicField.textView.text = "createTargetTopicTitle".localized
     targetTopicField.textView.isEnabled = false
+    targetAreaField.addGestureRecognizer(
+      UITapGestureRecognizer(
+        target: self,
+        action: #selector(selectTopic)
+    ))
+  }
+  
+  @objc func selectArea() {
+    //todo
+  }
+  
+  @objc func selectTopic() {
+    //todo
+  }
+  
+  
+  @IBAction func addTarget(_ sender: Any) {
+    viewModel.state = .targetCreated
   }
 }
 
-extension CreateTargetViewController: PanModalPresentable {
-  
-  var panScrollable: UIScrollView? {
-    nil
-  }
-
-  var shortFormHeight: PanModalHeight {
-    .contentHeight(contentHeight)
-  }
-  
-  var longFormHeight: PanModalHeight {
-    .contentHeight(contentHeight)
-  }
-  
-  var panModalBackgroundColor: UIColor {
-    UIColor(white: 1, alpha: 0)
+extension CreateTargetViewController: CreateTargetDelegate {
+  func didUpdateState() {
+    switch viewModel.networkState {
+    case .loading:
+      UIApplication.showNetworkActivity()
+      addTargetButton.setEnable(false)
+    case .idle:
+      UIApplication.hideNetworkActivity()
+      addTargetButton.setEnable(false)
+    case .error(let errorDescription):
+      UIApplication.hideNetworkActivity()
+      addTargetButton.setEnable()
+      showMessage(title: "Error", message: errorDescription)
+    }
   }
   
-  var showDragIndicator: Bool {
-    false
-  }
-  
-  var allowsExtendedPanScrolling: Bool {
-    false
+  func didUpdateCreateTargetState() {
+    switch viewModel.state {
+    case .targetCreated:
+      UIApplication.hideNetworkActivity()
+      dismiss(animated: true, completion: nil)
+    case .none: break
+    }
   }
 }

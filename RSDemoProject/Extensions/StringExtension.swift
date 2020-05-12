@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension String {
   var isAlphanumericWithNoSpaces: Bool {
@@ -28,6 +29,10 @@ extension String {
     return self.localize()
   }
     
+  var image: UIImage {
+    UIImage(named: self) ?? UIImage.random()
+  }
+  
   func localize(comment: String = "") -> String {
     return NSLocalizedString(self, comment: comment)
   }
