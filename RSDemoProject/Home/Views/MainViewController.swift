@@ -19,6 +19,7 @@ class MainViewController: UIViewController {
   @IBOutlet weak var mainTitle: UILabel!
   @IBOutlet weak var createTargetLabel: UILabel!
   @IBOutlet weak var createNewTarget: UIView!
+  let createTargetForm = HomeRoutes.createTarget.screen
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,7 +28,7 @@ class MainViewController: UIViewController {
     initMap()
     initView()
   }
-  
+
   private func initMap() {
     viewModel.requestCurrentLocation()
   }
@@ -35,6 +36,19 @@ class MainViewController: UIViewController {
   private func initView() {
     createTargetLabel.addSpacing(kernValue: createTargetLabelSpacing)
     mainTitle.addSpacing(kernValue: mainTitleSpacing)
+    
+    createNewTarget.addGestureRecognizer(
+      UITapGestureRecognizer(
+        target: self,
+        action: #selector(showCreateTargetForm)
+    ))
+  }
+  
+  //WIP
+  @objc private func showCreateTargetForm() {
+    createTargetForm.modalPresentationStyle = .overCurrentContext
+    //WIP
+    present(createTargetForm, animated: true, completion: nil)
   }
   
   private func addCurrentLocation(_ location: CLLocation) {

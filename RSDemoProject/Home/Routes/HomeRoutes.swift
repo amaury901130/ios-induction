@@ -11,6 +11,7 @@ import UIKit
 
 enum HomeRoutes: Route {
   case main
+  case createTarget
   
   var screen: UIViewController {
     switch self {
@@ -20,6 +21,11 @@ enum HomeRoutes: Route {
       }
       main.viewModel = MainViewModel()
       return main
+    case .createTarget:
+      guard let createTarget = R.storyboard.main.createTargetViewController() else {
+        return UIViewController()
+      }
+      return createTarget
     }
   }
 }

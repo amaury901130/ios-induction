@@ -27,6 +27,18 @@ class CustomFormField: UIStackView, UITextFieldDelegate {
     textView.text ?? ""
   }
   
+  @IBInspectable var labelTextAlignment: NSTextAlignment = .center {
+    didSet {
+      label.textAlignment = labelTextAlignment
+    }
+  }
+  
+  @IBInspectable var textFieldTextAlignment: NSTextAlignment = .left {
+    didSet {
+      textView.textAlignment = textFieldTextAlignment
+    }
+  }
+  
   @IBInspectable var placeholder: String = "" {
     didSet {
       textView.placeholder = placeholder

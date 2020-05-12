@@ -68,6 +68,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - PanModal (1.2.7)
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
@@ -84,6 +85,7 @@ DEPENDENCIES:
   - Firebase/Core (~> 6.1.0)
   - IQKeyboardManagerSwift (~> 6.1.1)
   - Moya (~> 13.0)
+  - PanModal
   - R.swift (~> 5.0.3)
   - RSFontSizes (~> 1.0.2)
 
@@ -104,6 +106,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - Moya
     - nanopb
+    - PanModal
     - R.swift
     - R.swift.Library
     - Result
@@ -125,11 +128,12 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  PanModal: 3e16ead1a907fb06f4df3f13492fd00149fa4974
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RSFontSizes: cf14ae41c2807b66573f7064528ccff8c98251c9
 
-PODFILE CHECKSUM: 48aa80e868353522813c028cfe5617d606138369
+PODFILE CHECKSUM: 01edee7d78aaa2bee21fe2cb65fe177d80d92238
 
 COCOAPODS: 1.9.1
