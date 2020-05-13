@@ -286,22 +286,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GcO-6L-FWy">
-                                <rect key="frame" x="0.0" y="-24" width="375" height="691"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
                                 <subviews>
                                     <stackView opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="f7P-3C-rch">
-                                        <rect key="frame" x="0.0" y="24" width="375" height="635"/>
+                                        <rect key="frame" x="0.0" y="24" width="375" height="583"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BRN-Pb-xUj" customClass="CustomFormField" customModule="RSDemoProject" customModuleProvider="target">
-                                                <rect key="frame" x="32" y="0.0" width="311" height="217.5"/>
+                                                <rect key="frame" x="32" y="0.0" width="311" height="218"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z9N-Wu-AeD" customClass="CustomFormField" customModule="RSDemoProject" customModuleProvider="target">
-                                                <rect key="frame" x="32" y="229.5" width="311" height="107"/>
+                                                <rect key="frame" x="32" y="230" width="311" height="107"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YU6-vh-kmw" customClass="CustomFormField" customModule="RSDemoProject" customModuleProvider="target">
-                                                <rect key="frame" x="32" y="348.5" width="311" height="217.5"/>
-                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT A TOPIC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EW-lL-q7B">
+                                                <rect key="frame" x="32" y="349" width="311" height="15"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="11"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6V-MO-lW0">
+                                                <rect key="frame" x="32" y="368" width="311" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="PDd-3a-Yfk"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
+                                                <state key="normal" title="What do you want to talk about?">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="selectTopic:" destination="JdV-wh-Z5Y" eventType="touchUpInside" id="FVQ-UV-8i2"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tD9-he-6jw">
-                                                <rect key="frame" x="109.5" y="598" width="156" height="37"/>
+                                                <rect key="frame" x="109.5" y="546" width="156" height="37"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="SignUpButton"/>
                                                 <constraints>
@@ -319,14 +335,16 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.63" alpha="0.34136879279999999" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="YU6-vh-kmw" firstAttribute="top" secondItem="z9N-Wu-AeD" secondAttribute="bottom" constant="12" id="ExP-0F-b2T"/>
-                                            <constraint firstItem="YU6-vh-kmw" firstAttribute="leading" secondItem="f7P-3C-rch" secondAttribute="leading" constant="32" id="O9G-xa-smw"/>
+                                            <constraint firstAttribute="trailing" secondItem="2EW-lL-q7B" secondAttribute="trailing" constant="32" id="2w4-RZ-13M"/>
+                                            <constraint firstItem="Z6V-MO-lW0" firstAttribute="leading" secondItem="f7P-3C-rch" secondAttribute="leading" constant="32" id="FR6-zh-lHf"/>
                                             <constraint firstItem="z9N-Wu-AeD" firstAttribute="leading" secondItem="f7P-3C-rch" secondAttribute="leading" constant="32" id="OSY-VK-6S3"/>
                                             <constraint firstAttribute="trailing" secondItem="z9N-Wu-AeD" secondAttribute="trailing" constant="32" id="QIw-22-e88"/>
-                                            <constraint firstItem="tD9-he-6jw" firstAttribute="top" secondItem="YU6-vh-kmw" secondAttribute="bottom" constant="32" id="RDF-2X-s74"/>
                                             <constraint firstItem="z9N-Wu-AeD" firstAttribute="top" secondItem="BRN-Pb-xUj" secondAttribute="bottom" constant="12" id="UUF-qB-vwr"/>
+                                            <constraint firstItem="2EW-lL-q7B" firstAttribute="top" secondItem="z9N-Wu-AeD" secondAttribute="bottom" constant="12" id="Z0A-vM-N7A"/>
                                             <constraint firstAttribute="trailing" secondItem="BRN-Pb-xUj" secondAttribute="trailing" constant="32" id="f7c-m4-3dg"/>
-                                            <constraint firstAttribute="trailing" secondItem="YU6-vh-kmw" secondAttribute="trailing" constant="32" id="q4K-or-Qza"/>
+                                            <constraint firstAttribute="trailing" secondItem="Z6V-MO-lW0" secondAttribute="trailing" constant="32" id="lyX-UB-sCI"/>
+                                            <constraint firstItem="2EW-lL-q7B" firstAttribute="leading" secondItem="f7P-3C-rch" secondAttribute="leading" constant="32" id="mPw-gU-gvu"/>
+                                            <constraint firstItem="Z6V-MO-lW0" firstAttribute="top" secondItem="2EW-lL-q7B" secondAttribute="bottom" constant="4" id="vq3-yI-DXF"/>
                                             <constraint firstItem="BRN-Pb-xUj" firstAttribute="leading" secondItem="f7P-3C-rch" secondAttribute="leading" constant="32" id="yON-IX-2XM"/>
                                         </constraints>
                                     </stackView>
@@ -350,10 +368,10 @@
                     </view>
                     <connections>
                         <outlet property="addTargetButton" destination="tD9-he-6jw" id="vNe-1l-jTC"/>
-                        <outlet property="form" destination="f7P-3C-rch" id="MW0-TS-J5b"/>
+                        <outlet property="selectTargetTopic" destination="Z6V-MO-lW0" id="V3c-Ba-9Mc"/>
+                        <outlet property="selectTopicLabel" destination="2EW-lL-q7B" id="rOn-Sh-tam"/>
                         <outlet property="targetAreaField" destination="BRN-Pb-xUj" id="cIZ-Iq-EJZ"/>
                         <outlet property="targetTitleField" destination="z9N-Wu-AeD" id="mTu-0G-OpI"/>
-                        <outlet property="targetTopicField" destination="YU6-vh-kmw" id="9NI-Z0-hob"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZJ-zv-Uuy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

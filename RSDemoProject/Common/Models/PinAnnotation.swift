@@ -18,14 +18,14 @@ enum AnnotationType {
   case selectedLocationRatio
   case topic(topic: Topic)
   
-  var pinImage: String {
+  var pinImageName: String {
     switch self {
     case .selectedLocation:
       return "selectedLocation"
     case .selectedLocationRatio:
       return "selectedLocationRatio"
     case .topic(let topic):
-      return topic.icon
+      return topic.icon.absoluteString
     }
   }
   

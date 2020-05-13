@@ -11,13 +11,14 @@ import UIKit
 class CreateTargetViewController: UIViewController {
   
   let contentHeight: CGFloat = 340
+  let fieldLetterSpacing = 0.7
   var viewModel: CreateTargetViewModel!
   
   @IBOutlet weak var targetAreaField: CustomFormField!
   @IBOutlet weak var targetTitleField: CustomFormField!
-  @IBOutlet weak var targetTopicField: CustomFormField!
   @IBOutlet weak var addTargetButton: UIButton!
-  @IBOutlet weak var form: UIStackView!
+  @IBOutlet weak var selectTargetTopic: UIButton!
+  @IBOutlet weak var selectTopicLabel: UILabel!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -37,22 +38,13 @@ class CreateTargetViewController: UIViewController {
     targetTitleField.labelTextAlignment = .left
     targetTitleField.placeholder = "createTargetTitlePlaceholder".localized
     
-    //WIP
-    targetTopicField.labelText = "createTargetTopicLable".localized
-    targetTopicField.labelTextAlignment = .left
-    targetTopicField.textFieldTextAlignment = .center
-    targetTopicField.textView.text = "createTargetTopicTitle".localized
-    targetTopicField.textView.isEnabled = false
-    targetAreaField.addGestureRecognizer(
-      UITapGestureRecognizer(target: self, action: #selector(selectTopic)
-    ))
+    selectTopicLabel.addSpacing(kernValue: fieldLetterSpacing)
+    
+    selectTargetTopic.titleLabel?.addSpacing(kernValue: fieldLetterSpacing)
+    selectTargetTopic.addBorder(color: .black, weight: 1)
   }
   
-  @objc func selectArea() {
-    //todo
-  }
-  
-  @objc func selectTopic() {
+  @IBAction func selectTopic(_ sender: Any) {
     //todo
   }
   

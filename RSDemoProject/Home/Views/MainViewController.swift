@@ -68,7 +68,10 @@ class MainViewController: UIViewController {
   }
   
   @objc private func showCreateTargetForm() {
-    navigateTo(HomeRoutes.createTarget, withTransition: .modal)
+    navigateTo(
+      HomeRoutes.createTarget,
+      withTransition: .modal(presentationStyle: .overCurrentContext)
+    )
   }
 
   private func addCurrentLocation(_ location: CLLocation) {
@@ -87,7 +90,7 @@ extension MainViewController: MKMapViewDelegate {
     let annotationView = ImageAnnotationView(
       annotation: annotation,
       reuseIdentifier: customPointAnnotation.pinType.identifier,
-      customImage: customPointAnnotation.pinType.pinImage
+      customImage: customPointAnnotation.pinType.pinImageName
     )
 
     annotationView.canShowCallout = true
