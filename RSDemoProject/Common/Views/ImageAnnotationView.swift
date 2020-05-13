@@ -13,9 +13,11 @@ import Kingfisher
 class ImageAnnotationView: MKAnnotationView {
   private var imageView: UIImageView!
   
-  init(annotation: MKAnnotation?, reuseIdentifier: String?, customImage: String) {
-    super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-    
+  init(annotation: MKAnnotation?, pinType: AnnotationType) {
+    super.init(annotation: annotation, reuseIdentifier: pinType.identifier)
+
+    let customImage = pinType.pinImageName
+
     if customImage.isUrlFormatted() {
       // todo: change the image size
       imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))

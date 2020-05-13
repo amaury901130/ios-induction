@@ -76,24 +76,22 @@ class MainViewController: UIViewController {
 
   private func addCurrentLocation(_ location: CLLocation) {
     mapView.center(location)
-    mapView.addAnnotation(location, type: .selectedLocationRatio)
-    mapView.addAnnotation(location)
+    mapView.addAnnotation(
+      PinAnnotation(location, pinType: .selectedLocationRatio)
+    )
+    mapView.addAnnotation(PinAnnotation(location))
   }
 }
 
 extension MainViewController: MKMapViewDelegate {
   func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-    guard let customPointAnnotation = annotation as? PinAnnotation else {
+    guard
+      let customPointAnnotation = annotation as? PinAnnotation,
+      let annotationView = customPointAnnotation.pinView
+    else {
       return MKAnnotationView(annotation: annotation, reuseIdentifier: "unknown")
     }
 
-    let annotationView = ImageAnnotationView(
-      annotation: annotation,
-      reuseIdentifier: customPointAnnotation.pinType.identifier,
-      customImage: customPointAnnotation.pinType.pinImageName
-    )
-
-    annotationView.canShowCallout = true
     return annotationView
   }
 }

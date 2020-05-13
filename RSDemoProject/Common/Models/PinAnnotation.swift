@@ -10,7 +10,20 @@ import UIKit
 import MapKit
 
 class PinAnnotation: MKPointAnnotation {
+
+  var pinView: ImageAnnotationView!
+  
   var pinType: AnnotationType!
+  
+  init(_ location: CLLocation, pinType: AnnotationType = .selectedLocation) {
+    super.init()
+    self.pinType = pinType
+    self.coordinate = location.coordinate
+    pinView = ImageAnnotationView(
+      annotation: self,
+      pinType: pinType
+    )
+  }
 }
 
 enum AnnotationType {
@@ -18,6 +31,7 @@ enum AnnotationType {
   case selectedLocationRatio
   case topic(topic: Topic)
   
+  // the pinImageName is a local image or the topic icon url
   var pinImageName: String {
     switch self {
     case .selectedLocation:
