@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-enum CreateTargetViewModelState: Equatable {
+enum CreateTargetViewModelState {
   case targetCreated
 }
 
@@ -19,13 +19,12 @@ protocol CreateTargetDelegate: class {
 }
 
 class CreateTargetViewModel {
-  
-  var targetLocation: CLLocation?
-  weak var delegate: CreateTargetDelegate?
-  
-  init(_ location: CLLocation) {
-    targetLocation = location
+
+  private var targetLocation: CLLocation? {
+    LocationManager.shared.currentLocation
   }
+  
+  weak var delegate: CreateTargetDelegate?
   
   var networkState: ViewModelState = .idle {
     didSet {
@@ -38,5 +37,4 @@ class CreateTargetViewModel {
       delegate?.didUpdateCreateTargetState()
     }
   }
-  
 }

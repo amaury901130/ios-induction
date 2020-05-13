@@ -12,7 +12,7 @@ import CoreLocation
 
 enum HomeRoutes: Route {
   case main
-  case createTarget(_ location: CLLocation)
+  case createTarget
   
   var screen: UIViewController {
     switch self {
@@ -22,12 +22,11 @@ enum HomeRoutes: Route {
       }
       main.viewModel = MainViewModel()
       return main
-    case .createTarget(let location):
+    case .createTarget:
       guard let createTarget = R.storyboard.main.createTargetViewController() else {
         return UIViewController()
       }
-      createTarget.viewModel = CreateTargetViewModel(location)
-      
+      createTarget.viewModel = CreateTargetViewModel()
       return createTarget
     }
   }

@@ -108,6 +108,7 @@ public extension Navigator {
     switch transition {
     case .modal:
       route.transitionConfigurator?(currentViewController, viewController)
+      viewController.modalPresentationStyle = .overCurrentContext
       currentViewController?.present(
         viewController, animated: animated, completion: completion
       )

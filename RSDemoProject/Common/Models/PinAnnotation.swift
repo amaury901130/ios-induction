@@ -10,65 +10,34 @@ import UIKit
 import MapKit
 
 class PinAnnotation: MKPointAnnotation {
-  var type: AnnotationType!
+  var pinType: AnnotationType!
 }
 
-enum AnnotationType: String {
+enum AnnotationType {
   case selectedLocation
-  
   case selectedLocationRatio
+  case topic(topic: Topic)
   
-  case chirstmas
-  
-  case pokemonGo
-  
-  case football
-  
-  case travel
-  
-  case politics
-  
-  case art
-  
-  case dating
-  
-  case music
-  
-  case movie
-  
-  case serie
-  
-  case food
-  
-  var pinImage: UIImage {
+  var pinImage: String {
     switch self {
-    // TODO add all images
     case .selectedLocation:
-      return "selectedLocation".image
+      return "selectedLocation"
     case .selectedLocationRatio:
-      return "selectedLocationRatio".image
-    case .chirstmas:
-      return "selectedLocation".image
-    case .pokemonGo:
-      return "selectedLocation".image
-    case .football:
-      return "selectedLocation".image
-    case .travel:
-      return "selectedLocation".image
-    case .politics:
-      return "selectedLocation".image
-    case .art:
-      return "selectedLocation".image
-    case .dating:
-      return "selectedLocation".image
-    case .music:
-      return "selectedLocation".image
-    case .movie:
-      return "selectedLocation".image
-    case .serie:
-      return "selectedLocation".image
-    case .food:
-      return "selectedLocation".image
+      return "selectedLocationRatio"
+    case .topic(let topic):
+      return topic.icon
+    }
+  }
+  
+  var identifier: String {
+    switch self {
+
+    case .selectedLocation:
+      return "selectedLocation"
+    case .selectedLocationRatio:
+      return "selectedLocationRatio"
+    case .topic( _):
+      return "topic"
     }
   }
 }

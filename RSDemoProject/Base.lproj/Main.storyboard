@@ -350,6 +350,7 @@
                     </view>
                     <connections>
                         <outlet property="addTargetButton" destination="tD9-he-6jw" id="vNe-1l-jTC"/>
+                        <outlet property="form" destination="f7P-3C-rch" id="MW0-TS-J5b"/>
                         <outlet property="targetAreaField" destination="BRN-Pb-xUj" id="cIZ-Iq-EJZ"/>
                         <outlet property="targetTitleField" destination="z9N-Wu-AeD" id="mTu-0G-OpI"/>
                         <outlet property="targetTopicField" destination="YU6-vh-kmw" id="9NI-Z0-hob"/>

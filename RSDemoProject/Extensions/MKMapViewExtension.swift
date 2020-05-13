@@ -32,7 +32,7 @@ extension MKMapView {
     type: AnnotationType = AnnotationType.selectedLocation
   ) {
     let annotation = PinAnnotation()
-    annotation.type = type
+    annotation.pinType = type
     annotation.coordinate = location.coordinate
     
     addAnnotation(annotation)

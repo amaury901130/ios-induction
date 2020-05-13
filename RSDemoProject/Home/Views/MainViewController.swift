@@ -15,7 +15,6 @@ class MainViewController: UIViewController {
   let createTargetLabelSpacing = 1.65
   
   var viewModel: MainViewModel!
-  var createTargetForm: UIViewController!
   
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var mainTitle: UILabel!
@@ -69,14 +68,12 @@ class MainViewController: UIViewController {
   }
   
   @objc private func showCreateTargetForm() {
-    createTargetForm = HomeRoutes.createTarget(viewModel.currentLocation!).screen
-    createTargetForm.modalPresentationStyle = .overCurrentContext
-    present(createTargetForm, animated: true, completion: nil)
+    navigateTo(HomeRoutes.createTarget, withTransition: .modal)
   }
 
   private func addCurrentLocation(_ location: CLLocation) {
     mapView.center(location)
-    mapView.addAnnotation(location, type: AnnotationType.selectedLocationRatio)
+    mapView.addAnnotation(location, type: .selectedLocationRatio)
     mapView.addAnnotation(location)
   }
 }
@@ -84,28 +81,26 @@ class MainViewController: UIViewController {
 extension MainViewController: MKMapViewDelegate {
   func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
     guard let customPointAnnotation = annotation as? PinAnnotation else {
-      let annotationView = MKAnnotationView(
-        annotation: annotation,
-        reuseIdentifier: "temp"
-      )
-      
-      return annotationView
+      return MKAnnotationView(annotation: annotation, reuseIdentifier: "unknown")
     }
 
-    let annotationView = MKAnnotationView(
+    let annotationView = ImageAnnotationView(
       annotation: annotation,
-      reuseIdentifier: customPointAnnotation.type.rawValue
+      reuseIdentifier: customPointAnnotation.pinType.identifier,
+      customImage: customPointAnnotation.pinType.pinImage
     )
 
     annotationView.canShowCallout = true
-    annotationView.image = customPointAnnotation.type.pinImage
-    
     return annotationView
   }
 }
 
 extension MainViewController: MainViewModelDelegate {
-  func didUpdateLocation(_ location: CLLocation) {
+  func didUpdateLocation() {
+    guard let location = viewModel.currentLocation else {
+      return
+    }
+    
     addCurrentLocation(location)
   }
 }

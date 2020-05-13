@@ -17,6 +17,7 @@ class CreateTargetViewController: UIViewController {
   @IBOutlet weak var targetTitleField: CustomFormField!
   @IBOutlet weak var targetTopicField: CustomFormField!
   @IBOutlet weak var addTargetButton: UIButton!
+  @IBOutlet weak var form: UIStackView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,14 +31,7 @@ class CreateTargetViewController: UIViewController {
     targetAreaField.labelText = "createTargetAreaLable".localized
     targetAreaField.labelTextAlignment = .left
     targetAreaField.textFieldTextAlignment = .center
-    //WIP
     targetAreaField.textView.text = "200 m"
-    targetAreaField.textView.isEnabled = false
-    targetAreaField.addGestureRecognizer(
-      UITapGestureRecognizer(
-        target: self,
-        action: #selector(selectArea)
-    ))
     
     targetTitleField.labelText = "createTargetTitleLable".localized
     targetTitleField.labelTextAlignment = .left
@@ -50,9 +44,7 @@ class CreateTargetViewController: UIViewController {
     targetTopicField.textView.text = "createTargetTopicTitle".localized
     targetTopicField.textView.isEnabled = false
     targetAreaField.addGestureRecognizer(
-      UITapGestureRecognizer(
-        target: self,
-        action: #selector(selectTopic)
+      UITapGestureRecognizer(target: self, action: #selector(selectTopic)
     ))
   }
   
@@ -64,9 +56,8 @@ class CreateTargetViewController: UIViewController {
     //todo
   }
   
-  
   @IBAction func addTarget(_ sender: Any) {
-    viewModel.state = .targetCreated
+    //todo
   }
 }
 
