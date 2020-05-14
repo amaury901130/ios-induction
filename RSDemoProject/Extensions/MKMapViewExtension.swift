@@ -26,12 +26,4 @@ extension MKMapView {
     
     setRegion(region, animated: animate)
   }
-  
-  // todo: add custom annotation
-  func addAnnotation(location: CLLocation) {
-    let annotation = MKPointAnnotation()
-    annotation.coordinate = location.coordinate
-    
-    addAnnotation(annotation)
-  }
 }

@@ -106,8 +106,9 @@ public extension Navigator {
   ) {
     let viewController = route.screen
     switch transition {
-    case .modal:
+    case .modal(let presentationStyle):
       route.transitionConfigurator?(currentViewController, viewController)
+      viewController.modalPresentationStyle = presentationStyle
       currentViewController?.present(
         viewController, animated: animated, completion: completion
       )
@@ -204,7 +205,7 @@ public extension Route {
 public enum TransitionType {
 
   /// Presents the screen modally on top of the current ViewController
-  case modal
+  case modal(presentationStyle: UIModalPresentationStyle)
 
   /// Pushes the next screen to the rootViewController navigation Stack.
   case push

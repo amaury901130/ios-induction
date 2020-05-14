@@ -15,11 +15,11 @@ class MainViewController: UIViewController {
   let createTargetLabelSpacing = 1.65
   
   var viewModel: MainViewModel!
+  
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var mainTitle: UILabel!
   @IBOutlet weak var createTargetLabel: UILabel!
   @IBOutlet weak var createNewTarget: UIView!
-  let createTargetForm = HomeRoutes.createTarget.screen
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -28,9 +28,17 @@ class MainViewController: UIViewController {
     initMap()
     initView()
   }
-
+  
   private func initMap() {
     viewModel.requestCurrentLocation()
+    
+    mapView.delegate = self
+    
+    mapView.addGestureRecognizer(
+      UILongPressGestureRecognizer(
+        target: self,
+        action: #selector(centerMap)
+    ))
   }
   
   private func initView() {
@@ -44,21 +52,56 @@ class MainViewController: UIViewController {
     ))
   }
   
-  //WIP
-  @objc private func showCreateTargetForm() {
-    createTargetForm.modalPresentationStyle = .overCurrentContext
-    //WIP
-    present(createTargetForm, animated: true, completion: nil)
+  @objc private func centerMap(gestureRecognizer: UIGestureRecognizer) {
+    guard gestureRecognizer.state == UIGestureRecognizer.State.began else {
+      return
+    }
+    
+    let touchPoint = gestureRecognizer.location(in: mapView)
+    let newCoordinates = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+    let location = CLLocation(
+      latitude: newCoordinates.latitude,
+      longitude: newCoordinates.longitude
+    )
+    
+    mapView.center(location)
   }
   
+  @objc private func showCreateTargetForm() {
+    navigateTo(
+      HomeRoutes.createTarget,
+      withTransition: .modal(presentationStyle: .overCurrentContext)
+    )
+  }
+
   private func addCurrentLocation(_ location: CLLocation) {
     mapView.center(location)
-    mapView.addAnnotation(location: location)
+    mapView.addAnnotation(
+      PinAnnotation(location, pinType: .selectedLocationRatio)
+    )
+    mapView.addAnnotation(PinAnnotation(location))
+  }
+}
+
+extension MainViewController: MKMapViewDelegate {
+  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    guard
+      let customPointAnnotation = annotation as? PinAnnotation,
+      let annotationView = customPointAnnotation.pinView
+    else {
+      return MKAnnotationView(annotation: annotation, reuseIdentifier: "unknown")
+    }
+
+    return annotationView
   }
 }
 
 extension MainViewController: MainViewModelDelegate {
-  func didUpdateLocation(_ location: CLLocation) {
+  func didUpdateLocation() {
+    guard let location = viewModel.currentLocation else {
+      return
+    }
+    
     addCurrentLocation(location)
   }
 }

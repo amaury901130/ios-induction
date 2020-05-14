@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension String {
   var isAlphanumericWithNoSpaces: Bool {
@@ -27,7 +28,11 @@ extension String {
   var localized: String {
     return self.localize()
   }
-    
+  
+  var image: UIImage? {
+    UIImage(named: self)
+  }
+  
   func localize(comment: String = "") -> String {
     return NSLocalizedString(self, comment: comment)
   }
@@ -40,6 +45,10 @@ extension String {
   //Regex fulfill RFC 5322 Internet Message format
   func isEmailFormatted() -> Bool {
     return validate(Validations.emailPattern)
+  }
+  
+  func isUrlFormatted() -> Bool {
+    validate(Validations.urlPattern)
   }
   
   func validate(_ pattern: String) -> Bool {

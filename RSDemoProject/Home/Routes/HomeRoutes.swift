@@ -25,6 +25,7 @@ enum HomeRoutes: Route {
       guard let createTarget = R.storyboard.main.createTargetViewController() else {
         return UIViewController()
       }
+      createTarget.viewModel = CreateTargetViewModel()
       return createTarget
     }
   }

@@ -15,6 +15,7 @@ class LocationManager: NSObject {
   
   static let shared = LocationManager()
   
+  var currentLocation: CLLocation!
   var locationUpdateListener: LocationUpdateListener?
   var manager: CLLocationManager = CLLocationManager()
   
@@ -58,6 +59,7 @@ extension LocationManager: CLLocationManagerDelegate {
       let listener = locationUpdateListener
     else { return }
     
+    currentLocation = location
     listener(location)
     manager.stopUpdatingLocation()
   }

@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 protocol MainViewModelDelegate: class {
-  func didUpdateLocation(_ location: CLLocation)
+  func didUpdateLocation()
 }
 
 class MainViewModel {
@@ -25,6 +25,6 @@ class MainViewModel {
   
   private func updateCurrentLocation(_ location: CLLocation) {
     currentLocation = location
-    delegate?.didUpdateLocation(location)
+    delegate?.didUpdateLocation()
   }
 }
