@@ -11,7 +11,7 @@ import Foundation
 struct Topic: Codable {
   var id: Int
   var label: String
-  var icon: URL
+  var icon: String
   
   private enum CodingKeys: String, CodingKey {
     case id

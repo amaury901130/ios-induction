@@ -15,6 +15,9 @@ target 'RSDemoProject' do
   # FB SDK ---
   pod 'FBSDKCoreKit', '~> 5.5.0'
   pod 'FBSDKLoginKit', '~> 5.5.0'
-  # ------
+  # Image loader ---
   pod 'Kingfisher', '~> 5.14.0'
+  # RxSwift
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
 end

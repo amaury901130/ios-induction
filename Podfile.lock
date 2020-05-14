@@ -77,6 +77,12 @@ PODS:
   - Result (4.1.0)
   - RSFontSizes (1.0.2):
     - Device (~> 3.1.2)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.8.1)
@@ -90,6 +96,8 @@ DEPENDENCIES:
   - Moya (~> 13.0)
   - R.swift (~> 5.0.3)
   - RSFontSizes (~> 1.0.2)
+  - RxCocoa (~> 5)
+  - RxSwift (~> 5)
 
 SPEC REPOS:
   trunk:
@@ -113,6 +121,9 @@ SPEC REPOS:
     - R.swift.Library
     - Result
     - RSFontSizes
+    - RxCocoa
+    - RxRelay
+    - RxSwift
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -135,7 +146,10 @@ SPEC CHECKSUMS:
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RSFontSizes: cf14ae41c2807b66573f7064528ccff8c98251c9
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
 
-PODFILE CHECKSUM: b368f94fd8e1c55d63383c4d3bb1c96dbce27161
+PODFILE CHECKSUM: 1b174eee75f8248e2e93d4bd1f84f297fafb1f04
 
 COCOAPODS: 1.9.1
