@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import CoreLocation
 
 enum HomeRoutes: Route {
   case main
