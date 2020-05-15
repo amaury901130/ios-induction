@@ -9,22 +9,15 @@
 import Foundation
 import Moya
 
-enum TopicResource: TargetType{
+enum TopicResource: TargetType {
   case getTopics
   
   var path: String {
-    let topicsBasePath = "/topics"
-    switch self {
-    case .getTopics:
-      return "\(topicsBasePath)"
-    }
+    "/topics"
   }
-  
+
   var method: Moya.Method {
-    switch self {
-    case .getTopics:
-      return .get
-    }
+    .get
   }
   
   var headers: [String: String]? {
@@ -32,9 +25,6 @@ enum TopicResource: TargetType{
   }
   
   var task: Task {
-    switch self {
-    case .getTopics:
-      return .requestPlain
-    }
+    .requestPlain
   }
 }

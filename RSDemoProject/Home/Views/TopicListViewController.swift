@@ -10,8 +10,7 @@ import UIKit
 
 class TopicListViewController: UITableViewController {
   
-  var items = [Topic]()
-  var selectedItem: Topic!
+  var selectedItem: Topic?
   var viewModel: TopicListViewModel!
   
   override func viewDidLoad() {
@@ -24,16 +23,12 @@ class TopicListViewController: UITableViewController {
     clearsSelectionOnViewWillAppear = false
     viewModel.delegate = self
   }
-  
-  override func numberOfSections(in tableView: UITableView) -> Int {
-    1
-  }
-  
+
   override func tableView(
     _ tableView: UITableView,
     numberOfRowsInSection section: Int
   ) -> Int {
-    items.count
+    viewModel.countTopics()
   }
   
   override func tableView(
@@ -49,13 +44,13 @@ class TopicListViewController: UITableViewController {
       return cell
     }
     
-    topicCell.topic = items[indexPath.row]
+    topicCell.topic = viewModel.getTopic(indexPath.row)
 
     return topicCell
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    selectedItem = items[indexPath.row]
+    selectedItem = viewModel.getTopic(indexPath.row)
     //todo: back with the selecteditem
   }
 }
@@ -64,7 +59,6 @@ extension TopicListViewController: TopicListDelegate {
   func didUpdateTopicListState() {
     switch viewModel.state {
     case .didLoadTopics:
-      items = viewModel.topics
       self.tableView.reloadData()
     case .none:
       break

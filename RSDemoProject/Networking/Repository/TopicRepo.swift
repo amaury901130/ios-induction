@@ -16,18 +16,20 @@ class TopicRepo {
   let error: BehaviorRelay<Error?> = BehaviorRelay(value: nil)
   
   func loadTopics() {
+    guard topics.value.isEmpty else {
+      return
+    }
+    
     if let savedTopics = TopicDataManager.topics {
       topics.accept(savedTopics)
     }
     
     TopicService.shared.getTopics(
       success: { [weak self] topics in
-        var topicsResponse = [Topic]()
+        let resultTopics = topics.map { $0.topic }
         
-        topics.forEach { topicsResponse.append($0.topic) }
-        
-        TopicDataManager.topics = topicsResponse
-        self?.topics.accept(topicsResponse)
+        TopicDataManager.topics = resultTopics
+        self?.topics.accept(resultTopics)
       },
       failure: { [weak self] error in
         self?.error.accept(error)

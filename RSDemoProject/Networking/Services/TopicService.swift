@@ -16,10 +16,11 @@ class TopicService: BaseApiService<TopicResource> {
     success: @escaping (_ topics: [TopicResponse]) -> Void,
     failure: @escaping (_ error: Error) -> Void
   ) {
-    request(for: .getTopics,
-            at: "topics",
-            onSuccess: { (result: [TopicResponse], _) -> Void in
-              success(result)
+    request(
+      for: .getTopics,
+      at: "topics",
+      onSuccess: { (result: [TopicResponse], _) -> Void in
+        success(result)
     }, onFailure: { error, _ in
       failure(error)
     })

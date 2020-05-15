@@ -24,7 +24,7 @@ class TopicListViewModel {
   var topics: [Topic]!
   private let disposeBag = DisposeBag()
   
-  var delegate: TopicListDelegate! {
+  weak var delegate: TopicListDelegate! {
     didSet {
       subscribe()
       loadTopics()
@@ -43,18 +43,27 @@ class TopicListViewModel {
     }
   }
   
+  func countTopics() -> Int {
+    topics.count
+  }
+  
+  func getTopic(_ index: Int) -> Topic {
+    topics[index]
+  }
+  
   func subscribe() {
-    topicRepo.topics.asObservable().subscribe(onNext: { [unowned self] topics in
-      self.networkState = .idle
-      self.topics = topics
-      self.state = .didLoadTopics
+    topicRepo.topics.asObservable().subscribe(onNext: { [weak self] topics in
+      self?.networkState = .idle
+      self?.topics = topics
+      self?.state = .didLoadTopics
     }).disposed(by: disposeBag)
     
-    topicRepo.error.asObservable().subscribe(onNext: { [unowned self] error in
+    topicRepo.error.asObservable().subscribe(onNext: { [weak self] error in
       guard let error = error else {
         return
       }
-      self.networkState = .error(error.localizedDescription)
+      
+      self?.networkState = .error(error.localizedDescription)
     }).disposed(by: disposeBag)
   }
   
