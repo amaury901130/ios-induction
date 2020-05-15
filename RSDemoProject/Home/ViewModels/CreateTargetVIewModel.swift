@@ -32,7 +32,7 @@ class CreateTargetViewModel {
     }
   }
 
-  var state: CreateTargetViewModelState? {
+  var state: CreateTargetViewModelState! {
     didSet {
       delegate?.didUpdateCreateTargetState()
     }

@@ -45,7 +45,10 @@ class CreateTargetViewController: UIViewController {
   }
   
   @IBAction func selectTopic(_ sender: Any) {
-    //todo
+    navigateTo(
+      HomeRoutes.topicSelection,
+      withTransition: .modal(presentationStyle: .overCurrentContext)
+    )
   }
   
   @IBAction func addTarget(_ sender: Any) {

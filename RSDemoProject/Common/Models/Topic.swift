@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct Topic: Codable {
+struct Topic: Codable, Equatable {
   var id: Int
   var label: String
-  var icon: URL
+  var icon: String
   
   private enum CodingKeys: String, CodingKey {
     case id

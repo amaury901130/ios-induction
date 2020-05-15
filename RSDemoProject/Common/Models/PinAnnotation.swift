@@ -39,7 +39,7 @@ enum AnnotationType {
     case .selectedLocationRatio:
       return "selectedLocationRatio"
     case .topic(let topic):
-      return topic.icon.absoluteString
+      return topic.icon
     }
   }
   
