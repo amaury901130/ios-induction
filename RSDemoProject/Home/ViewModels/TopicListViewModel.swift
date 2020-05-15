@@ -11,6 +11,7 @@ import RxSwift
 
 enum TopicListState {
   case didLoadTopics
+  case didTopicSelected
 }
 
 protocol TopicListDelegate: class {
@@ -22,6 +23,13 @@ class TopicListViewModel {
   
   let topicRepo = TopicRepo.shared
   var topics: [Topic]!
+  
+  var selectedTopic: Topic? {
+    didSet {
+      state = .didTopicSelected
+    }
+  }
+  
   private let disposeBag = DisposeBag()
   
   weak var delegate: TopicListDelegate! {
@@ -37,10 +45,14 @@ class TopicListViewModel {
     }
   }
   
-  var state: TopicListState? {
+  var state: TopicListState! {
     didSet {
       delegate?.didUpdateTopicListState()
     }
+  }
+  
+  func selectTopic(_ index: Int) {
+    selectedTopic = topics[index]
   }
   
   func countTopics() -> Int {
