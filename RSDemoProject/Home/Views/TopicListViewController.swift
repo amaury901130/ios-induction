@@ -57,8 +57,8 @@ extension TopicListViewController: TopicListDelegate {
   func didUpdateTopicListState() {
     switch viewModel.state {
     case .didLoadTopics:
-      self.tableView.reloadData()
-    case .didTopicSelected:
+      tableView.reloadData()
+    case .didSelectTopic:
       //todo: back with the selected topic
       break
     case .none:

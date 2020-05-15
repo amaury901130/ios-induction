@@ -11,7 +11,7 @@ import RxSwift
 
 enum TopicListState {
   case didLoadTopics
-  case didTopicSelected
+  case didSelectTopic
 }
 
 protocol TopicListDelegate: class {
@@ -22,11 +22,11 @@ protocol TopicListDelegate: class {
 class TopicListViewModel {
   
   let topicRepo = TopicRepo.shared
-  var topics: [Topic]!
+  var topics: [Topic] = []
   
   var selectedTopic: Topic? {
     didSet {
-      state = .didTopicSelected
+      state = .didSelectTopic
     }
   }
   
