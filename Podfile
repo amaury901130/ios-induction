@@ -17,7 +17,4 @@ target 'RSDemoProject' do
   pod 'FBSDKLoginKit', '~> 5.5.0'
   # Image loader ---
   pod 'Kingfisher', '~> 5.14.0'
-  # RxSwift
-  pod 'RxSwift', '~> 5'
-  pod 'RxCocoa', '~> 5'
 end

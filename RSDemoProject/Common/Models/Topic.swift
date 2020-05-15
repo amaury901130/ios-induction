@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Topic: Codable {
+struct Topic: Codable, Equatable {
   var id: Int
   var label: String
   var icon: String

@@ -17,7 +17,6 @@
 		4607C5CC246D8BE900B1207F /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4607C5CB246D8BE900B1207F /* TopicListViewController.swift */; };
 		4607C5CE246D91DC00B1207F /* TopicListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4607C5CD246D91DC00B1207F /* TopicListViewModel.swift */; };
 		4607C5D0246DA72200B1207F /* TopicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4607C5CF246DA72200B1207F /* TopicService.swift */; };
-		4607C5D3246DACFA00B1207F /* TopicRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4607C5D2246DACFA00B1207F /* TopicRepo.swift */; };
 		4607C5D5246DB7C200B1207F /* TopicResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4607C5D4246DB7C200B1207F /* TopicResource.swift */; };
 		4607C5D7246DBB5500B1207F /* TopicDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4607C5D6246DBB5500B1207F /* TopicDataManager.swift */; };
 		4607C5DA246DC4F800B1207F /* TopicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4607C5D9246DC4F800B1207F /* TopicResponse.swift */; };
@@ -112,7 +111,6 @@
 		4607C5CB246D8BE900B1207F /* TopicListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
 		4607C5CD246D91DC00B1207F /* TopicListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListViewModel.swift; sourceTree = "<group>"; };
 		4607C5CF246DA72200B1207F /* TopicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicService.swift; sourceTree = "<group>"; };
-		4607C5D2246DACFA00B1207F /* TopicRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicRepo.swift; sourceTree = "<group>"; };
 		4607C5D4246DB7C200B1207F /* TopicResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicResource.swift; sourceTree = "<group>"; };
 		4607C5D6246DBB5500B1207F /* TopicDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDataManager.swift; sourceTree = "<group>"; };
 		4607C5D9246DC4F800B1207F /* TopicResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicResponse.swift; sourceTree = "<group>"; };
@@ -315,14 +313,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		4607C5D1246DACDB00B1207F /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-				4607C5D2246DACFA00B1207F /* TopicRepo.swift */,
-			);
-			path = Repository;
-			sourceTree = "<group>";
-		};
 		4607C5D8246DC4A800B1207F /* Responses */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,7 +410,6 @@
 			isa = PBXGroup;
 			children = (
 				4607C5D8246DC4A800B1207F /* Responses */,
-				4607C5D1246DACDB00B1207F /* Repository */,
 				9BE3669B1F1016BD007CAECD /* Models */,
 				9BFA84F11C776817009F64E4 /* Services */,
 				FEE8080922A6ACFF00743D1B /* APIService.swift */,
@@ -664,9 +653,6 @@
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RSFontSizes/RSFontSizes.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -682,9 +668,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSFontSizes.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -741,7 +724,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -815,7 +798,6 @@
 				FEE8081022A6C10900743D1B /* UserService.swift in Sources */,
 				9BE3669D1F101737007CAECD /* MultipartMedia.swift in Sources */,
 				466717B1246C4DE500007845 /* ImageAnnotationView.swift in Sources */,
-				4607C5D3246DACFA00B1207F /* TopicRepo.swift in Sources */,
 				9B8574D9212C84130063A3E2 /* UIImageExtension.swift in Sources */,
 				460F984D244E0762001151F6 /* UILabelExtension.swift in Sources */,
 				FE583F0A22AFC9E000EF3CDA /* AnalyticsManager.swift in Sources */,

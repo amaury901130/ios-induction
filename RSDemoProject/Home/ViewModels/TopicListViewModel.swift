@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RxSwift
 
 enum TopicListState {
   case didLoadTopics
@@ -21,7 +20,6 @@ protocol TopicListDelegate: class {
 
 class TopicListViewModel {
   
-  let topicRepo = TopicRepo.shared
   var topics: [Topic] = []
   
   var selectedTopic: Topic? {
@@ -30,11 +28,8 @@ class TopicListViewModel {
     }
   }
   
-  private let disposeBag = DisposeBag()
-  
   weak var delegate: TopicListDelegate! {
     didSet {
-      subscribe()
       loadTopics()
     }
   }
@@ -63,24 +58,29 @@ class TopicListViewModel {
     topics[index]
   }
   
-  func subscribe() {
-    topicRepo.topics.asObservable().subscribe(onNext: { [weak self] topics in
-      self?.networkState = .idle
-      self?.topics = topics
-      self?.state = .didLoadTopics
-    }).disposed(by: disposeBag)
-    
-    topicRepo.error.asObservable().subscribe(onNext: { [weak self] error in
-      guard let error = error else {
-        return
-      }
-      
-      self?.networkState = .error(error.localizedDescription)
-    }).disposed(by: disposeBag)
-  }
-  
   func loadTopics() {
     networkState = .loading
-    topicRepo.loadTopics()
+    
+    if let savedTopics = TopicDataManager.topics {
+      topics = savedTopics
+    }
+    
+    TopicService.shared.getTopics(
+      success: { [weak self] topics in
+        let resultTopics = topics.map { $0.topic }
+        
+        guard TopicDataManager.topics != resultTopics else {
+          return
+        }
+        
+        TopicDataManager.topics = resultTopics
+        self?.networkState = .idle
+        self?.topics = resultTopics
+        self?.state = .didLoadTopics
+      },
+      failure: { [weak self] error in
+        self?.networkState = .error(error.localizedDescription)
+      }
+    )
   }
 }
