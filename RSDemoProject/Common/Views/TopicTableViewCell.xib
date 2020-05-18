@@ -31,10 +31,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="whk-9q-gRR">
-                        <rect key="frame" x="0.0" y="40" width="320" height="1"/>
+                        <rect key="frame" x="0.0" y="41" width="320" height="0.5"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="1" id="nKf-0n-5uH"/>
+                            <constraint firstAttribute="height" constant="0.5" id="nKf-0n-5uH"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -46,7 +46,7 @@
                     <constraint firstAttribute="trailing" secondItem="xDw-k1-8FM" secondAttribute="trailing" constant="16" id="Mpg-ku-NKe"/>
                     <constraint firstItem="whk-9q-gRR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="X0A-0p-UvS"/>
                     <constraint firstAttribute="trailing" secondItem="whk-9q-gRR" secondAttribute="trailing" id="h9l-M6-8HX"/>
-                    <constraint firstItem="whk-9q-gRR" firstAttribute="top" secondItem="bdR-No-gU2" secondAttribute="bottom" constant="10" id="oRv-Wv-uNx"/>
+                    <constraint firstItem="whk-9q-gRR" firstAttribute="top" secondItem="bdR-No-gU2" secondAttribute="bottom" constant="11" id="oRv-Wv-uNx"/>
                     <constraint firstItem="xDw-k1-8FM" firstAttribute="leading" secondItem="bdR-No-gU2" secondAttribute="trailing" constant="18" id="qlV-Jd-6Zm"/>
                 </constraints>
             </tableViewCellContentView>

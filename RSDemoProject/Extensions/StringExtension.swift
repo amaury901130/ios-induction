@@ -17,16 +17,20 @@ extension String {
     return rangeOfCharacter(from: alphaNumSet.inverted) == nil
   }
   
+  var isNotEmpty: Bool {
+    !isEmpty
+  }
+  
   var hasPunctuationCharacters: Bool {
-    return rangeOfCharacter(from: CharacterSet.punctuationCharacters) != nil
+    rangeOfCharacter(from: CharacterSet.punctuationCharacters) != nil
   }
   
   var hasNumbers: Bool {
-    return rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789")) != nil
+    rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789")) != nil
   }
   
   var localized: String {
-    return self.localize()
+    self.localize()
   }
   
   var image: UIImage? {
@@ -38,7 +42,7 @@ extension String {
   }
   
   var validFilename: String {
-    guard !isEmpty else { return "emptyFilename" }
+    guard isNotEmpty else { return "emptyFilename" }
     return addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "emptyFilename"
   }
   

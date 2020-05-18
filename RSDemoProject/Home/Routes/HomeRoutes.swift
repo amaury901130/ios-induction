@@ -12,7 +12,7 @@ import UIKit
 enum HomeRoutes: Route {
   case main
   case createTarget
-  case topicSelection
+  case topicSelection(_ delegate: TopicListResponseDelegate?)
   
   var screen: UIViewController {
     switch self {
@@ -28,11 +28,12 @@ enum HomeRoutes: Route {
       }
       createTarget.viewModel = CreateTargetViewModel()
       return createTarget
-    case .topicSelection:
+    case .topicSelection(let delegate):
       guard let topicSelection = R.storyboard.main.topicListViewController() else {
         return UIViewController()
       }
       topicSelection.viewModel = TopicListViewModel()
+      topicSelection.viewModel.responseDelegate = delegate
       return topicSelection
     }
   }

@@ -26,3 +26,6 @@
 "createTargetTitlePlaceholder" = "Chose the title for your target";
 "createTargetTopicLable" = "SELECT A TOPIC";
 "createTargetTopicTitle" = "What do you want to talk about?";
+"errorFieldTargetTitle" = "you forgot to put the target title!";
+"errorFieldTargetEmptyArea" = "you forgot to put the target area!";
+"errorFieldTargetArea" = "Invalid range 200 - 1000";

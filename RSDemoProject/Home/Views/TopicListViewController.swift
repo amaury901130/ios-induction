@@ -8,29 +8,47 @@
 
 import UIKit
 
-class TopicListViewController: UITableViewController {
+class TopicListViewController: UIViewController {
   
   var viewModel: TopicListViewModel!
+  @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var dismissRegion: UIView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    setUpView()
+  }
+  
+  func setUpView() {
     let nib = UINib(nibName: TopicTableViewCell.identifier, bundle: nil)
     tableView.register(nib, forCellReuseIdentifier: TopicTableViewCell.identifier)
-    tableView.separatorStyle = .none
+    tableView.dataSource = self
+    tableView.delegate = self
     
-    clearsSelectionOnViewWillAppear = false
+    dismissRegion.addGestureRecognizer(
+      UITapGestureRecognizer(
+        target: self,
+        action: #selector(dismissController)
+    ))
+    
     viewModel.delegate = self
   }
+  
+  @objc func dismissController() {
+     dismiss(animated: true, completion: nil)
+  }
+}
 
-  override func tableView(
+extension TopicListViewController: UITableViewDelegate, UITableViewDataSource {
+  
+  func tableView(
     _ tableView: UITableView,
     numberOfRowsInSection section: Int
   ) -> Int {
     viewModel.countTopics()
   }
   
-  override func tableView(
+  func tableView(
     _ tableView: UITableView,
     cellForRowAt indexPath: IndexPath
   ) -> UITableViewCell {
@@ -44,11 +62,11 @@ class TopicListViewController: UITableViewController {
     }
     
     topicCell.topic = viewModel.getTopic(indexPath.row)
-
+    
     return topicCell
   }
   
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     viewModel.selectTopic(indexPath.row)
   }
 }
@@ -59,13 +77,12 @@ extension TopicListViewController: TopicListDelegate {
     case .didLoadTopics:
       tableView.reloadData()
     case .didSelectTopic:
-      //todo: back with the selected topic
-      break
+      dismissController()
     case .none:
       break
     }
   }
-
+  
   func didUpdateState() {
     switch viewModel.networkState {
     case .loading:

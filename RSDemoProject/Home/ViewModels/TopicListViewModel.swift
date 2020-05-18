@@ -18,12 +18,19 @@ protocol TopicListDelegate: class {
   func didUpdateState()
 }
 
+protocol TopicListResponseDelegate: class {
+  func didSelectTopic(_ topic: Topic)
+}
+
 class TopicListViewModel {
   
   var topics: [Topic] = []
   
-  var selectedTopic: Topic? {
+  weak var responseDelegate: TopicListResponseDelegate?
+  
+  var selectedTopic: Topic! {
     didSet {
+      responseDelegate?.didSelectTopic(selectedTopic)
       state = .didSelectTopic
     }
   }
@@ -59,11 +66,12 @@ class TopicListViewModel {
   }
   
   func loadTopics() {
-    networkState = .loading
-    
     if let savedTopics = TopicDataManager.topics {
       topics = savedTopics
+      state = .didLoadTopics
     }
+    
+    networkState = .loading
     
     TopicService.shared.getTopics(
       success: { [weak self] topics in
