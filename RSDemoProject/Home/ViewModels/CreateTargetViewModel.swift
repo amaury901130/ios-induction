@@ -10,10 +10,10 @@ import Foundation
 import CoreLocation
 
 enum CreateTargetViewModelState {
-  case targetCreated(_ response: CreateTargetResponse)
+  case targetCreated
   case didSelectTopic
-  case errorTitle(_ error: Bool)
-  case errorArea(_ error: Bool)
+  case errorTitle
+  case errorArea
 }
 
 protocol CreateTargetDelegate: class {
@@ -24,7 +24,8 @@ protocol CreateTargetDelegate: class {
 class CreateTargetViewModel {
 
   let areaUnit = "m"
-
+  var targetCreatedResponse: CreateTargetResponse?
+  
   private var targetLocation: CLLocation? {
     LocationManager.shared.currentLocation
   }
@@ -59,7 +60,9 @@ class CreateTargetViewModel {
   
   var targetArea: Int = 200 {
     didSet {
-      state = .errorArea(targetArea == 0)
+      if targetArea == 0 {
+        state = .errorArea
+      }
     }
   }
   
@@ -69,7 +72,9 @@ class CreateTargetViewModel {
   
   var targetTitle: String = "" {
     didSet {
-      state = .errorTitle(targetTitle.isEmpty)
+      if targetTitle.isEmpty {
+        state = .errorTitle
+      }
     }
   }
   
@@ -80,13 +85,14 @@ class CreateTargetViewModel {
     
     TargetService.shared.createTarget(
       title: targetTitle,
-      area: Int(targetArea),
+      area: targetArea,
       topic: topic,
       latitude: LocationManager.shared.currentLocation.coordinate.latitude,
       longitude: LocationManager.shared.currentLocation.coordinate.longitude,
       success: { [weak self] response in
         self?.networkState = .idle
-        self?.state = .targetCreated(response)
+        self?.targetCreatedResponse = response
+        self?.state = .targetCreated
       },
       failure: { [weak self] error in
         self?.networkState = .error(error.localizedDescription)
@@ -97,12 +103,12 @@ class CreateTargetViewModel {
     var error = false
     
     if targetArea == 0 {
-      state = .errorArea(true)
+      state = .errorArea
       error = true
     }
     
     if targetTitle.isEmpty {
-      state = .errorTitle(true)
+      state = .errorTitle
       error = true
     }
     

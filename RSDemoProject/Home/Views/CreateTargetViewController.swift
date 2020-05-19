@@ -40,7 +40,7 @@ class CreateTargetViewController: UIViewController {
     targetAreaField.labelTextAlignment = .left
     targetAreaField.textFieldTextAlignment = .center
     targetAreaField.textView.text = viewModel.formatedArea
-    
+
     targetTitleField.labelText = "createTargetTitleLable".localized
     targetTitleField.errorText = "errorFieldTargetTitle".localized
     targetTitleField.labelTextAlignment = .left
@@ -99,6 +99,7 @@ class CreateTargetViewController: UIViewController {
         viewModel.targetArea = Int(targetAreaField.text) ?? 0
       }
     case targetTitleField.textView:
+      targetTitleField.showError(false)
       viewModel.targetTitle = targetTitleField.text
     default:
       break
@@ -128,14 +129,6 @@ class CreateTargetViewController: UIViewController {
     selectTargetTopic.setTitle(viewModel.topicTitle, for: .normal)
     selectTargetTopic.setIcon(url: viewModel.topicImage)
   }
-  
-  private func errorTitle(_ error: Bool) {
-    targetTitleField.showError(error)
-  }
-  
-  private func errorArea(_ error: Bool) {
-    targetAreaField.showError(error)
-  }
 }
 
 extension CreateTargetViewController: CreateTargetDelegate {
@@ -156,15 +149,15 @@ extension CreateTargetViewController: CreateTargetDelegate {
   
   func didUpdateCreateTargetState() {
     switch viewModel.state {
-    case .targetCreated(let response):
+    case .targetCreated:
       //todo: back with the target response
       dismiss(animated: true, completion: nil)
     case .didSelectTopic:
       updateTopicButton()
-    case .errorTitle(let error):
-      errorTitle(error)
-    case .errorArea(let error):
-      errorArea(error)
+    case .errorTitle:
+      targetTitleField.showError(true)
+    case .errorArea:
+      targetAreaField.showError(true)
     case .none: break
     }
   }
