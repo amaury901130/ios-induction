@@ -59,7 +59,7 @@ class CustomFormField: UIStackView, UITextFieldDelegate {
   open func showError(_ show: Bool = true) {
     errorLabel.text = show ? errorText : ""
     errorLabel.addSpacing(kernValue: labelLetterSpacing)
-    textView.layer.borderColor = show ? App.errorColor : UIColor.black.cgColor
+    textView.layer.borderColor = show ? UIColor.errorColor.cgColor : UIColor.black.cgColor
   }
   
   open func setKeyboardType(type: UIKeyboardType) {
@@ -73,7 +73,7 @@ class CustomFormField: UIStackView, UITextFieldDelegate {
   private func showMandatoryError() {
     errorLabel.text = mandatoryText
     errorLabel.addSpacing(kernValue: labelLetterSpacing)
-    textView.layer.borderColor = App.errorColor
+    textView.layer.borderColor = UIColor.errorColor.cgColor
   }
   
   open func validate() -> Bool {

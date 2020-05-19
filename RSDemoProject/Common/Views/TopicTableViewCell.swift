@@ -11,6 +11,7 @@ import UIKit
 class TopicTableViewCell: UITableViewCell {
   
   static let identifier = "TopicTableViewCell"
+  let labelLetterSpacing = 1.95
   
   @IBOutlet weak var topicIcon: UIImageView!
   @IBOutlet weak var topicLabel: UILabel!
@@ -18,6 +19,7 @@ class TopicTableViewCell: UITableViewCell {
   var topic: Topic! {
     didSet {
       topicLabel.text = topic.label
+      topicLabel.addSpacing(kernValue: labelLetterSpacing)
       topicIcon.kf.setImage(with: URL(string: topic.icon))
     }
   }

@@ -19,6 +19,7 @@ class CreateTargetViewController: UIViewController {
   @IBOutlet weak var addTargetButton: UIButton!
   @IBOutlet weak var selectTargetTopic: UIButton!
   @IBOutlet weak var selectTopicLabel: UILabel!
+  @IBOutlet weak var dismissRegion: UIView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -29,12 +30,19 @@ class CreateTargetViewController: UIViewController {
   
   //WIP setup fields
   private func initView() {
+    setupListener()
+    
     targetAreaField.labelText = "createTargetAreaLable".localized
+    targetAreaField.errorText = "errorFieldTargetArea".localized
+    targetAreaField.mandatoryText = "errorFieldTargetEmptyArea".localized
+    targetAreaField.mandatory = true
+    targetAreaField.validationPattern = Validations.areaPattern
     targetAreaField.labelTextAlignment = .left
     targetAreaField.textFieldTextAlignment = .center
-    targetAreaField.textView.text = "200 m"
-    
+    targetAreaField.textView.text = viewModel.formatedArea
+
     targetTitleField.labelText = "createTargetTitleLable".localized
+    targetTitleField.errorText = "errorFieldTargetTitle".localized
     targetTitleField.labelTextAlignment = .left
     targetTitleField.placeholder = "createTargetTitlePlaceholder".localized
     
@@ -42,17 +50,84 @@ class CreateTargetViewController: UIViewController {
     
     selectTargetTopic.titleLabel?.addSpacing(kernValue: fieldLetterSpacing)
     selectTargetTopic.addBorder(color: .black, weight: 1)
+    
+    dismissRegion.addGestureRecognizer(
+      UITapGestureRecognizer(
+        target: self,
+        action: #selector(dismissController)
+    ))
+    
+    selectTargetTopic.setTitle("createTargetTopicTitle".localized, for: .normal)
+  }
+  
+  private func setupListener() {
+    [targetAreaField, targetTitleField].forEach {
+      $0.textView.addTarget(
+        self,
+        action: #selector(textFieldDidChange(_:)),
+        for: .editingChanged
+      )}
+    
+    targetAreaField.textView.addTarget(
+      self,
+      action: #selector(textFieldEditingEnd(_:)),
+      for: .editingDidEnd
+    )
+    
+    targetAreaField.textView.addTarget(
+      self,
+      action: #selector(textFieldEditingBegin(_:)),
+      for: .editingDidBegin
+    )
+  }
+  
+  @objc func textFieldEditingEnd(_ textField: UITextField) {
+    targetAreaField.showError(false)
+    targetAreaField.textView.text = viewModel.formatedArea
+  }
+  
+  @objc func textFieldEditingBegin(_ textField: UITextField) {
+    targetAreaField.textView.text = ""
+  }
+  
+  @objc func textFieldDidChange(_ textField: UITextField) {
+    switch textField {
+    case targetAreaField.textView:
+      targetAreaField.showError(false)
+      
+      if targetAreaField.validate() {
+        viewModel.targetArea = Int(targetAreaField.text) ?? 0
+      }
+    case targetTitleField.textView:
+      targetTitleField.showError(false)
+      viewModel.targetTitle = targetTitleField.text
+    default:
+      break
+    }
+  }
+  
+  @objc func dismissController() {
+    dismiss(animated: true, completion: nil)
   }
   
   @IBAction func selectTopic(_ sender: Any) {
     navigateTo(
-      HomeRoutes.topicSelection,
+      HomeRoutes.topicSelection(viewModel),
       withTransition: .modal(presentationStyle: .overCurrentContext)
     )
   }
   
   @IBAction func addTarget(_ sender: Any) {
-    //todo
+    viewModel.createTarget()
+  }
+  
+  private func updateTopicButton() {
+    guard viewModel.selectedTopic != nil else {
+      return
+    }
+    
+    selectTargetTopic.setTitle(viewModel.topicTitle, for: .normal)
+    selectTargetTopic.setIcon(url: viewModel.topicImage)
   }
 }
 
@@ -75,8 +150,14 @@ extension CreateTargetViewController: CreateTargetDelegate {
   func didUpdateCreateTargetState() {
     switch viewModel.state {
     case .targetCreated:
-      UIApplication.hideNetworkActivity()
+      //todo: back with the target response
       dismiss(animated: true, completion: nil)
+    case .didSelectTopic:
+      updateTopicButton()
+    case .errorTitle:
+      targetTitleField.showError(true)
+    case .errorArea:
+      targetAreaField.showError(true)
     case .none: break
     }
   }

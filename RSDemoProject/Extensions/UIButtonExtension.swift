@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 extension UIButton {
   func setEnable(_ enable: Bool = true) {
@@ -32,5 +33,28 @@ extension UIButton {
     ))
     
     setAttributedTitle(attributedString, for: .normal)
+  }
+  
+  func setIcon(url: String?) {
+    guard let icon = url, let iconURL = URL(string: icon) else {
+      return
+    }
+    
+    let defaultImage = "targetPointer".image
+    let iconImageSize: CGFloat = 28
+    let verticalInset: CGFloat = 12
+    let horizontalInset = (frame.size.width - iconImageSize) / 2
+    
+    imageEdgeInsets = UIEdgeInsets(
+      top: verticalInset,
+      left: horizontalInset - 32,
+      bottom: verticalInset,
+      right: horizontalInset + 32)
+    
+    kf.setImage(
+      with: iconURL,
+      for: .normal,
+      placeholder: defaultImage
+    )
   }
 }

@@ -18,7 +18,6 @@ class MainViewModel {
   var currentLocation: CLLocation?
   weak var delegate: MainViewModelDelegate?
   var locationManager = LocationManager.shared
-
   func requestCurrentLocation() {
     locationManager.requestCurrentLocation(listener: updateCurrentLocation(_:))
   }
