@@ -24,6 +24,7 @@ protocol CreateTargetDelegate: class {
 class CreateTargetViewModel {
   
   let defaultTargetArea = 200
+  let areaUnit = "m"
 
   private var targetLocation: CLLocation? {
     LocationManager.shared.currentLocation
@@ -31,10 +32,18 @@ class CreateTargetViewModel {
   
   weak var delegate: CreateTargetDelegate?
   
-  var selectedTopic: Topic! {
+  var selectedTopic: Topic? {
     didSet {
       state = .didSelectTopic
     }
+  }
+  
+  var topicImage: String? {
+    selectedTopic?.icon
+  }
+  
+  var topicTitle: String? {
+    selectedTopic?.label.uppercased()
   }
   
   var networkState: ViewModelState = .idle {
@@ -62,14 +71,14 @@ class CreateTargetViewModel {
   }
   
   func createTarget() {
-    guard validate() else {
+    guard isTargetValid(), let topic = selectedTopic else {
       return
     }
     
     TargetService.shared.createTarget(
       title: targetTitle,
       area: Int(targetArea) ?? defaultTargetArea,
-      topic: selectedTopic,
+      topic: topic,
       latitude: LocationManager.shared.currentLocation.coordinate.latitude,
       longitude: LocationManager.shared.currentLocation.coordinate.longitude,
       success: { [weak self] response in
@@ -81,7 +90,7 @@ class CreateTargetViewModel {
       })
   }
   
-  func validate() -> Bool {
+  func isTargetValid() -> Bool {
     var error = false
     
     if targetArea.isEmpty {

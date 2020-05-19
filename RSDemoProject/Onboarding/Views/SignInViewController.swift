@@ -34,8 +34,8 @@ class SignInViewController: UIViewController {
   }
   
   func setupTopImage() {
-    topLeftImage.layer.backgroundColor = App.yellowColor
-    topRightImage.layer.backgroundColor = App.blueColor
+    topLeftImage.layer.backgroundColor = UIColor.bubbleLeft.cgColor
+    topRightImage.layer.backgroundColor = UIColor.bubbleRight.cgColor
     topRightImage.layer.compositingFilter = "multiplyBlendMode"
     [topLeftImage, topRightImage].forEach { $0?.setRoundBorders(175) }
   }

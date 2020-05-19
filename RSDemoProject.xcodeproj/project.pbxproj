@@ -38,12 +38,13 @@
 		4650211B244A223800B35C95 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4650211A244A223800B35C95 /* OpenSans-Bold.ttf */; };
 		4652204D245A711E00960D60 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4652204C245A711E00960D60 /* MKMapViewExtension.swift */; };
 		466717AB246B03CB00007845 /* PinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466717AA246B03CB00007845 /* PinAnnotation.swift */; };
-		466717AD246B28C800007845 /* CreateTargetVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466717AC246B28C800007845 /* CreateTargetVIewModel.swift */; };
+		466717AD246B28C800007845 /* CreateTargetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466717AC246B28C800007845 /* CreateTargetViewModel.swift */; };
 		466717AF246B3F1700007845 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466717AE246B3F1700007845 /* Topic.swift */; };
 		466717B1246C4DE500007845 /* ImageAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466717B0246C4DE500007845 /* ImageAnnotationView.swift */; };
 		46DFE60924730188007ADA5C /* TargetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60824730188007ADA5C /* TargetService.swift */; };
 		46DFE60B247301B9007ADA5C /* TargetResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60A247301B9007ADA5C /* TargetResource.swift */; };
 		46DFE60F2473073C007ADA5C /* CreateTargetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60E2473073C007ADA5C /* CreateTargetResponse.swift */; };
+		46DFE6112473272A007ADA5C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE6102473272A007ADA5C /* UIColorExtension.swift */; };
 		4AF323FC2D560D49FED0BE7F /* Pods_RSDemoProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2214860CE2390D2C2B6056B0 /* Pods_RSDemoProject.framework */; };
 		9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */; };
 		9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */; };
@@ -135,12 +136,13 @@
 		4650211A244A223800B35C95 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Bold.ttf"; path = "../../../../../Downloads/Open_Sans/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		4652204C245A711E00960D60 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
 		466717AA246B03CB00007845 /* PinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinAnnotation.swift; sourceTree = "<group>"; };
-		466717AC246B28C800007845 /* CreateTargetVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTargetVIewModel.swift; sourceTree = "<group>"; };
+		466717AC246B28C800007845 /* CreateTargetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTargetViewModel.swift; sourceTree = "<group>"; };
 		466717AE246B3F1700007845 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		466717B0246C4DE500007845 /* ImageAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAnnotationView.swift; sourceTree = "<group>"; };
 		46DFE60824730188007ADA5C /* TargetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetService.swift; sourceTree = "<group>"; };
 		46DFE60A247301B9007ADA5C /* TargetResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetResource.swift; sourceTree = "<group>"; };
 		46DFE60E2473073C007ADA5C /* CreateTargetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTargetResponse.swift; sourceTree = "<group>"; };
+		46DFE6102473272A007ADA5C /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		492292317C9AA84D410C67C2 /* Pods-RSDemoProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSDemoProject.release.xcconfig"; path = "Target Support Files/Pods-RSDemoProject/Pods-RSDemoProject.release.xcconfig"; sourceTree = "<group>"; };
 		85FF9D270B540FD7BDB842CF /* Pods-RSDemoProject.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSDemoProject.staging.xcconfig"; path = "Target Support Files/Pods-RSDemoProject/Pods-RSDemoProject.staging.xcconfig"; sourceTree = "<group>"; };
 		9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -257,7 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				460F9863245A1316001151F6 /* MainViewModel.swift */,
-				466717AC246B28C800007845 /* CreateTargetVIewModel.swift */,
+				466717AC246B28C800007845 /* CreateTargetViewModel.swift */,
 				4607C5CD246D91DC00B1207F /* TopicListViewModel.swift */,
 			);
 			path = ViewModels;
@@ -507,6 +509,7 @@
 				460F984C244E0762001151F6 /* UILabelExtension.swift */,
 				460F9852244F26AA001151F6 /* UIButtonExtension.swift */,
 				4652204C245A711E00960D60 /* MKMapViewExtension.swift */,
+				46DFE6102473272A007ADA5C /* UIColorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -787,7 +790,7 @@
 				46DFE60924730188007ADA5C /* TargetService.swift in Sources */,
 				462E0FFA2461F71A0080A075 /* CreateTargetViewController.swift in Sources */,
 				4607C5DD246DDAD100B1207F /* TopicTableViewCell.swift in Sources */,
-				466717AD246B28C800007845 /* CreateTargetVIewModel.swift in Sources */,
+				466717AD246B28C800007845 /* CreateTargetViewModel.swift in Sources */,
 				FE4D636222B2CBB000685161 /* OnboardingRoutes.swift in Sources */,
 				466717AF246B3F1700007845 /* Topic.swift in Sources */,
 				071CD2622228544700E6D385 /* FontExtension.swift in Sources */,
@@ -840,6 +843,7 @@
 				9B715A461E28083600C0C039 /* PlaceholderTextView.swift in Sources */,
 				460F9864245A1316001151F6 /* MainViewModel.swift in Sources */,
 				46DFE60F2473073C007ADA5C /* CreateTargetResponse.swift in Sources */,
+				46DFE6112473272A007ADA5C /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

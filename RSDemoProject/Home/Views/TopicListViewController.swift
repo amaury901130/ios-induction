@@ -12,20 +12,20 @@ class TopicListViewController: UIViewController {
   
   var viewModel: TopicListViewModel!
   @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var dismissRegion: UIView!
+  @IBOutlet weak var dismissRegionView: UIView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setUpView()
   }
-  
+
   func setUpView() {
     let nib = UINib(nibName: TopicTableViewCell.identifier, bundle: nil)
     tableView.register(nib, forCellReuseIdentifier: TopicTableViewCell.identifier)
     tableView.dataSource = self
     tableView.delegate = self
     
-    dismissRegion.addGestureRecognizer(
+    dismissRegionView.addGestureRecognizer(
       UITapGestureRecognizer(
         target: self,
         action: #selector(dismissController)

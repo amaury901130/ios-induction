@@ -563,7 +563,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dismissRegion" destination="l9a-pR-V8Q" id="6sb-bL-TSk"/>
+                        <outlet property="dismissRegionView" destination="l9a-pR-V8Q" id="6sb-bL-TSk"/>
                         <outlet property="tableView" destination="fTI-4z-xGH" id="5LH-vk-zGP"/>
                     </connections>
                 </viewController>

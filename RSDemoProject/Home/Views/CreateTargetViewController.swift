@@ -13,8 +13,6 @@ class CreateTargetViewController: UIViewController {
   let contentHeight: CGFloat = 340
   let fieldLetterSpacing = 0.7
   var viewModel: CreateTargetViewModel!
-  let iconImageSize = CGFloat(28)
-  let areaUnit = "m"
   
   @IBOutlet weak var targetAreaField: CustomFormField!
   @IBOutlet weak var targetTitleField: CustomFormField!
@@ -86,13 +84,13 @@ class CreateTargetViewController: UIViewController {
   @objc func textFieldEditingEnd(_ textField: UITextField) {
     guard
       targetAreaField.text.isNotEmpty,
-      !targetAreaField.text.contains(areaUnit)
+      !targetAreaField.text.contains(viewModel.areaUnit)
     else {
       return
     }
     
     let textview = targetAreaField.textView
-    textview.text = "\(targetAreaField.text) \(areaUnit)"
+    textview.text = "\(targetAreaField.text) \(viewModel.areaUnit)"
   }
   
   @objc func textFieldEditingBegin(_ textField: UITextField) {
@@ -130,22 +128,12 @@ class CreateTargetViewController: UIViewController {
   }
   
   private func updateTopicButton() {
-    let imageView = UIImageView()
-    
-    imageView.kf.setImage(with: URL(string: viewModel.selectedTopic.icon))
-    
-    let verticalInset = CGFloat(12)
-    let horizontalInset = (selectTargetTopic.frame.size.width - iconImageSize) / 2
-    
-    selectTargetTopic.imageEdgeInsets = UIEdgeInsets(
-      top: verticalInset,
-      left: horizontalInset - 32,
-      bottom: verticalInset,
-      right: horizontalInset + 32)
-    
-    selectTargetTopic.setImage(imageView.image, for: .normal)
-    
-    selectTargetTopic.setTitle(viewModel.selectedTopic.label.uppercased(), for: .normal)
+    guard viewModel.selectedTopic != nil else {
+      return
+    }
+
+    selectTargetTopic.setTitle(viewModel.topicTitle, for: .normal)
+    selectTargetTopic.setIcon(url: viewModel.topicImage)
   }
   
   private func errorTitle(_ error: Bool) {
