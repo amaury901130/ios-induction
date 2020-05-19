@@ -22,8 +22,7 @@ protocol CreateTargetDelegate: class {
 }
 
 class CreateTargetViewModel {
-  
-  let defaultTargetArea = 200
+
   let areaUnit = "m"
 
   private var targetLocation: CLLocation? {
@@ -58,10 +57,14 @@ class CreateTargetViewModel {
     }
   }
   
-  var targetArea: String = "200 m" {
+  var targetArea: Int = 200 {
     didSet {
-      state = .errorArea(targetArea.isEmpty)
+      state = .errorArea(targetArea == 0)
     }
+  }
+  
+  var formatedArea: String {
+    "\(targetArea) \(areaUnit)"
   }
   
   var targetTitle: String = "" {
@@ -77,7 +80,7 @@ class CreateTargetViewModel {
     
     TargetService.shared.createTarget(
       title: targetTitle,
-      area: Int(targetArea) ?? defaultTargetArea,
+      area: Int(targetArea),
       topic: topic,
       latitude: LocationManager.shared.currentLocation.coordinate.latitude,
       longitude: LocationManager.shared.currentLocation.coordinate.longitude,
@@ -93,7 +96,7 @@ class CreateTargetViewModel {
   func isTargetValid() -> Bool {
     var error = false
     
-    if targetArea.isEmpty {
+    if targetArea == 0 {
       state = .errorArea(true)
       error = true
     }

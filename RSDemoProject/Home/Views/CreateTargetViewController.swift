@@ -39,7 +39,7 @@ class CreateTargetViewController: UIViewController {
     targetAreaField.validationPattern = Validations.areaPattern
     targetAreaField.labelTextAlignment = .left
     targetAreaField.textFieldTextAlignment = .center
-    targetAreaField.textView.text = viewModel.targetArea
+    targetAreaField.textView.text = viewModel.formatedArea
     
     targetTitleField.labelText = "createTargetTitleLable".localized
     targetTitleField.errorText = "errorFieldTargetTitle".localized
@@ -82,19 +82,12 @@ class CreateTargetViewController: UIViewController {
   }
   
   @objc func textFieldEditingEnd(_ textField: UITextField) {
-    guard
-      targetAreaField.text.isNotEmpty,
-      !targetAreaField.text.contains(viewModel.areaUnit)
-    else {
-      return
-    }
-    
-    let textview = targetAreaField.textView
-    textview.text = "\(targetAreaField.text) \(viewModel.areaUnit)"
+    targetAreaField.showError(false)
+    targetAreaField.textView.text = viewModel.formatedArea
   }
   
   @objc func textFieldEditingBegin(_ textField: UITextField) {
-     targetAreaField.textView.text = ""
+    targetAreaField.textView.text = ""
   }
   
   @objc func textFieldDidChange(_ textField: UITextField) {
@@ -103,7 +96,7 @@ class CreateTargetViewController: UIViewController {
       targetAreaField.showError(false)
       
       if targetAreaField.validate() {
-        viewModel.targetArea = targetAreaField.text
+        viewModel.targetArea = Int(targetAreaField.text) ?? 0
       }
     case targetTitleField.textView:
       viewModel.targetTitle = targetTitleField.text
@@ -131,7 +124,7 @@ class CreateTargetViewController: UIViewController {
     guard viewModel.selectedTopic != nil else {
       return
     }
-
+    
     selectTargetTopic.setTitle(viewModel.topicTitle, for: .normal)
     selectTargetTopic.setIcon(url: viewModel.topicImage)
   }
@@ -141,8 +134,8 @@ class CreateTargetViewController: UIViewController {
   }
   
   private func errorArea(_ error: Bool) {
-     targetAreaField.showError(error)
-   }
+    targetAreaField.showError(error)
+  }
 }
 
 extension CreateTargetViewController: CreateTargetDelegate {
