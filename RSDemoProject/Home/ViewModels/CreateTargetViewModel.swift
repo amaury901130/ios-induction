@@ -60,9 +60,7 @@ class CreateTargetViewModel {
   
   var targetArea: Int = 200 {
     didSet {
-      if targetArea == 0 {
-        state = .errorArea
-      }
+      isTargetValid()
     }
   }
   
@@ -72,9 +70,7 @@ class CreateTargetViewModel {
   
   var targetTitle: String = "" {
     didSet {
-      if targetTitle.isEmpty {
-        state = .errorTitle
-      }
+      isTargetValid()
     }
   }
   
