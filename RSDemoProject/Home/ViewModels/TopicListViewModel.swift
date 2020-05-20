@@ -66,8 +66,9 @@ class TopicListViewModel {
   }
   
   func loadTopics() {
-    if let savedTopics = TopicDataManager.topics {
-      topics = savedTopics
+    topics = TopicDataManager.topics
+    
+    if !topics.isEmpty {
       state = .didLoadTopics
     }
     

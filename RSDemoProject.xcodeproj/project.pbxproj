@@ -45,6 +45,8 @@
 		46DFE60B247301B9007ADA5C /* TargetResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60A247301B9007ADA5C /* TargetResource.swift */; };
 		46DFE60F2473073C007ADA5C /* CreateTargetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60E2473073C007ADA5C /* CreateTargetResponse.swift */; };
 		46DFE6112473272A007ADA5C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE6102473272A007ADA5C /* UIColorExtension.swift */; };
+		46DFE61324747DC2007ADA5C /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE61224747DC2007ADA5C /* Target.swift */; };
+		46DFE615247595E7007ADA5C /* TargetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE614247595E7007ADA5C /* TargetResponse.swift */; };
 		4AF323FC2D560D49FED0BE7F /* Pods_RSDemoProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2214860CE2390D2C2B6056B0 /* Pods_RSDemoProject.framework */; };
 		9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */; };
 		9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */; };
@@ -143,6 +145,8 @@
 		46DFE60A247301B9007ADA5C /* TargetResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetResource.swift; sourceTree = "<group>"; };
 		46DFE60E2473073C007ADA5C /* CreateTargetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTargetResponse.swift; sourceTree = "<group>"; };
 		46DFE6102473272A007ADA5C /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		46DFE61224747DC2007ADA5C /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
+		46DFE614247595E7007ADA5C /* TargetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetResponse.swift; sourceTree = "<group>"; };
 		492292317C9AA84D410C67C2 /* Pods-RSDemoProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSDemoProject.release.xcconfig"; path = "Target Support Files/Pods-RSDemoProject/Pods-RSDemoProject.release.xcconfig"; sourceTree = "<group>"; };
 		85FF9D270B540FD7BDB842CF /* Pods-RSDemoProject.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSDemoProject.staging.xcconfig"; path = "Target Support Files/Pods-RSDemoProject/Pods-RSDemoProject.staging.xcconfig"; sourceTree = "<group>"; };
 		9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -326,6 +330,7 @@
 			children = (
 				4607C5D9246DC4F800B1207F /* TopicResponse.swift */,
 				46DFE60E2473073C007ADA5C /* CreateTargetResponse.swift */,
+				46DFE614247595E7007ADA5C /* TargetResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -458,6 +463,7 @@
 				460F98562457ADEA001151F6 /* Image.swift */,
 				466717AA246B03CB00007845 /* PinAnnotation.swift */,
 				466717AE246B3F1700007845 /* Topic.swift */,
+				46DFE61224747DC2007ADA5C /* Target.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -780,6 +786,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8290BFE1D832D9200599960 /* UIViewExtension.swift in Sources */,
+				46DFE615247595E7007ADA5C /* TargetResponse.swift in Sources */,
 				FE583F0C22AFC9EA00EF3CDA /* AnalyticsService.swift in Sources */,
 				FEE8080E22A6BB4F00743D1B /* APIError.swift in Sources */,
 				FE583F0E22AFC9F300EF3CDA /* FirebaseAnalyticsService.swift in Sources */,
@@ -797,6 +804,7 @@
 				9B8D307020AB47E90050697F /* JSONEncodingExtension.swift in Sources */,
 				4607C5D5246DB7C200B1207F /* TopicResource.swift in Sources */,
 				FE4D636422B2CDF700685161 /* ViewModelState.swift in Sources */,
+				46DFE61324747DC2007ADA5C /* Target.swift in Sources */,
 				E81171921DE5EFB7003D3DF5 /* UIViewControllerExtension.swift in Sources */,
 				465021122448E2AC00B35C95 /* CreateAccountViewController.swift in Sources */,
 				9B3AA3991ED35007005A4D26 /* SignInViewController.swift in Sources */,

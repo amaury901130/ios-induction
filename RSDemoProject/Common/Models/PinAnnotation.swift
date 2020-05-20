@@ -28,30 +28,25 @@ class PinAnnotation: MKPointAnnotation {
 
 enum AnnotationType {
   case selectedLocation
-  case selectedLocationRatio
-  case topic(topic: Topic)
+  case target(target: Target)
   
   // the pinImageName is a local image or the topic icon url
   var pinImageName: String {
     switch self {
     case .selectedLocation:
       return "selectedLocation"
-    case .selectedLocationRatio:
-      return "selectedLocationRatio"
-    case .topic(let topic):
-      return topic.icon
+    case .target(let target):
+      return target.topic?.icon ?? "selectedLocation"
     }
   }
-  
+
   var identifier: String {
     switch self {
 
     case .selectedLocation:
       return "selectedLocation"
-    case .selectedLocationRatio:
-      return "selectedLocationRatio"
-    case .topic( _):
-      return "topic"
+    case .target:
+      return "target"
     }
   }
 }

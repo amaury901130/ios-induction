@@ -10,21 +10,21 @@ import Foundation
 
 class TopicDataManager: NSObject {
   
-  static var topics: [Topic]? {
+  static var topics: [Topic] {
     get {
       let defaults = UserDefaults.standard
       if
         let data = defaults.data(forKey: "RSDemoProject-topics"),
-        let user = try? JSONDecoder().decode([Topic].self, from: data)
+        let topics = try? JSONDecoder().decode([Topic].self, from: data)
       {
-        return user
+        return topics
       }
-      return nil
+      return []
     }
     
     set {
-      let user = try? JSONEncoder().encode(newValue)
-      UserDefaults.standard.set(user, forKey: "RSDemoProject-topics")
+      let topics = try? JSONEncoder().encode(newValue)
+      UserDefaults.standard.set(topics, forKey: "RSDemoProject-topics")
     }
   }
 }

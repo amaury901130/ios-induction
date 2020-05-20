@@ -11,7 +11,7 @@ import CoreLocation
 
 class LocationManager: NSObject {
   
-  typealias LocationUpdateListener = (CLLocation) -> Void
+  typealias LocationUpdateListener = () -> Void
   
   static let shared = LocationManager()
   
@@ -60,7 +60,7 @@ extension LocationManager: CLLocationManagerDelegate {
     else { return }
     
     currentLocation = location
-    listener(location)
+    listener()
     manager.stopUpdatingLocation()
   }
 }
