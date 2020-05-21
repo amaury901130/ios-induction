@@ -12,18 +12,33 @@ import Kingfisher
 
 class ImageAnnotationView: MKAnnotationView {
   private var imageView: UIImageView!
+  private let iconSize = 40
+  var pinType: AnnotationType!
   
-  init(annotation: MKAnnotation?, pinType: AnnotationType) {
+  init(
+    annotation: MKAnnotation?,
+    pinType: AnnotationType
+  ) {
     super.init(annotation: annotation, reuseIdentifier: pinType.identifier)
-
+    
+    self.pinType = pinType
     let customImage = pinType.pinImageName
-
-    if customImage.isUrlFormatted() {
-      // todo: change the image size
-      imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-      imageView.kf.setImage(with: URL(string: customImage))
-      addSubview(imageView)
-    } else {
+    
+    switch pinType {
+    case .target:
+      if customImage.isUrlFormatted() {
+        imageView = UIImageView(
+          frame: CGRect(x: 0, y: 0, width: iconSize, height: iconSize)
+        )
+        imageView.kf.setImage(
+          with: URL(string: customImage),
+          placeholder: R.image.selectedLocation()
+        )
+        addSubview(imageView)
+      } else {
+        image = customImage.image
+      }
+    default:
       image = customImage.image
     }
   }

@@ -68,7 +68,7 @@ enum TargetResource: TargetType {
       return .requestPlain
     }
   }
-  
+
   private func createTargetParameters(
     title: String,
     area: Int,

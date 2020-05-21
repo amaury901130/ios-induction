@@ -67,19 +67,31 @@ class MainViewController: UIViewController {
     mapView.center(location)
   }
   
+  private func showModalForSelectedTarget() {
+    //todo...
+  }
+  
   @objc private func showCreateTargetForm() {
     navigateTo(
       HomeRoutes.createTarget,
       withTransition: .modal(presentationStyle: .overCurrentContext)
     )
   }
-
+  
   private func addCurrentLocation(_ location: CLLocation) {
     mapView.center(location)
-    mapView.addAnnotation(
-      PinAnnotation(location, pinType: .selectedLocationRatio)
-    )
     mapView.addAnnotation(PinAnnotation(location))
+  }
+  
+  func addTargetAnnotations() {
+    viewModel.userTargets.forEach { target in
+      mapView.addAnnotation(
+        PinAnnotation(
+          target.location,
+          pinType: .target(target: target)
+        )
+      )
+    }
   }
 }
 
@@ -91,17 +103,79 @@ extension MainViewController: MKMapViewDelegate {
     else {
       return MKAnnotationView(annotation: annotation, reuseIdentifier: "unknown")
     }
+    
+    var radius: Int
+    
+    switch customPointAnnotation.pinType {
+    case .target(let target):
+      radius = target.radius
+    default:
+      radius = viewModel.defaultMapRadius
+    }
+    
+    let overlayCircle = MKCircle(
+      center: annotation.coordinate,
+      radius: CLLocationDistance(radius)
+    )
 
+    mapView.addOverlay(overlayCircle)
+    
     return annotationView
+  }
+  
+  func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+    if overlay is MKCircle {
+      let circleView = MKCircleRenderer(overlay: overlay)
+      circleView.fillColor = UIColor.overlayNormal
+      return circleView
+    }
+
+    return MKOverlayRenderer()
+  }
+  
+  func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+    guard
+      let customAnnotation = view as? ImageAnnotationView
+    else {
+      return
+    }
+    
+    switch customAnnotation.pinType {
+    case .target(let target):
+      viewModel.selectedTarget = target
+    default:
+      break
+    }
   }
 }
 
 extension MainViewController: MainViewModelDelegate {
-  func didUpdateLocation() {
-    guard let location = viewModel.currentLocation else {
-      return
+  func didUpdateState() {
+    switch viewModel.networkState {
+    case .loading:
+      UIApplication.showNetworkActivity()
+    case .idle:
+      UIApplication.hideNetworkActivity()
+    case .error(let errorDescription):
+      UIApplication.hideNetworkActivity()
+      showMessage(title: "Error", message: errorDescription)
     }
-    
-    addCurrentLocation(location)
+  }
+  
+  func didUpdateMainState() {
+    switch viewModel.state {
+    case .locationUpdated:
+      guard let location = viewModel.currentLocation else {
+        return
+      }
+      
+      addCurrentLocation(location)
+    case .targetsLoaded:
+      addTargetAnnotations()
+    case .targetSelected:
+      showModalForSelectedTarget()
+    case .none:
+      break
+    }
   }
 }
