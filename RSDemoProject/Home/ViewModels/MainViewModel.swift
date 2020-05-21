@@ -10,9 +10,9 @@ import Foundation
 import CoreLocation
 
 enum MainViewModelState {
-  case didUpdateLocation
-  case didLoadTargets
-  case didTargetSelect
+  case locationUpdated
+  case targetsLoaded
+  case targetSelected
 }
 
 protocol MainViewModelDelegate: class {
@@ -25,10 +25,10 @@ class MainViewModel {
   private var locationManager = LocationManager.shared
   private var page = 1
   var defaultMapRadius = 200
-  var userTargets: [Target]?
+  var userTargets: [Target] = []
   var selectedTarget: Target? {
     didSet {
-      state = .didTargetSelect
+      state = .targetSelected
     }
   }
   
@@ -73,11 +73,10 @@ class MainViewModel {
   private func loadTargets() {
     networkState = .loading
     TargetService.shared.getTargets(
-      page: page,
       success: { [weak self] targets in
         self?.page += 1
         self?.userTargets = targets
-        self?.state = .didLoadTargets
+        self?.state = .targetsLoaded
         self?.networkState = .idle
       },
       failure: { [weak self] error in
@@ -88,7 +87,7 @@ class MainViewModel {
   
   func requestCurrentLocation() {
     locationManager.requestCurrentLocation(listener: { [weak self] in
-      self?.state = .didUpdateLocation
+      self?.state = .locationUpdated
     })
   }
 }

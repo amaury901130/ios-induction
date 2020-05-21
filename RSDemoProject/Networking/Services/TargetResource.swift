@@ -17,7 +17,7 @@ enum TargetResource: TargetType {
     latitude: Double,
     longitude: Double
   )
-  case getTargets(_ page: Int)
+  case getTargets
   case destroyTarget(_ id: Int)
   
   var path: String {
@@ -64,18 +64,11 @@ enum TargetResource: TargetType {
       )
       
       return requestParameters(parameters: parameters)
-
     default:
       return .requestPlain
     }
   }
-  
-  private func getTargetParameters(page: Int) -> [String: Any] {
-    [
-      "page": page
-    ]
-  }
-  
+
   private func createTargetParameters(
     title: String,
     area: Int,

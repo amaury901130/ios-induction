@@ -38,12 +38,11 @@ class TargetService: BaseApiService<TargetResource> {
   }
   
   func getTargets(
-    page: Int,
     success: @escaping (_ response: [Target]) -> Void,
     failure: @escaping (_ error: Error) -> Void
   ) {
     request(
-      for: .getTargets(page),
+      for: .getTargets,
       at: "targets",
       onSuccess: { (result: [TargetResponse], _) -> Void in
         let targets = result.map { $0.target }

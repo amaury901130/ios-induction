@@ -83,12 +83,8 @@ class MainViewController: UIViewController {
     mapView.addAnnotation(PinAnnotation(location))
   }
   
-  func loadUserTargets() {
-    guard let targets = viewModel.userTargets else {
-      return
-    }
-    
-    targets.forEach { target in
+  func addTargetAnnotations() {
+    viewModel.userTargets.forEach { target in
       mapView.addAnnotation(
         PinAnnotation(
           target.location,
@@ -104,8 +100,8 @@ extension MainViewController: MKMapViewDelegate {
     guard
       let customPointAnnotation = annotation as? PinAnnotation,
       let annotationView = customPointAnnotation.pinView
-      else {
-        return MKAnnotationView(annotation: annotation, reuseIdentifier: "unknown")
+    else {
+      return MKAnnotationView(annotation: annotation, reuseIdentifier: "unknown")
     }
     
     var radius: Int
@@ -130,7 +126,7 @@ extension MainViewController: MKMapViewDelegate {
   func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
     if overlay is MKCircle {
       let circleView = MKCircleRenderer(overlay: overlay)
-      circleView.fillColor = UIColor.mapAnnotationRadius
+      circleView.fillColor = UIColor.overlayNormal
       return circleView
     }
 
@@ -140,8 +136,8 @@ extension MainViewController: MKMapViewDelegate {
   func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
     guard
       let customAnnotation = view as? ImageAnnotationView
-      else {
-        return
+    else {
+      return
     }
     
     switch customAnnotation.pinType {
@@ -168,15 +164,15 @@ extension MainViewController: MainViewModelDelegate {
   
   func didUpdateMainState() {
     switch viewModel.state {
-    case .didUpdateLocation:
+    case .locationUpdated:
       guard let location = viewModel.currentLocation else {
         return
       }
       
       addCurrentLocation(location)
-    case .didLoadTargets:
-      loadUserTargets()
-    case .didTargetSelect:
+    case .targetsLoaded:
+      addTargetAnnotations()
+    case .targetSelected:
       showModalForSelectedTarget()
     case .none:
       break

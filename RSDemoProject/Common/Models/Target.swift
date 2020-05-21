@@ -40,11 +40,6 @@ class Target: Codable {
     topicId = try container.decode(Int.self, forKey: .topicId)
     
     location = CLLocation(latitude: latitude, longitude: longitude)
-    
-    guard !TopicDataManager.topics.isEmpty else {
-      return
-    }
-    
-    topic = TopicDataManager.topics.filter { $0.id == topicId }.last
+    topic = TopicDataManager.topics.first { $0.id == topicId }
   }
 }

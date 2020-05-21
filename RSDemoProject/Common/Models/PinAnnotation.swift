@@ -30,7 +30,6 @@ enum AnnotationType {
   case selectedLocation
   case target(target: Target)
   
-  // the pinImageName is a local image or the topic icon url
   var pinImageName: String {
     switch self {
     case .selectedLocation:

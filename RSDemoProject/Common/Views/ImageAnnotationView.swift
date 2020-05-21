@@ -13,7 +13,6 @@ import Kingfisher
 class ImageAnnotationView: MKAnnotationView {
   private var imageView: UIImageView!
   private let iconSize = 40
-  private let placeholderImage = "selectedLocation".image
   var pinType: AnnotationType!
   
   init(
@@ -33,7 +32,7 @@ class ImageAnnotationView: MKAnnotationView {
         )
         imageView.kf.setImage(
           with: URL(string: customImage),
-          placeholder: placeholderImage
+          placeholder: R.image.selectedLocation()
         )
         addSubview(imageView)
       } else {
