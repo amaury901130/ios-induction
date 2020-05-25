@@ -15,6 +15,7 @@ class ImageAnnotationView: MKAnnotationView {
   private let iconSize = 40
   private let iconPosition = -20
   var pinType: AnnotationType!
+  var overlay: MKCircle?
   
   init(
     annotation: MKAnnotation?,

@@ -39,39 +39,8 @@ class MainViewController: UIViewController {
         target: self,
         action: #selector(centerMap)
     ))
-    
-    mapView.addGestureRecognizer(
-      UITapGestureRecognizer(
-        target: self,
-        action: #selector(mapTap(_:))
-      )
-    )
   }
-  
-  @objc func mapTap(_ gesture: UITapGestureRecognizer) {
-    let point = gesture.location(in: mapView)
-    let coordinate = mapView.convert(point, toCoordinateFrom: nil)
-    let mapPoint = MKMapPoint(coordinate)
-    
-    for overlay in mapView.overlays {
-      guard let overlayCircle = overlay as? CirleOverlay else {
-        return
-      }
-      
-      let centerMP = MKMapPoint(overlayCircle.coordinate)
-      let distance = mapPoint.distance(to: centerMP)
-      if
-        distance <= overlayCircle.radius * 2,
-        let target = overlayCircle.target
-      {
-        viewModel.selectedTarget = target
-      }
-      
-      // this func. reload the circle if it already exist
-      mapView.addOverlay(overlayCircle)
-    }
-  }
-  
+
   private func initView() {
     createTargetLabel.addSpacing(kernValue: createTargetLabelSpacing)
     mainTitle.addSpacing(kernValue: mainTitleSpacing)
@@ -105,6 +74,17 @@ class MainViewController: UIViewController {
     )
   }
   
+  private func reloadOverlay() {
+    mapView.annotations.forEach { view in
+      if
+        let targetAnnotation = view as? PinAnnotation,
+        let overlay = targetAnnotation.pinView.overlay
+      {
+        mapView.addOverlay(overlay)
+      }
+    }
+  }
+  
   @objc private func showCreateTargetForm() {
     navigateTo(
       HomeRoutes.createTarget,
@@ -118,7 +98,7 @@ class MainViewController: UIViewController {
   
   private func addCurrentLocation(_ location: CLLocation) {
     mapView.center(location)
-    mapView.addAnnotation(PinAnnotation(location))
+    //mapView.addAnnotation(PinAnnotation(location))
   }
   
   func addTargetAnnotations() {
@@ -142,37 +122,50 @@ extension MainViewController: MKMapViewDelegate {
         return MKAnnotationView(annotation: annotation, reuseIdentifier: "unknown")
     }
     
-    var overlayCircle: CirleOverlay
-    
+    var overlayCircle: MKCircle
+    var radius = viewModel.defaultMapRadius
     switch customPointAnnotation.pinType {
     case .target(let target):
-      overlayCircle = CirleOverlay(
-        center: annotation.coordinate,
-        radius: CLLocationDistance(target.radius)
-      )
-      overlayCircle.target = target
+      radius = target.radius
     default:
-      overlayCircle = CirleOverlay(
-        center: annotation.coordinate,
-        radius: CLLocationDistance(viewModel.defaultMapRadius)
-      )
+      break
     }
     
+    overlayCircle = MKCircle(
+      center: annotation.coordinate,
+      radius: CLLocationDistance(radius)
+    )
+    
     mapView.addOverlay(overlayCircle)
+    annotationView.overlay = overlayCircle
     
     return annotationView
   }
   
+  func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+    guard let annotation = view as? ImageAnnotationView else {
+        return
+    }
+    
+    switch annotation.pinType {
+    case .target(let target):
+      viewModel.selectedTarget = target
+    default:
+      break
+    }
+  }
+  
   func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-    guard let circleOverlay = overlay as? CirleOverlay else {
+    guard let circleOverlay = overlay as? MKCircle else {
       return MKOverlayRenderer()
     }
     
     let circleView = MKCircleRenderer(overlay: circleOverlay)
     var color = UIColor.overlayNormal
     if
-      let selected = viewModel.selectedTarget,
-      selected == circleOverlay.target
+      let selectedTarget = viewModel.selectedTarget,
+      circleView.circle.coordinate.latitude == selectedTarget.latitude,
+      circleView.circle.coordinate.longitude == selectedTarget.longitude
     {
       color = UIColor.overlaySelected
     }
@@ -211,6 +204,7 @@ extension MainViewController: MainViewModelDelegate {
       }
       
       showModalForSelectedTarget(target)
+      reloadOverlay()
     case .none:
       break
     }
