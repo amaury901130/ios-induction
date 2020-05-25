@@ -51,7 +51,7 @@ class MainViewController: UIViewController {
   @objc func mapTap(_ gesture: UITapGestureRecognizer) {
     let point = gesture.location(in: mapView)
     let coordinate = mapView.convert(point, toCoordinateFrom: nil)
-    let mappoint = MKMapPoint(coordinate)
+    let mapPoint = MKMapPoint(coordinate)
     
     for overlay in mapView.overlays {
       guard let overlayCircle = overlay as? CirleOverlay else {
@@ -59,11 +59,11 @@ class MainViewController: UIViewController {
       }
       
       let centerMP = MKMapPoint(overlayCircle.coordinate)
-      let distance = mappoint.distance(to: centerMP)
-      if distance <= overlayCircle.radius * 2 {
-        guard let target = overlayCircle.target else {
-          return
-        }
+      let distance = mapPoint.distance(to: centerMP)
+      if
+        distance <= overlayCircle.radius * 2,
+        let target = overlayCircle.target
+      {
         viewModel.selectedTarget = target
       }
       
@@ -104,7 +104,7 @@ class MainViewController: UIViewController {
       withTransition: .modal(presentationStyle: .overCurrentContext)
     )
   }
-
+  
   @objc private func showCreateTargetForm() {
     navigateTo(
       HomeRoutes.createTarget,
@@ -209,7 +209,7 @@ extension MainViewController: MainViewModelDelegate {
       guard let target = viewModel.selectedTarget else {
         return
       }
-
+      
       showModalForSelectedTarget(target)
     case .none:
       break
