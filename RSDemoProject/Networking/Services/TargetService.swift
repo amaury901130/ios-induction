@@ -52,4 +52,19 @@ class TargetService: BaseApiService<TargetResource> {
         failure(error)
     })
   }
+  
+  func deleteTarget(
+    target: Target,
+    success: @escaping () -> Void,
+    failure: @escaping (_ error: Error) -> Void
+  ) {
+    request(
+      for: .destroyTarget(target.id),
+      onSuccess: { _ in
+        success()
+    },
+      onFailure: { error, _ in
+        failure(error)
+    })
+  }
 }

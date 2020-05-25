@@ -39,6 +39,37 @@ class MainViewController: UIViewController {
         target: self,
         action: #selector(centerMap)
     ))
+    
+    mapView.addGestureRecognizer(
+      UITapGestureRecognizer(
+        target: self,
+        action: #selector(mapTap(_:))
+      )
+    )
+  }
+  
+  @objc func mapTap(_ gesture: UITapGestureRecognizer) {
+    let point = gesture.location(in: mapView)
+    let coordinate = mapView.convert(point, toCoordinateFrom: nil)
+    let mappoint = MKMapPoint(coordinate)
+    
+    for overlay in mapView.overlays {
+      guard let overlayCircle = overlay as? CirleOverlay else {
+        return
+      }
+      
+      let centerMP = MKMapPoint(overlayCircle.coordinate)
+      let distance = mappoint.distance(to: centerMP)
+      if distance <= overlayCircle.radius * 2 {
+        guard let target = overlayCircle.target else {
+          return
+        }
+        viewModel.selectedTarget = target
+      }
+      
+      // this func. reload the circle if it already exist
+      mapView.addOverlay(overlayCircle)
+    }
   }
   
   private func initView() {
@@ -67,15 +98,22 @@ class MainViewController: UIViewController {
     mapView.center(location)
   }
   
-  private func showModalForSelectedTarget() {
-    //todo...
+  private func showModalForSelectedTarget(_ target: Target) {
+    navigateTo(
+      HomeRoutes.deleteTarget(target),
+      withTransition: .modal(presentationStyle: .overCurrentContext)
+    )
   }
-  
+
   @objc private func showCreateTargetForm() {
     navigateTo(
       HomeRoutes.createTarget,
       withTransition: .modal(presentationStyle: .overCurrentContext)
     )
+  }
+  
+  @objc private func selectTarget(_ target: Target) {
+    viewModel.selectedTarget = target
   }
   
   private func addCurrentLocation(_ location: CLLocation) {
@@ -100,52 +138,47 @@ extension MainViewController: MKMapViewDelegate {
     guard
       let customPointAnnotation = annotation as? PinAnnotation,
       let annotationView = customPointAnnotation.pinView
-    else {
-      return MKAnnotationView(annotation: annotation, reuseIdentifier: "unknown")
+      else {
+        return MKAnnotationView(annotation: annotation, reuseIdentifier: "unknown")
     }
     
-    var radius: Int
+    var overlayCircle: CirleOverlay
     
     switch customPointAnnotation.pinType {
     case .target(let target):
-      radius = target.radius
+      overlayCircle = CirleOverlay(
+        center: annotation.coordinate,
+        radius: CLLocationDistance(target.radius)
+      )
+      overlayCircle.target = target
     default:
-      radius = viewModel.defaultMapRadius
+      overlayCircle = CirleOverlay(
+        center: annotation.coordinate,
+        radius: CLLocationDistance(viewModel.defaultMapRadius)
+      )
     }
     
-    let overlayCircle = MKCircle(
-      center: annotation.coordinate,
-      radius: CLLocationDistance(radius)
-    )
-
     mapView.addOverlay(overlayCircle)
     
     return annotationView
   }
   
   func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-    if overlay is MKCircle {
-      let circleView = MKCircleRenderer(overlay: overlay)
-      circleView.fillColor = UIColor.overlayNormal
-      return circleView
-    }
-
-    return MKOverlayRenderer()
-  }
-  
-  func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-    guard
-      let customAnnotation = view as? ImageAnnotationView
-    else {
-      return
+    guard let circleOverlay = overlay as? CirleOverlay else {
+      return MKOverlayRenderer()
     }
     
-    switch customAnnotation.pinType {
-    case .target(let target):
-      viewModel.selectedTarget = target
-    default:
-      break
+    let circleView = MKCircleRenderer(overlay: circleOverlay)
+    var color = UIColor.overlayNormal
+    if
+      let selected = viewModel.selectedTarget,
+      selected == circleOverlay.target
+    {
+      color = UIColor.overlaySelected
     }
+    
+    circleView.fillColor = color
+    return circleView
   }
 }
 
@@ -173,7 +206,11 @@ extension MainViewController: MainViewModelDelegate {
     case .targetsLoaded:
       addTargetAnnotations()
     case .targetSelected:
-      showModalForSelectedTarget()
+      guard let target = viewModel.selectedTarget else {
+        return
+      }
+
+      showModalForSelectedTarget(target)
     case .none:
       break
     }

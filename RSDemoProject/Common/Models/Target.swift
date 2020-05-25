@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class Target: Codable {
+class Target: NSObject, Codable {
   var id: Int
   var title: String
   var latitude: Double
@@ -40,6 +40,8 @@ class Target: Codable {
     topicId = try container.decode(Int.self, forKey: .topicId)
     
     location = CLLocation(latitude: latitude, longitude: longitude)
-    topic = TopicDataManager.topics.first { $0.id == topicId }
+    
+    let refTopicId = topicId
+    topic = TopicDataManager.topics.first { $0.id == refTopicId }
   }
 }

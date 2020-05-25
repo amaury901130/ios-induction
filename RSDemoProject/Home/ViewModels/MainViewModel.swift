@@ -61,8 +61,8 @@ class MainViewModel {
       success: { [weak self] topics in
         let resultTopics = topics.map { $0.topic }
         TopicDataManager.topics = resultTopics
-        self?.loadTargets()
         self?.networkState = .idle
+        self?.loadTargets()
       },
       failure: { [weak self] error in
         self?.networkState = .error(error.localizedDescription)
