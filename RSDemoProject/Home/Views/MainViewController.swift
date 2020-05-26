@@ -98,7 +98,7 @@ class MainViewController: UIViewController {
   
   private func addCurrentLocation(_ location: CLLocation) {
     mapView.center(location)
-    //mapView.addAnnotation(PinAnnotation(location))
+    mapView.addAnnotation(PinAnnotation(location))
   }
   
   func addTargetAnnotations() {
@@ -118,8 +118,8 @@ extension MainViewController: MKMapViewDelegate {
     guard
       let customPointAnnotation = annotation as? PinAnnotation,
       let annotationView = customPointAnnotation.pinView
-      else {
-        return MKAnnotationView(annotation: annotation, reuseIdentifier: "unknown")
+    else {
+      return MKAnnotationView(annotation: annotation, reuseIdentifier: "unknown")
     }
     
     var overlayCircle: MKCircle
