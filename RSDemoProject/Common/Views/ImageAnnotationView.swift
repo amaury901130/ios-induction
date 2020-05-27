@@ -13,7 +13,9 @@ import Kingfisher
 class ImageAnnotationView: MKAnnotationView {
   private var imageView: UIImageView!
   private let iconSize = 40
+  private let iconPosition = -20
   var pinType: AnnotationType!
+  var overlay: MKCircle?
   
   init(
     annotation: MKAnnotation?,
@@ -28,7 +30,12 @@ class ImageAnnotationView: MKAnnotationView {
     case .target:
       if customImage.isUrlFormatted() {
         imageView = UIImageView(
-          frame: CGRect(x: 0, y: 0, width: iconSize, height: iconSize)
+          frame: CGRect(
+            x: iconPosition,
+            y: iconPosition,
+            width: iconSize,
+            height: iconSize
+          )
         )
         imageView.kf.setImage(
           with: URL(string: customImage),
@@ -42,7 +49,7 @@ class ImageAnnotationView: MKAnnotationView {
       image = customImage.image
     }
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }

@@ -13,6 +13,7 @@ enum HomeRoutes: Route {
   case main
   case createTarget
   case topicSelection(_ delegate: TopicListResponseDelegate?)
+  case deleteTarget(_ target: Target)
   
   var screen: UIViewController {
     switch self {
@@ -35,6 +36,13 @@ enum HomeRoutes: Route {
       topicSelection.viewModel = TopicListViewModel()
       topicSelection.viewModel.responseDelegate = delegate
       return topicSelection
+    case .deleteTarget(let target):
+      guard let deleteTarget = R.storyboard.main.deleteTargetViewController() else {
+        return UIViewController()
+      }
+      
+      deleteTarget.viewModel = DeleteTargetViewModel(target: target)
+      return deleteTarget
     }
   }
 }

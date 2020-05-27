@@ -40,7 +40,7 @@ class MainViewController: UIViewController {
         action: #selector(centerMap)
     ))
   }
-  
+
   private func initView() {
     createTargetLabel.addSpacing(kernValue: createTargetLabelSpacing)
     mainTitle.addSpacing(kernValue: mainTitleSpacing)
@@ -67,8 +67,22 @@ class MainViewController: UIViewController {
     mapView.center(location)
   }
   
-  private func showModalForSelectedTarget() {
-    //todo...
+  private func showModalForSelectedTarget(_ target: Target) {
+    navigateTo(
+      HomeRoutes.deleteTarget(target),
+      withTransition: .modal(presentationStyle: .overCurrentContext)
+    )
+  }
+  
+  private func reloadOverlay() {
+    mapView.annotations.forEach { view in
+      if
+        let targetAnnotation = view as? PinAnnotation,
+        let overlay = targetAnnotation.pinView.overlay
+      {
+        mapView.addOverlay(overlay)
+      }
+    }
   }
   
   @objc private func showCreateTargetForm() {
@@ -76,6 +90,10 @@ class MainViewController: UIViewController {
       HomeRoutes.createTarget,
       withTransition: .modal(presentationStyle: .overCurrentContext)
     )
+  }
+  
+  @objc private func selectTarget(_ target: Target) {
+    viewModel.selectedTarget = target
   }
   
   private func addCurrentLocation(_ location: CLLocation) {
@@ -104,48 +122,56 @@ extension MainViewController: MKMapViewDelegate {
       return MKAnnotationView(annotation: annotation, reuseIdentifier: "unknown")
     }
     
-    var radius: Int
-    
+    var overlayCircle: MKCircle
+    var radius = viewModel.defaultMapRadius
     switch customPointAnnotation.pinType {
     case .target(let target):
       radius = target.radius
     default:
-      radius = viewModel.defaultMapRadius
+      break
     }
     
-    let overlayCircle = MKCircle(
+    overlayCircle = MKCircle(
       center: annotation.coordinate,
       radius: CLLocationDistance(radius)
     )
-
+    
     mapView.addOverlay(overlayCircle)
+    annotationView.overlay = overlayCircle
     
     return annotationView
   }
   
-  func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-    if overlay is MKCircle {
-      let circleView = MKCircleRenderer(overlay: overlay)
-      circleView.fillColor = UIColor.overlayNormal
-      return circleView
-    }
-
-    return MKOverlayRenderer()
-  }
-  
   func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-    guard
-      let customAnnotation = view as? ImageAnnotationView
-    else {
-      return
+    guard let annotation = view as? ImageAnnotationView else {
+        return
     }
     
-    switch customAnnotation.pinType {
+    switch annotation.pinType {
     case .target(let target):
       viewModel.selectedTarget = target
     default:
       break
     }
+  }
+  
+  func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+    guard let circleOverlay = overlay as? MKCircle else {
+      return MKOverlayRenderer()
+    }
+    
+    let circleView = MKCircleRenderer(overlay: circleOverlay)
+    var color = UIColor.overlayNormal
+    if
+      let selectedTarget = viewModel.selectedTarget,
+      circleView.circle.coordinate.latitude == selectedTarget.latitude,
+      circleView.circle.coordinate.longitude == selectedTarget.longitude
+    {
+      color = UIColor.overlaySelected
+    }
+    
+    circleView.fillColor = color
+    return circleView
   }
 }
 
@@ -173,7 +199,12 @@ extension MainViewController: MainViewModelDelegate {
     case .targetsLoaded:
       addTargetAnnotations()
     case .targetSelected:
-      showModalForSelectedTarget()
+      guard let target = viewModel.selectedTarget else {
+        return
+      }
+      
+      showModalForSelectedTarget(target)
+      reloadOverlay()
     case .none:
       break
     }

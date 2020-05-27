@@ -47,6 +47,10 @@
 		46DFE6112473272A007ADA5C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE6102473272A007ADA5C /* UIColorExtension.swift */; };
 		46DFE61324747DC2007ADA5C /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE61224747DC2007ADA5C /* Target.swift */; };
 		46DFE615247595E7007ADA5C /* TargetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE614247595E7007ADA5C /* TargetResponse.swift */; };
+		46DFE61724770078007ADA5C /* CircleOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE61624770078007ADA5C /* CircleOverlay.swift */; };
+		46DFE61924784989007ADA5C /* DeleteTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE61824784989007ADA5C /* DeleteTargetViewController.swift */; };
+		46DFE61B2478499E007ADA5C /* DeleteTargetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE61A2478499E007ADA5C /* DeleteTargetViewModel.swift */; };
+		46DFE61D24786774007ADA5C /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE61C24786773007ADA5C /* EdgeInsetLabel.swift */; };
 		4AF323FC2D560D49FED0BE7F /* Pods_RSDemoProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2214860CE2390D2C2B6056B0 /* Pods_RSDemoProject.framework */; };
 		9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */; };
 		9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */; };
@@ -147,6 +151,10 @@
 		46DFE6102473272A007ADA5C /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		46DFE61224747DC2007ADA5C /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		46DFE614247595E7007ADA5C /* TargetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetResponse.swift; sourceTree = "<group>"; };
+		46DFE61624770078007ADA5C /* CircleOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleOverlay.swift; sourceTree = "<group>"; };
+		46DFE61824784989007ADA5C /* DeleteTargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTargetViewController.swift; sourceTree = "<group>"; };
+		46DFE61A2478499E007ADA5C /* DeleteTargetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTargetViewModel.swift; sourceTree = "<group>"; };
+		46DFE61C24786773007ADA5C /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
 		492292317C9AA84D410C67C2 /* Pods-RSDemoProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSDemoProject.release.xcconfig"; path = "Target Support Files/Pods-RSDemoProject/Pods-RSDemoProject.release.xcconfig"; sourceTree = "<group>"; };
 		85FF9D270B540FD7BDB842CF /* Pods-RSDemoProject.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSDemoProject.staging.xcconfig"; path = "Target Support Files/Pods-RSDemoProject/Pods-RSDemoProject.staging.xcconfig"; sourceTree = "<group>"; };
 		9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -255,6 +263,7 @@
 				460F9865245A1325001151F6 /* MainViewController.swift */,
 				462E0FF92461F71A0080A075 /* CreateTargetViewController.swift */,
 				4607C5CB246D8BE900B1207F /* TopicListViewController.swift */,
+				46DFE61824784989007ADA5C /* DeleteTargetViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -265,6 +274,7 @@
 				460F9863245A1316001151F6 /* MainViewModel.swift */,
 				466717AC246B28C800007845 /* CreateTargetViewModel.swift */,
 				4607C5CD246D91DC00B1207F /* TopicListViewModel.swift */,
+				46DFE61A2478499E007ADA5C /* DeleteTargetViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -321,6 +331,8 @@
 				466717B0246C4DE500007845 /* ImageAnnotationView.swift */,
 				4607C5DB246DDAD100B1207F /* TopicTableViewCell.swift */,
 				4607C5DC246DDAD100B1207F /* TopicTableViewCell.xib */,
+				46DFE61624770078007ADA5C /* CircleOverlay.swift */,
+				46DFE61C24786773007ADA5C /* EdgeInsetLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -789,16 +801,19 @@
 				46DFE615247595E7007ADA5C /* TargetResponse.swift in Sources */,
 				FE583F0C22AFC9EA00EF3CDA /* AnalyticsService.swift in Sources */,
 				FEE8080E22A6BB4F00743D1B /* APIError.swift in Sources */,
+				46DFE61D24786774007ADA5C /* EdgeInsetLabel.swift in Sources */,
 				FE583F0E22AFC9F300EF3CDA /* FirebaseAnalyticsService.swift in Sources */,
 				FE4D636022B2CB3800685161 /* HomeRoutes.swift in Sources */,
 				9B77E0751E2FB66F0020E450 /* UserDataManager.swift in Sources */,
 				9BD01E361F01641E007255E3 /* DictionaryExtension.swift in Sources */,
 				E8290C021D8330A800599960 /* StringExtension.swift in Sources */,
 				46DFE60924730188007ADA5C /* TargetService.swift in Sources */,
+				46DFE61B2478499E007ADA5C /* DeleteTargetViewModel.swift in Sources */,
 				462E0FFA2461F71A0080A075 /* CreateTargetViewController.swift in Sources */,
 				4607C5DD246DDAD100B1207F /* TopicTableViewCell.swift in Sources */,
 				466717AD246B28C800007845 /* CreateTargetViewModel.swift in Sources */,
 				FE4D636222B2CBB000685161 /* OnboardingRoutes.swift in Sources */,
+				46DFE61724770078007ADA5C /* CircleOverlay.swift in Sources */,
 				466717AF246B3F1700007845 /* Topic.swift in Sources */,
 				071CD2622228544700E6D385 /* FontExtension.swift in Sources */,
 				9B8D307020AB47E90050697F /* JSONEncodingExtension.swift in Sources */,
@@ -826,6 +841,7 @@
 				9B5EAB4A232C146D00B9CE3C /* UITextFieldExtension.swift in Sources */,
 				4607C5DA246DC4F800B1207F /* TopicResponse.swift in Sources */,
 				9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */,
+				46DFE61924784989007ADA5C /* DeleteTargetViewController.swift in Sources */,
 				FEE8080C22A6AE9900743D1B /* TargetType+Base.swift in Sources */,
 				FE06840322CE7ED400C6294F /* R.generated.swift in Sources */,
 				462E0FF8245B066D0080A075 /* LocationManager.swift in Sources */,
