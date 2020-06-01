@@ -7,6 +7,7 @@
 */
 
 "labelFieldName" = "NAME";
+"labelFielUserdName" = "USERNAME";
 "labelFieldPassword" = "PASSWORD";
 "labelFieldConfirmPassword" = "CONFIRM PASSWORD";
 "labelFieldEmail" = "EMAIL";
@@ -29,3 +30,7 @@
 "errorFieldTargetTitle" = "you forgot to put the target title!";
 "errorFieldTargetEmptyArea" = "you forgot to put the target area!";
 "errorFieldTargetArea" = "Invalid range 200 - 1000";
+
+"updatePasswordLabel" = "ENTER YOUR CURRENT \n PASSWORD TO EDIT";
+"labelFieldNewPassword" = "NEW PASSWORD";
+"labelFieldConfirmNewPassword" = "CONFIRM NEW PASSWORD";

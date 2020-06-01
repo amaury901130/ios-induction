@@ -124,6 +124,16 @@ public extension Navigator {
         UIApplication.shared.keyWindow?.rootViewController = navigation
         self?.rootViewController = navigation
       }
+    case .pushFromLeft:
+      let transition = CATransition()
+      transition.duration = 0.5
+      transition.type = CATransitionType.push
+      transition.subtype = CATransitionSubtype.fromLeft
+      transition.timingFunction = CAMediaTimingFunction(
+        name: CAMediaTimingFunctionName.easeInEaseOut
+      )
+      rootViewController?.view.window?.layer.add(transition, forKey: kCATransition)
+      rootViewController?.pushViewController(viewController, animated: false)
     }
   }
 
@@ -197,7 +207,7 @@ public protocol Route {
 
 public extension Route {
   var transitionConfigurator: TransitionConfigurator? {
-    return nil
+    nil
   }
 }
 
@@ -216,6 +226,8 @@ public enum TransitionType {
 
   /// Replaces the key window's Root view controller with the Route's screen.
   case changeRoot
+  
+  case pushFromLeft
 }
 
 public extension UIViewController {

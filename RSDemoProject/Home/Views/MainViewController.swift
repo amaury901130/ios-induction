@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
   @IBOutlet weak var mainTitle: UILabel!
   @IBOutlet weak var createTargetLabel: UILabel!
   @IBOutlet weak var createNewTarget: UIView!
+  @IBOutlet weak var profileButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -41,6 +42,10 @@ class MainViewController: UIViewController {
     ))
   }
 
+  @IBAction func editProfile(_ sender: Any) {
+    navigateTo(ProfileRoutes.editProfile, withTransition: .pushFromLeft)
+  }
+  
   private func initView() {
     createTargetLabel.addSpacing(kernValue: createTargetLabelSpacing)
     mainTitle.addSpacing(kernValue: mainTitleSpacing)

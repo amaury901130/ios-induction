@@ -30,6 +30,10 @@
 		460F98572457ADEA001151F6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F98562457ADEA001151F6 /* Image.swift */; };
 		460F9864245A1316001151F6 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F9863245A1316001151F6 /* MainViewModel.swift */; };
 		460F9866245A1325001151F6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F9865245A1325001151F6 /* MainViewController.swift */; };
+		46139E3D2481A1B000B97968 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46139E3C2481A1B000B97968 /* EditProfileViewController.swift */; };
+		46139E3F2481A1DE00B97968 /* ProfileRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46139E3E2481A1DE00B97968 /* ProfileRoutes.swift */; };
+		46139E412481A47300B97968 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46139E402481A47300B97968 /* EditProfileViewModel.swift */; };
+		46139E43248547CA00B97968 /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46139E42248547CA00B97968 /* UpdatePasswordViewController.swift */; };
 		462E0FF8245B066D0080A075 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462E0FF7245B066D0080A075 /* LocationManager.swift */; };
 		462E0FFA2461F71A0080A075 /* CreateTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462E0FF92461F71A0080A075 /* CreateTargetViewController.swift */; };
 		465021102448AE4600B35C95 /* CustomFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650210F2448AE4600B35C95 /* CustomFormField.swift */; };
@@ -134,6 +138,10 @@
 		460F98562457ADEA001151F6 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		460F9863245A1316001151F6 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		460F9865245A1325001151F6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		46139E3C2481A1B000B97968 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		46139E3E2481A1DE00B97968 /* ProfileRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRoutes.swift; sourceTree = "<group>"; };
+		46139E402481A47300B97968 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		46139E42248547CA00B97968 /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
 		462E0FF7245B066D0080A075 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		462E0FF92461F71A0080A075 /* CreateTargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTargetViewController.swift; sourceTree = "<group>"; };
 		4650210F2448AE4600B35C95 /* CustomFormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFormField.swift; sourceTree = "<group>"; };
@@ -347,6 +355,41 @@
 			path = Responses;
 			sourceTree = "<group>";
 		};
+		46139E382481A16100B97968 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				46139E3B2481A18E00B97968 /* VIews */,
+				46139E3A2481A18300B97968 /* ViewModels */,
+				46139E392481A17C00B97968 /* Routes */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		46139E392481A17C00B97968 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				46139E3E2481A1DE00B97968 /* ProfileRoutes.swift */,
+			);
+			path = Routes;
+			sourceTree = "<group>";
+		};
+		46139E3A2481A18300B97968 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				46139E402481A47300B97968 /* EditProfileViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		46139E3B2481A18E00B97968 /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				46139E3C2481A1B000B97968 /* EditProfileViewController.swift */,
+				46139E42248547CA00B97968 /* UpdatePasswordViewController.swift */,
+			);
+			path = VIews;
+			sourceTree = "<group>";
+		};
 		46502117244A210C00B35C95 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +415,7 @@
 		9B0C72511C738C3100BAF3B1 /* RSDemoProject */ = {
 			isa = PBXGroup;
 			children = (
+				46139E382481A16100B97968 /* Profile */,
 				46502117244A210C00B35C95 /* fonts */,
 				078642F222E6691B0027BF11 /* Common */,
 				078642EB22E668520027BF11 /* Home */,
@@ -803,6 +847,7 @@
 				FEE8080E22A6BB4F00743D1B /* APIError.swift in Sources */,
 				46DFE61D24786774007ADA5C /* EdgeInsetLabel.swift in Sources */,
 				FE583F0E22AFC9F300EF3CDA /* FirebaseAnalyticsService.swift in Sources */,
+				46139E3D2481A1B000B97968 /* EditProfileViewController.swift in Sources */,
 				FE4D636022B2CB3800685161 /* HomeRoutes.swift in Sources */,
 				9B77E0751E2FB66F0020E450 /* UserDataManager.swift in Sources */,
 				9BD01E361F01641E007255E3 /* DictionaryExtension.swift in Sources */,
@@ -813,11 +858,13 @@
 				4607C5DD246DDAD100B1207F /* TopicTableViewCell.swift in Sources */,
 				466717AD246B28C800007845 /* CreateTargetViewModel.swift in Sources */,
 				FE4D636222B2CBB000685161 /* OnboardingRoutes.swift in Sources */,
+				46139E43248547CA00B97968 /* UpdatePasswordViewController.swift in Sources */,
 				46DFE61724770078007ADA5C /* CircleOverlay.swift in Sources */,
 				466717AF246B3F1700007845 /* Topic.swift in Sources */,
 				071CD2622228544700E6D385 /* FontExtension.swift in Sources */,
 				9B8D307020AB47E90050697F /* JSONEncodingExtension.swift in Sources */,
 				4607C5D5246DB7C200B1207F /* TopicResource.swift in Sources */,
+				46139E412481A47300B97968 /* EditProfileViewModel.swift in Sources */,
 				FE4D636422B2CDF700685161 /* ViewModelState.swift in Sources */,
 				46DFE61324747DC2007ADA5C /* Target.swift in Sources */,
 				E81171921DE5EFB7003D3DF5 /* UIViewControllerExtension.swift in Sources */,
@@ -861,6 +908,7 @@
 				465021102448AE4600B35C95 /* CustomFormField.swift in Sources */,
 				460F9866245A1325001151F6 /* MainViewController.swift in Sources */,
 				9BE3669F1F10175E007CAECD /* Base64Media.swift in Sources */,
+				46139E3F2481A1DE00B97968 /* ProfileRoutes.swift in Sources */,
 				9BAFB7C32114E3CD0099DC61 /* SignInViewModel.swift in Sources */,
 				9B88CC671CAB305900AE60C5 /* Constants.swift in Sources */,
 				4607C5D0246DA72200B1207F /* TopicService.swift in Sources */,
