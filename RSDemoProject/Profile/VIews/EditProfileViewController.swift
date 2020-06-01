@@ -11,12 +11,12 @@ import UIKit
 class EditProfileViewController: UIViewController {
   
   var viewModel: EditProfileViewModel!
-  @IBOutlet weak var userAvatar: UIImageView!
+  @IBOutlet weak var userAvatarImage: UIImageView!
   @IBOutlet weak var orangeBubbleImage: UIView!
   @IBOutlet weak var blueBubbleImage: UIView!
-  @IBOutlet weak var profileName: CustomFormField!
-  @IBOutlet weak var profileEmail: CustomFormField!
-  @IBOutlet weak var updatePassword: UIButton!
+  @IBOutlet weak var profileNameField: CustomFormField!
+  @IBOutlet weak var profileEmailField: CustomFormField!
+  @IBOutlet weak var updatePasswordButton: UIButton!
   let bubbleBorderRadius: CGFloat = 62
   
   override func viewDidLoad() {
@@ -27,47 +27,45 @@ class EditProfileViewController: UIViewController {
   }
   
   private func setUpView() {
-    [blueBubbleImage, orangeBubbleImage].forEach {
-      $0.setRoundBorders(bubbleBorderRadius)
-    }
+    blueBubbleImage.setRoundBorders(bubbleBorderRadius)
+    orangeBubbleImage.setRoundBorders(bubbleBorderRadius)
     
     orangeBubbleImage.backgroundColor = UIColor.bubbleLeft
     blueBubbleImage.backgroundColor = UIColor.bubbleRight
     blueBubbleImage.layer.compositingFilter = "multiplyBlendMode"
     
-    profileName.labelText = "labelFielUserdName".localized
-    profileName.textView.text = viewModel.userName
-    profileName.textView.textAlignment = .center
-    profileName.mandatory = true
+    profileNameField.labelText = "labelFielUserdName".localized
+    profileNameField.textView.text = viewModel.userName
+    profileNameField.textView.textAlignment = .center
+    profileNameField.mandatory = true
     
-    profileEmail.labelText = "labelFieldEmail".localized
-    profileEmail.textView.text = viewModel.userEmail
-    profileEmail.textView.textAlignment = .center
-    profileEmail.mandatory = true
+    profileEmailField.labelText = "labelFieldEmail".localized
+    profileEmailField.textView.text = viewModel.userEmail
+    profileEmailField.textView.textAlignment = .center
+    profileEmailField.mandatory = true
     
-    updatePassword.addBorder(color: .black, weight: 1)
+    updatePasswordButton.addBorder(color: .black, weight: 1)
     
-    [profileEmail, profileName].forEach {
-      $0.textView.addTarget(
-        self,
-        action: #selector(textFieldDidChange(_:)),
-        for: .editingChanged
-      )}
+    [profileEmailField, profileNameField].forEach { $0.textView.addTarget(
+      self,
+      action: #selector(textFieldDidChange(_:)),
+      for: .editingChanged
+    )}
   }
   
   @objc func textFieldDidChange(_ textField: UITextField) {
     switch textField {
-    case profileEmail.textView:
-      profileEmail.showError(false)
+    case profileEmailField.textView:
+      profileEmailField.showError(false)
       
-      if profileEmail.validate() {
-        viewModel.userEmail = profileEmail.text
+      if profileEmailField.validate() {
+        viewModel.userEmail = profileEmailField.text
       }
-    case profileName.textView:
-      profileName.showError(false)
+    case profileNameField.textView:
+      profileNameField.showError(false)
       
-      if profileName.validate() {
-        viewModel.userName = profileName.text
+      if profileNameField.validate() {
+        viewModel.userName = profileNameField.text
       }
     default:
       break
@@ -90,11 +88,11 @@ class EditProfileViewController: UIViewController {
   }
   
   @IBAction func exitController(_ sender: Any) {
-    closeController()
+    navigationController?.popToRootViewController(animated: true)
   }
   
-  func closeController() {
-    navigationController?.popToRootViewController(animated: true)
+  func logOut() {
+    navigateTo(OnboardingRoutes.signIn)
   }
 }
 
@@ -116,7 +114,7 @@ extension EditProfileViewController: EditProfileViewModelDelegate {
     case .profileUpdated:
       showMessage(title: "Success", message: "You profile has been updated")
     case .profileLoggedOut:
-      closeController()
+      logOut()
     case .none:
       break
     }

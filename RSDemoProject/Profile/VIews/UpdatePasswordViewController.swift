@@ -9,7 +9,7 @@
 import UIKit
 
 // WIP
-// todo: viewmodel, actions, validations
+// TODO: viewmodel, actions, validations
 class UpdatePasswordViewController: UIViewController {
   
   @IBOutlet weak var currentPasswordField: CustomFormField!

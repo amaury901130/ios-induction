@@ -34,7 +34,7 @@ class EditProfileViewModel {
     UserDataManager.currentUser
   }
 
-  var state: EditProfileState! {
+  var state: EditProfileState? {
     didSet {
       delegate?.didUpdateProfileState()
     }
@@ -58,6 +58,6 @@ class EditProfileViewModel {
   }
   
   func updateProfile() {
-    //todo...
+    //TODO: call update profile
   }
 }

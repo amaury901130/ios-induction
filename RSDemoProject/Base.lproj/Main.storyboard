@@ -860,10 +860,10 @@
                     <connections>
                         <outlet property="blueBubbleImage" destination="FSc-Ap-JE4" id="Y6Y-GB-4X4"/>
                         <outlet property="orangeBubbleImage" destination="7qq-qv-23N" id="hQ1-K5-fIf"/>
-                        <outlet property="profileEmail" destination="Z1a-oI-pFq" id="XWl-7m-iYy"/>
-                        <outlet property="profileName" destination="Eg1-le-7am" id="odO-hr-oOb"/>
-                        <outlet property="updatePassword" destination="nif-V4-1NZ" id="gAu-uC-loI"/>
-                        <outlet property="userAvatar" destination="wqq-W7-M9D" id="bYv-O7-s5V"/>
+                        <outlet property="profileEmailField" destination="Z1a-oI-pFq" id="XWl-7m-iYy"/>
+                        <outlet property="profileNameField" destination="Eg1-le-7am" id="odO-hr-oOb"/>
+                        <outlet property="updatePasswordButton" destination="nif-V4-1NZ" id="gAu-uC-loI"/>
+                        <outlet property="userAvatarImage" destination="wqq-W7-M9D" id="bYv-O7-s5V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f54-yy-9Kz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
