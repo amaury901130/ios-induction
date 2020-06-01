@@ -10,9 +10,10 @@ import UIKit
 @IBDesignable
 class EdgeInsetLabel: UILabel {
   
-  var textSpacing: Double = 0 {
+  private var textSpacing: Double = 0 {
     didSet { addSpacing(kernValue: textSpacing) }
   }
+  
   var textInsets = UIEdgeInsets.zero {
     didSet { invalidateIntrinsicContentSize() }
   }
