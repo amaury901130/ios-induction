@@ -9,6 +9,11 @@ import UIKit
 
 @IBDesignable
 class EdgeInsetLabel: UILabel {
+  
+  private var textSpacing: Double = 0 {
+    didSet { addSpacing(kernValue: textSpacing) }
+  }
+  
   var textInsets = UIEdgeInsets.zero {
     didSet { invalidateIntrinsicContentSize() }
   }
@@ -39,24 +44,30 @@ extension EdgeInsetLabel {
   @IBInspectable
   var leftTextInset: CGFloat {
     set { textInsets.left = newValue }
-    get { return textInsets.left }
+    get { textInsets.left }
   }
   
   @IBInspectable
   var rightTextInset: CGFloat {
     set { textInsets.right = newValue }
-    get { return textInsets.right }
+    get { textInsets.right }
   }
   
   @IBInspectable
   var topTextInset: CGFloat {
     set { textInsets.top = newValue }
-    get { return textInsets.top }
+    get { textInsets.top }
   }
   
   @IBInspectable
   var bottomTextInset: CGFloat {
     set { textInsets.bottom = newValue }
-    get { return textInsets.bottom }
+    get { textInsets.bottom }
+  }
+  
+  @IBInspectable
+  var letterSpacing: Double {
+    set { textSpacing = newValue }
+    get { textSpacing }
   }
 }

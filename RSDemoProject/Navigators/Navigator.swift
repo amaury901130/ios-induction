@@ -124,9 +124,23 @@ public extension Navigator {
         UIApplication.shared.keyWindow?.rootViewController = navigation
         self?.rootViewController = navigation
       }
+    case .pushFromLeft:
+      pushFromLeft(to: viewController)
     }
   }
-
+  
+  func pushFromLeft(to viewController: UIViewController) {
+    let transition = CATransition()
+    transition.duration = 0.5
+    transition.type = .push
+    transition.subtype = .fromLeft
+    transition.timingFunction = CAMediaTimingFunction(
+      name: CAMediaTimingFunctionName.easeInEaseOut
+    )
+    rootViewController?.view.window?.layer.add(transition, forKey: kCATransition)
+    rootViewController?.pushViewController(viewController, animated: false)
+  }
+  
   func navigate(to router: Navigator, animated: Bool, completion: (() -> Void)?) {
     guard let viewController = router.rootViewController else {
       assert(false, "Navigator does not have a root view controller")
@@ -197,7 +211,7 @@ public protocol Route {
 
 public extension Route {
   var transitionConfigurator: TransitionConfigurator? {
-    return nil
+    nil
   }
 }
 
@@ -216,6 +230,10 @@ public enum TransitionType {
 
   /// Replaces the key window's Root view controller with the Route's screen.
   case changeRoot
+  
+  /// Pushes the next screent to the rootViewController navigation Stack
+  /// with a  left to right animation
+  case pushFromLeft
 }
 
 public extension UIViewController {
