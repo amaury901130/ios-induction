@@ -26,6 +26,11 @@ class MainViewModel {
   private var page = 1
   var defaultMapRadius = 200
   var userTargets: [Target] = []
+  
+  var userAvatar: String? {
+    UserDataManager.currentUser?.avatar?.thumb?.url
+  }
+  
   var selectedTarget: Target? {
     didSet {
       state = .targetSelected

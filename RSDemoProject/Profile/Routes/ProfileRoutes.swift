@@ -27,6 +27,7 @@ enum ProfileRoutes: Route {
         return UIViewController()
       }
 
+      updatePassword.viewModel = UpdatePasswordViewModel()
       return updatePassword
     }
   }

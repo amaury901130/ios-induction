@@ -34,3 +34,6 @@
 "updatePasswordLabel" = "ENTER YOUR CURRENT \n PASSWORD TO EDIT";
 "labelFieldNewPassword" = "NEW PASSWORD";
 "labelFieldConfirmNewPassword" = "CONFIRM NEW PASSWORD";
+
+"messageTitleSuccess" = "Success";
+"messageBodyPasswordSuccess" = "Password Updated";

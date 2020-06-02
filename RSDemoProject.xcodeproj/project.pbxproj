@@ -34,6 +34,7 @@
 		46139E3F2481A1DE00B97968 /* ProfileRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46139E3E2481A1DE00B97968 /* ProfileRoutes.swift */; };
 		46139E412481A47300B97968 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46139E402481A47300B97968 /* EditProfileViewModel.swift */; };
 		46139E43248547CA00B97968 /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46139E42248547CA00B97968 /* UpdatePasswordViewController.swift */; };
+		46139E4524869D6400B97968 /* UpdatePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46139E4424869D6400B97968 /* UpdatePasswordViewModel.swift */; };
 		462E0FF8245B066D0080A075 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462E0FF7245B066D0080A075 /* LocationManager.swift */; };
 		462E0FFA2461F71A0080A075 /* CreateTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462E0FF92461F71A0080A075 /* CreateTargetViewController.swift */; };
 		465021102448AE4600B35C95 /* CustomFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650210F2448AE4600B35C95 /* CustomFormField.swift */; };
@@ -142,6 +143,7 @@
 		46139E3E2481A1DE00B97968 /* ProfileRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRoutes.swift; sourceTree = "<group>"; };
 		46139E402481A47300B97968 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		46139E42248547CA00B97968 /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
+		46139E4424869D6400B97968 /* UpdatePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewModel.swift; sourceTree = "<group>"; };
 		462E0FF7245B066D0080A075 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		462E0FF92461F71A0080A075 /* CreateTargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTargetViewController.swift; sourceTree = "<group>"; };
 		4650210F2448AE4600B35C95 /* CustomFormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFormField.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				46139E402481A47300B97968 /* EditProfileViewModel.swift */,
+				46139E4424869D6400B97968 /* UpdatePasswordViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -875,6 +878,7 @@
 				460F98552451E37E001151F6 /* ValidationPatterns.swift in Sources */,
 				0A6990351F9F82A300F4BAC7 /* UIApplicationExtension.swift in Sources */,
 				9B77E0731E2FB6350020E450 /* User.swift in Sources */,
+				46139E4524869D6400B97968 /* UpdatePasswordViewModel.swift in Sources */,
 				460F984F244E121E001151F6 /* TextField.swift in Sources */,
 				FABDC9221EE1EB2B000DDAC3 /* ConfigurationManager.swift in Sources */,
 				9B8574D7212C81950063A3E2 /* SignUpViewModel.swift in Sources */,

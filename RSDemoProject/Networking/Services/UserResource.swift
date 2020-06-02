@@ -16,6 +16,8 @@ enum UserResource: TargetType {
   case profile
   case fbLogin(String)
   case logout
+  case update(Int, String, String, Data?)
+  case updatePassword(String, String)
   
   var path: String {
     let authBasePath = "/users"
@@ -31,6 +33,10 @@ enum UserResource: TargetType {
       return "\(authBasePath)/facebook"
     case .logout:
       return "\(authBasePath)/sign_out"
+    case .update(let id, _, _, _):
+      return "\(authBasePath)/\(String(id))"
+    case .updatePassword:
+      return "\(authBasePath)/password"
     }
   }
   
@@ -42,6 +48,8 @@ enum UserResource: TargetType {
       return .get
     case .logout:
       return .delete
+    case .update, .updatePassword:
+      return .put
     }
   }
   
@@ -69,9 +77,43 @@ enum UserResource: TargetType {
         "access_token": token
       ]
       return requestParameters(parameters: parameters)
+    case .update(_, let name, let email, let avatar?):
+      let parameters = getUpdateParameters(name: name, email: email, avatar: avatar)
+      return requestParameters(parameters: parameters)
+    case .updatePassword(let currentPassword, let newPassword):
+      let parameters = getUpdatePasswordParameters(
+        currentPassword: currentPassword,
+        newPassword: newPassword
+      )
+      return requestParameters(parameters: parameters)
     default:
       return .requestPlain
     }
+  }
+  
+  private func getUpdatePasswordParameters(
+    currentPassword: String,
+    newPassword: String
+  ) -> [String: Any] {
+    [
+      "currentPassword": currentPassword,
+      "password": newPassword,
+      "password_confirmation": newPassword
+    ]
+  }
+  
+  private func getUpdateParameters(
+    name: String,
+    email: String,
+    avatar: Data?
+  ) -> [String: Any] {
+    [
+      "user": [
+        "name": name,
+        "email": email,
+        "avatar": avatar?.asBase64Param()
+      ]
+    ]
   }
   
   private func getLoginParams(email: String, password: String) -> [String: Any] {
