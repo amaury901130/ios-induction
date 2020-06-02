@@ -107,24 +107,13 @@ enum UserResource: TargetType {
     email: String,
     avatar: Data?
   ) -> [String: Any] {
+    var params: [String: Any] = ["name": name, "email": email]
+    
     if let avatarImage = avatar {
-      return
-        [
-          "user": [
-            "name": name,
-            "email": email,
-            "avatar": avatarImage.asBase64Param()
-          ]
-        ]
-    } else {
-      return
-        [
-          "user": [
-            "name": name,
-            "email": email
-          ]
-        ]
+     params["avatar"] = avatarImage
     }
+    
+    return ["user": params]
   }
   
   private func getLoginParams(email: String, password: String) -> [String: Any] {
