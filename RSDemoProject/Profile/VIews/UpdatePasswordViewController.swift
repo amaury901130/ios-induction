@@ -50,7 +50,7 @@ class UpdatePasswordViewController: UIViewController {
         self,
         action: #selector(textFieldDidChange(_:)),
         for: .editingChanged
-      )}
+    )}
   }
   
   @objc func textFieldDidChange(_ textField: UITextField) {
@@ -77,14 +77,9 @@ class UpdatePasswordViewController: UIViewController {
     }
   }
   
-  private func disableButtons() {
-    doneButton.setEnable(false)
-    cancelButton.setEnable(false)
-  }
-  
-  private func enableButtons() {
-    doneButton.setEnable()
-    cancelButton.setEnable()
+  private func setButtonsEnable(_ enable: Bool) {
+    doneButton.setEnable(enable)
+    cancelButton.setEnable(enable)
   }
   
   @IBAction func cancel(_ sender: Any) {
@@ -93,10 +88,11 @@ class UpdatePasswordViewController: UIViewController {
   
   @IBAction func updatePassword(_ sender: Any) {
     if
-      currentPasswordField.validate(),
-      newPasswordField.validate(),
-      confirmNewPasswordField.validate(),
-      viewModel.newRepeatedPasswordIsValid() {
+      currentPasswordField.validate() &&
+      newPasswordField.validate() &&
+      confirmNewPasswordField.validate() &&
+      viewModel.newRepeatedPasswordIsValid
+    {
       viewModel.updatePassword()
     }
   }
@@ -121,13 +117,13 @@ extension UpdatePasswordViewController: UpdatePasswordViewModelDelegate {
     switch viewModel.networkState {
     case .loading:
       UIApplication.showNetworkActivity()
-      disableButtons()
+      setButtonsEnable(false)
     case .idle:
       UIApplication.hideNetworkActivity()
-      disableButtons()
+      setButtonsEnable(false)
     case .error(let errorDescription):
       UIApplication.hideNetworkActivity()
-      enableButtons()
+      setButtonsEnable(true)
       showMessage(title: "Error", message: errorDescription)
     }
   }

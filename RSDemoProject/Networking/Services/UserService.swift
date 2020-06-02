@@ -125,16 +125,10 @@ class UserService: BaseApiService<UserResource> {
     failure: @escaping (_ error: Error) -> Void
   ) {
     request(
-      for: UserResource.update(
-        id,
-        name,
-        email,
-        avatar
-      ), onSuccess: { (result: User, _) -> Void in
-        success(result)
-    }, onFailure: { error, _ in
-      failure(error)
-    })
+      for: UserResource.update(id, name, email, avatar),
+      onSuccess: { (result: User, _) -> Void in success(result) },
+      onFailure: { error, _ in failure(error) }
+    )
   }
   
   func updatePassword(
@@ -144,13 +138,9 @@ class UserService: BaseApiService<UserResource> {
     failure: @escaping (_ error: Error) -> Void
   ) {
     request(
-      for: UserResource.updatePassword(
-        currentPassword,
-        newPassword
-      ), onSuccess: { _ in
-        success()
-    }, onFailure: { error, _ in
-      failure(error)
-    })
+      for: UserResource.updatePassword(currentPassword, newPassword),
+      onSuccess: { _ in success() },
+      onFailure: { error, _ in failure(error) }
+    )
   }
 }

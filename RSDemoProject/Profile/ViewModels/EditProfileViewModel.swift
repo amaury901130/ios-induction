@@ -24,12 +24,8 @@ class EditProfileViewModel {
   var userEmail: String!
   var userUpdateImage: Data?
   
-  var userImage: URL? {
-    guard let url = currentUser?.avatar?.url else {
-      return nil
-    }
-    
-    return URL(string: url)
+  var userImageURL: URL? {
+    URL(string: currentUser?.avatar?.url ?? "")
   }
   
   weak var delegate: EditProfileViewModelDelegate? {

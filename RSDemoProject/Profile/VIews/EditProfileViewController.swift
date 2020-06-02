@@ -20,13 +20,11 @@ class EditProfileViewController: UIViewController {
   let bubbleBorderRadius: CGFloat = 62
   let avatarBorderRadius: CGFloat = 42
   let imageCompression: CGFloat = 0.7
-  var imagePicker = UIImagePickerController()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     viewModel.delegate = self
-    imagePicker.delegate = self
     setUpView()
     addListeners()
   }
@@ -53,9 +51,10 @@ class EditProfileViewController: UIViewController {
     
     updatePasswordButton.addBorder(color: .black, weight: 1)
     
-    if let imageUrl = viewModel.userImage {
-      userAvatarImage.kf.setImage(with: imageUrl)
-    }
+    userAvatarImage.kf.setImage(
+      with: viewModel.userImageURL,
+      placeholder: R.image.avatarPlaceholder()
+    )
   }
   
   private func addListeners() {
@@ -63,7 +62,7 @@ class EditProfileViewController: UIViewController {
       self,
       action: #selector(textFieldDidChange(_:)),
       for: .editingChanged
-      )}
+    )}
     
     userAvatarImage.addGestureRecognizer(
       UITapGestureRecognizer(
@@ -74,6 +73,8 @@ class EditProfileViewController: UIViewController {
   
   @objc func pickImage() {
     if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+      var imagePicker = UIImagePickerController()
+      imagePicker.delegate = self
       imagePicker.sourceType = .savedPhotosAlbum
       imagePicker.allowsEditing = false
       
@@ -112,9 +113,7 @@ class EditProfileViewController: UIViewController {
   }
   
   @IBAction func saveChanges(_ sender: Any) {
-    if
-      profileNameField.validate(),
-      profileEmailField.validate() {
+    if profileNameField.validate() && profileEmailField.validate() {
         viewModel.updateProfile()
     }
   }
@@ -160,8 +159,7 @@ UIImagePickerControllerDelegate {
     _ picker: UIImagePickerController,
     didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
   ) {
-    guard let image = info[UIImagePickerController.InfoKey(
-        rawValue: "UIImagePickerControllerOriginalImage")]  as? UIImage
+    guard let image = info[.originalImage] as? UIImage
     else {
       picker.dismiss(animated: true, completion: nil)
       return
@@ -170,7 +168,7 @@ UIImagePickerControllerDelegate {
     let data = image.jpegData(compressionQuality: imageCompression)
     viewModel.userUpdateImage = data
     userAvatarImage.image = image
-    userAvatarImage.contentMode = .scaleToFill
+    userAvatarImage.contentMode = .scaleAspectFill
     picker.dismiss(animated: true, completion: nil)
   }
 }

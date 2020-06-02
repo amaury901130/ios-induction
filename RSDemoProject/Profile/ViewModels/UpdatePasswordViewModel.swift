@@ -16,13 +16,14 @@ protocol UpdatePasswordViewModelDelegate: class {
 enum UpdatePasswordState {
   case paswwordUpdated
   case newPasswordError
+  case none
 }
 
 class UpdatePasswordViewModel {
   
-  var currentPassword: String!
-  var newPassword: String!
-  var repeatedNewPassword: String!
+  var currentPassword: String = ""
+  var newPassword: String = ""
+  var repeatedNewPassword: String = ""
   
   var networkState: ViewModelState = .idle {
     didSet {
@@ -30,7 +31,7 @@ class UpdatePasswordViewModel {
     }
   }
   
-  var state: UpdatePasswordState? {
+  var state: UpdatePasswordState = .none {
     didSet {
       delegate?.didUpdatePasswordState()
     }
@@ -38,12 +39,8 @@ class UpdatePasswordViewModel {
   
   weak var delegate: UpdatePasswordViewModelDelegate?
   
-  func newRepeatedPasswordIsValid() -> Bool {
-    guard
-      let newPass = newPassword,
-      let repeatedNewPass = repeatedNewPassword,
-      newPass == repeatedNewPass
-    else {
+  var newRepeatedPasswordIsValid: Bool {
+    guard newPassword.isNotEmpty && newPassword == repeatedNewPassword else {
       state = .newPasswordError
       return false
     }
@@ -56,10 +53,12 @@ class UpdatePasswordViewModel {
     
     UserService.sharedInstance.updatePassword(
       currentPassword: currentPassword,
-      newPassword: newPassword, { [weak self] in
+      newPassword: newPassword,
+      { [weak self] in
         self?.networkState = .idle
         self?.state = .paswwordUpdated
-      }, failure: { [weak self] error in
+      },
+      failure: { [weak self] error in
         self?.networkState = .error(error.localizedDescription)
     })
   }
