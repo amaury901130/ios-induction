@@ -37,3 +37,5 @@
 
 "messageTitleSuccess" = "Success";
 "messageBodyPasswordSuccess" = "Password Updated";
+
+"deleteConfirmationMessage" = "Remember that if you delete it, \n you wont be able to chat with \n it's matches anymore";

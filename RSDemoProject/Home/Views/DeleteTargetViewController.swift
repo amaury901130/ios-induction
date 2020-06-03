@@ -68,7 +68,16 @@ class DeleteTargetViewController: UIViewController {
   }
   
   @IBAction func deleteTarget(_ sender: Any) {
-    viewModel.deleteTarget()
+    navigateTo(
+      HomeRoutes.deleteTargetConfirmation(viewModel.target, response: self),
+      withTransition: .modal(presentationStyle: .overCurrentContext)
+    )
+  }
+}
+
+extension DeleteTargetViewController: DeleteTargetResponseDelegate {
+  func didTargetDelete() {
+    dismissController()
   }
 }
 

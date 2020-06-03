@@ -1011,6 +1011,146 @@
             </objects>
             <point key="canvasLocation" x="1709.5999999999999" y="1458.6206896551726"/>
         </scene>
+        <!--Delete Target Confirmation View Controller-->
+        <scene sceneID="eZ7-cF-k0h">
+            <objects>
+                <viewController storyboardIdentifier="DeleteTargetConfirmationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="p9Z-3R-0Zq" customClass="DeleteTargetConfirmationViewController" customModule="RSDemoProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3oY-ql-Rak"/>
+                        <viewControllerLayoutGuide type="bottom" id="vqH-MB-3KW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MoY-71-qEP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pc3-oM-4hX">
+                                <rect key="frame" x="60" y="179.5" width="255" height="308.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1F-nL-V3r" customClass="EdgeInsetLabel" customModule="RSDemoProject" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="187.5" width="191" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="11"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="letterSpacing">
+                                                <real key="value" value="0.55000000000000004"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwL-r7-LlD">
+                                        <rect key="frame" x="38" y="211.5" width="179" height="39"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="JST-R5-Ki5"/>
+                                        </constraints>
+                                        <state key="normal" title="DELETE">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteTarget:" destination="p9Z-3R-0Zq" eventType="touchUpInside" id="5mn-pd-1lB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eaE-os-dki">
+                                        <rect key="frame" x="38" y="262.5" width="179" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="lSw-UH-s4X"/>
+                                        </constraints>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancel:" destination="p9Z-3R-0Zq" eventType="touchUpInside" id="TnD-3A-VqM"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sure you want to delete this target?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ztp-ZG-WxD" customClass="EdgeInsetLabel" customModule="RSDemoProject" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="30" width="223" height="46.5"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="letterSpacing">
+                                                <real key="value" value="1.95"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EkC-lv-h6d">
+                                        <rect key="frame" x="99.5" y="92.5" width="56" height="56"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WJH-ma-LC6">
+                                                <rect key="frame" x="16.5" y="15.5" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="24" id="0GO-05-oeF"/>
+                                                    <constraint firstAttribute="height" constant="24" id="Fjc-e2-iO9"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.94117647058823528" green="0.7803921568627451" blue="0.2196078431372549" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="PKo-VC-IW8"/>
+                                            <constraint firstItem="WJH-ma-LC6" firstAttribute="centerX" secondItem="EkC-lv-h6d" secondAttribute="centerX" id="TDi-PK-aKv"/>
+                                            <constraint firstItem="WJH-ma-LC6" firstAttribute="centerY" secondItem="EkC-lv-h6d" secondAttribute="centerY" id="kPm-fa-lRx"/>
+                                            <constraint firstAttribute="width" constant="56" id="q5r-c7-qrs"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoL-h8-XqE" customClass="EdgeInsetLabel" customModule="RSDemoProject" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="156.5" width="223" height="15"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="11"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="letterSpacing">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="eaE-os-dki" firstAttribute="top" secondItem="gwL-r7-LlD" secondAttribute="bottom" constant="12" id="Bab-oJ-vzv"/>
+                                    <constraint firstItem="eaE-os-dki" firstAttribute="leading" secondItem="Pc3-oM-4hX" secondAttribute="leading" constant="38" id="Bl7-SJ-z0M"/>
+                                    <constraint firstItem="IoL-h8-XqE" firstAttribute="top" secondItem="EkC-lv-h6d" secondAttribute="bottom" constant="8" id="DCu-DC-oEC"/>
+                                    <constraint firstItem="Ztp-ZG-WxD" firstAttribute="top" secondItem="Pc3-oM-4hX" secondAttribute="top" constant="30" id="I2D-rB-j0J"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ztp-ZG-WxD" secondAttribute="trailing" constant="16" id="Mn3-bM-Y47"/>
+                                    <constraint firstItem="Ztp-ZG-WxD" firstAttribute="leading" secondItem="Pc3-oM-4hX" secondAttribute="leading" constant="16" id="NEi-hM-txb"/>
+                                    <constraint firstItem="F1F-nL-V3r" firstAttribute="leading" secondItem="Pc3-oM-4hX" secondAttribute="leading" constant="32" id="OsK-ET-Nhk"/>
+                                    <constraint firstItem="gwL-r7-LlD" firstAttribute="leading" secondItem="Pc3-oM-4hX" secondAttribute="leading" constant="38" id="Ph9-xa-huw"/>
+                                    <constraint firstItem="IoL-h8-XqE" firstAttribute="leading" secondItem="Pc3-oM-4hX" secondAttribute="leading" constant="16" id="V0p-Ik-wRc"/>
+                                    <constraint firstItem="gwL-r7-LlD" firstAttribute="top" secondItem="F1F-nL-V3r" secondAttribute="bottom" constant="24" id="VTs-Oo-pHN"/>
+                                    <constraint firstItem="EkC-lv-h6d" firstAttribute="top" secondItem="Ztp-ZG-WxD" secondAttribute="bottom" constant="16" id="X55-7X-LYf"/>
+                                    <constraint firstAttribute="trailing" secondItem="gwL-r7-LlD" secondAttribute="trailing" constant="38" id="ch4-MQ-cba"/>
+                                    <constraint firstAttribute="trailing" secondItem="IoL-h8-XqE" secondAttribute="trailing" constant="16" id="fyq-YN-7H2"/>
+                                    <constraint firstAttribute="bottom" secondItem="eaE-os-dki" secondAttribute="bottom" constant="16" id="lrc-s6-cxj"/>
+                                    <constraint firstItem="F1F-nL-V3r" firstAttribute="centerX" secondItem="IoL-h8-XqE" secondAttribute="centerX" id="mDO-gq-4p5"/>
+                                    <constraint firstItem="gwL-r7-LlD" firstAttribute="centerX" secondItem="Pc3-oM-4hX" secondAttribute="centerX" id="oeg-bj-WhX"/>
+                                    <constraint firstAttribute="trailing" secondItem="F1F-nL-V3r" secondAttribute="trailing" constant="32" id="pzb-s4-MDw"/>
+                                    <constraint firstItem="IoL-h8-XqE" firstAttribute="centerX" secondItem="EkC-lv-h6d" secondAttribute="centerX" id="sRg-0k-jNU"/>
+                                    <constraint firstItem="eaE-os-dki" firstAttribute="centerX" secondItem="Pc3-oM-4hX" secondAttribute="centerX" id="t8p-tw-Pu2"/>
+                                    <constraint firstAttribute="trailing" secondItem="eaE-os-dki" secondAttribute="trailing" constant="38" id="wU0-Dz-OtD"/>
+                                    <constraint firstItem="F1F-nL-V3r" firstAttribute="top" secondItem="IoL-h8-XqE" secondAttribute="bottom" constant="16" id="xX5-7b-0kC"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.302734375" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Pc3-oM-4hX" secondAttribute="trailing" constant="44" id="6K8-wt-T3O"/>
+                            <constraint firstItem="Pc3-oM-4hX" firstAttribute="leading" secondItem="MoY-71-qEP" secondAttribute="leadingMargin" constant="44" id="JZh-En-pbH"/>
+                            <constraint firstItem="Pc3-oM-4hX" firstAttribute="centerY" secondItem="MoY-71-qEP" secondAttribute="centerY" id="MgB-hG-aTZ"/>
+                            <constraint firstItem="Pc3-oM-4hX" firstAttribute="centerX" secondItem="MoY-71-qEP" secondAttribute="centerX" id="MxA-pZ-wo6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="eaE-os-dki" id="5nq-gS-qZr"/>
+                        <outlet property="deleteButton" destination="gwL-r7-LlD" id="SIa-ig-zqz"/>
+                        <outlet property="dialogDescription" destination="F1F-nL-V3r" id="zPh-iY-fIi"/>
+                        <outlet property="targetIcon" destination="WJH-ma-LC6" id="Q6n-bm-nlN"/>
+                        <outlet property="targetIconBack" destination="EkC-lv-h6d" id="XUe-sn-fFh"/>
+                        <outlet property="targetTitleLabel" destination="IoL-h8-XqE" id="9lY-FR-lqO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cdZ-BG-Gfp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2669.5999999999999" y="1458.6206896551726"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AvatarPlaceholder" width="83" height="83"/>

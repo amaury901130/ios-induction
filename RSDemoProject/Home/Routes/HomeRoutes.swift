@@ -14,6 +14,7 @@ enum HomeRoutes: Route {
   case createTarget
   case topicSelection(_ delegate: TopicListResponseDelegate?)
   case deleteTarget(_ target: Target)
+  case deleteTargetConfirmation(_ target: Target, response: DeleteTargetResponseDelegate)
   
   var screen: UIViewController {
     switch self {
@@ -43,6 +44,15 @@ enum HomeRoutes: Route {
       
       deleteTarget.viewModel = DeleteTargetViewModel(target: target)
       return deleteTarget
+    case .deleteTargetConfirmation(let target, let response):
+      guard
+        let deleteTargetConfirmation = R.storyboard.main.deleteTargetConfirmationViewController()
+      else {
+        return UIViewController()
+      }
+      
+      deleteTargetConfirmation.viewModel = DeleteTargetConfirmationViewModel(target, response: response)
+      return deleteTargetConfirmation
     }
   }
 }
