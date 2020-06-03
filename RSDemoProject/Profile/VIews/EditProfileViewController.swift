@@ -73,10 +73,9 @@ class EditProfileViewController: UIViewController {
   
   @objc func pickImage() {
     if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-      var imagePicker = UIImagePickerController()
+      let imagePicker = UIImagePickerController()
       imagePicker.delegate = self
       imagePicker.sourceType = .savedPhotosAlbum
-      imagePicker.allowsEditing = false
       
       present(imagePicker, animated: true, completion: nil)
     }
@@ -114,7 +113,7 @@ class EditProfileViewController: UIViewController {
   
   @IBAction func saveChanges(_ sender: Any) {
     if profileNameField.validate() && profileEmailField.validate() {
-        viewModel.updateProfile()
+      viewModel.updateProfile()
     }
   }
   
@@ -159,8 +158,7 @@ UIImagePickerControllerDelegate {
     _ picker: UIImagePickerController,
     didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
   ) {
-    guard let image = info[.originalImage] as? UIImage
-    else {
+    guard let image = info[.originalImage] as? UIImage else {
       picker.dismiss(animated: true, completion: nil)
       return
     }

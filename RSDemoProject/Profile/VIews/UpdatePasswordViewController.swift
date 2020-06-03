@@ -77,9 +77,9 @@ class UpdatePasswordViewController: UIViewController {
     }
   }
   
-  private func setButtonsEnable(_ enable: Bool) {
-    doneButton.setEnable(enable)
-    cancelButton.setEnable(enable)
+  private func setButtonsEnabled(_ enabled: Bool) {
+    doneButton.setEnable(enabled)
+    cancelButton.setEnable(enabled)
   }
   
   @IBAction func cancel(_ sender: Any) {
@@ -114,17 +114,18 @@ extension UpdatePasswordViewController: UpdatePasswordViewModelDelegate {
   }
   
   func didUpdateState() {
+    var error = false
     switch viewModel.networkState {
     case .loading:
       UIApplication.showNetworkActivity()
-      setButtonsEnable(false)
     case .idle:
       UIApplication.hideNetworkActivity()
-      setButtonsEnable(false)
     case .error(let errorDescription):
       UIApplication.hideNetworkActivity()
-      setButtonsEnable(true)
+      error = true
       showMessage(title: "Error", message: errorDescription)
     }
+
+    setButtonsEnabled(error)
   }
 }

@@ -110,7 +110,7 @@ enum UserResource: TargetType {
     var params: [String: Any] = ["name": name, "email": email]
     
     if let avatarImage = avatar {
-     params["avatar"] = avatarImage
+      params["avatar"] = avatarImage
     }
     
     return ["user": params]

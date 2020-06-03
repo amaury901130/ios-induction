@@ -121,7 +121,7 @@ class UserService: BaseApiService<UserResource> {
     name: String,
     email: String,
     avatar: Data?,
-    _ success: @escaping (_ user: User) -> Void,
+    success: @escaping (_ user: User) -> Void,
     failure: @escaping (_ error: Error) -> Void
   ) {
     request(
@@ -134,7 +134,7 @@ class UserService: BaseApiService<UserResource> {
   func updatePassword(
     currentPassword: String,
     newPassword: String,
-    _ success: @escaping () -> Void,
+    success: @escaping () -> Void,
     failure: @escaping (_ error: Error) -> Void
   ) {
     request(

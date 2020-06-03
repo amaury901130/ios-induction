@@ -54,7 +54,7 @@ class UpdatePasswordViewModel {
     UserService.sharedInstance.updatePassword(
       currentPassword: currentPassword,
       newPassword: newPassword,
-      { [weak self] in
+      success: { [weak self] in
         self?.networkState = .idle
         self?.state = .paswwordUpdated
       },

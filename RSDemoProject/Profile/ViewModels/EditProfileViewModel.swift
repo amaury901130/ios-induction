@@ -68,9 +68,7 @@ class EditProfileViewModel {
   }
   
   func updateProfile() {
-    guard
-      let userId = currentUser?.id
-    else {
+    guard let userId = currentUser?.id else {
       state = .profileLoggedOut
       return
     }
@@ -81,7 +79,8 @@ class EditProfileViewModel {
       id: userId,
       name: userName,
       email: userEmail,
-      avatar: userUpdateImage, { [weak self] user in
+      avatar: userUpdateImage,
+      success: { [weak self] user in
         UserDataManager.currentUser = user
         self?.networkState = .idle
         self?.state = .profileUpdated
