@@ -18,17 +18,21 @@ class EditProfileViewController: UIViewController {
   @IBOutlet weak var profileEmailField: CustomFormField!
   @IBOutlet weak var updatePasswordButton: UIButton!
   let bubbleBorderRadius: CGFloat = 62
+  let avatarBorderRadius: CGFloat = 42
+  let imageCompression: CGFloat = 0.7
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     viewModel.delegate = self
     setUpView()
+    addListeners()
   }
   
   private func setUpView() {
     blueBubbleImage.setRoundBorders(bubbleBorderRadius)
     orangeBubbleImage.setRoundBorders(bubbleBorderRadius)
+    userAvatarImage.setRoundBorders(avatarBorderRadius)
     
     orangeBubbleImage.backgroundColor = UIColor.bubbleLeft
     blueBubbleImage.backgroundColor = UIColor.bubbleRight
@@ -43,14 +47,38 @@ class EditProfileViewController: UIViewController {
     profileEmailField.textView.text = viewModel.userEmail
     profileEmailField.textView.textAlignment = .center
     profileEmailField.mandatory = true
+    profileEmailField.validationPattern = Validations.emailPattern
     
     updatePasswordButton.addBorder(color: .black, weight: 1)
     
+    userAvatarImage.kf.setImage(
+      with: viewModel.userImageURL,
+      placeholder: R.image.avatarPlaceholder()
+    )
+  }
+  
+  private func addListeners() {
     [profileEmailField, profileNameField].forEach { $0.textView.addTarget(
       self,
       action: #selector(textFieldDidChange(_:)),
       for: .editingChanged
     )}
+    
+    userAvatarImage.addGestureRecognizer(
+      UITapGestureRecognizer(
+        target: self,
+        action: #selector(pickImage)
+    ))
+  }
+  
+  @objc func pickImage() {
+    if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+      let imagePicker = UIImagePickerController()
+      imagePicker.delegate = self
+      imagePicker.sourceType = .savedPhotosAlbum
+      
+      present(imagePicker, animated: true, completion: nil)
+    }
   }
   
   @objc func textFieldDidChange(_ textField: UITextField) {
@@ -84,7 +112,9 @@ class EditProfileViewController: UIViewController {
   }
   
   @IBAction func saveChanges(_ sender: Any) {
-    viewModel.updateProfile()
+    if profileNameField.validate() && profileEmailField.validate() {
+      viewModel.updateProfile()
+    }
   }
   
   @IBAction func exitController(_ sender: Any) {
@@ -118,5 +148,25 @@ extension EditProfileViewController: EditProfileViewModelDelegate {
     case .none:
       break
     }
+  }
+}
+
+extension EditProfileViewController: UINavigationControllerDelegate,
+UIImagePickerControllerDelegate {
+  
+  func imagePickerController(
+    _ picker: UIImagePickerController,
+    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+  ) {
+    guard let image = info[.originalImage] as? UIImage else {
+      picker.dismiss(animated: true, completion: nil)
+      return
+    }
+    
+    let data = image.jpegData(compressionQuality: imageCompression)
+    viewModel.userUpdateImage = data
+    userAvatarImage.image = image
+    userAvatarImage.contentMode = .scaleAspectFill
+    picker.dismiss(animated: true, completion: nil)
   }
 }

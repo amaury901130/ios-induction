@@ -20,13 +20,23 @@ protocol EditProfileViewModelDelegate: class {
 
 class EditProfileViewModel {
   
-  var userName: String?
-  var userEmail: String?
+  var userName: String!
+  var userEmail: String!
+  var userUpdateImage: Data?
+  
+  var userImageURL: URL? {
+    URL(string: currentUser?.avatar?.url ?? "")
+  }
   
   weak var delegate: EditProfileViewModelDelegate? {
     didSet {
-      userName = currentUser?.username
-      userEmail = currentUser?.email
+      guard let user = currentUser else {
+        state = .profileLoggedOut
+        return
+      }
+
+      userName = user.username
+      userEmail = user.email
     }
   }
   
@@ -58,6 +68,24 @@ class EditProfileViewModel {
   }
   
   func updateProfile() {
-    //TODO: call update profile
+    guard let userId = currentUser?.id else {
+      state = .profileLoggedOut
+      return
+    }
+    
+    networkState = .loading
+
+    UserService.sharedInstance.update(
+      id: userId,
+      name: userName,
+      email: userEmail,
+      avatar: userUpdateImage,
+      success: { [weak self] user in
+        UserDataManager.currentUser = user
+        self?.networkState = .idle
+        self?.state = .profileUpdated
+      }, failure: { [weak self] error in
+        self?.networkState = .error(error.localizedDescription)
+      })
   }
 }

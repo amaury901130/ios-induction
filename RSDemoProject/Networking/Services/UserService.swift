@@ -115,4 +115,32 @@ class UserService: BaseApiService<UserResource> {
       failure(error)
     })
   }
+  
+  func update(
+    id: Int,
+    name: String,
+    email: String,
+    avatar: Data?,
+    success: @escaping (_ user: User) -> Void,
+    failure: @escaping (_ error: Error) -> Void
+  ) {
+    request(
+      for: UserResource.update(id, name, email, avatar),
+      onSuccess: { (result: User, _) -> Void in success(result) },
+      onFailure: { error, _ in failure(error) }
+    )
+  }
+  
+  func updatePassword(
+    currentPassword: String,
+    newPassword: String,
+    success: @escaping () -> Void,
+    failure: @escaping (_ error: Error) -> Void
+  ) {
+    request(
+      for: UserResource.updatePassword(currentPassword, newPassword),
+      onSuccess: { _ in success() },
+      onFailure: { error, _ in failure(error) }
+    )
+  }
 }

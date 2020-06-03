@@ -55,6 +55,10 @@ class MainViewController: UIViewController {
         target: self,
         action: #selector(showCreateTargetForm)
     ))
+    
+    if let avatar = viewModel.userAvatar {
+      profileButton.kf.setImage(with: URL(string: avatar), for: .normal)
+    }
   }
   
   @objc private func centerMap(gestureRecognizer: UIGestureRecognizer) {
