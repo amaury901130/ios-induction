@@ -8,14 +8,19 @@
 
 import UIKit
 
+protocol DeleteConfirmationDelegate: class {
+  func didTargetDelete()
+}
+
 class DeleteTargetConfirmationViewController: UIViewController {
   
   var viewModel: DeleteTargetConfirmationViewModel!
-  let iconBackRoundedCorner: CGFloat = 28
+  let backIconCornerRadius: CGFloat = 28
+  weak var deleteTargetDelegate: DeleteConfirmationDelegate?
 
   @IBOutlet weak var targetIcon: UIImageView!
   @IBOutlet weak var targetTitleLabel: EdgeInsetLabel!
-  @IBOutlet weak var dialogDescription: EdgeInsetLabel!
+  @IBOutlet weak var dialogDescriptionLabel: EdgeInsetLabel!
   @IBOutlet weak var targetIconBack: UIView!
   @IBOutlet weak var deleteButton: UIButton!
   @IBOutlet weak var cancelButton: UIButton!
@@ -27,8 +32,8 @@ class DeleteTargetConfirmationViewController: UIViewController {
   }
   
   private func setUpView() {
-    targetIconBack.setRoundBorders(iconBackRoundedCorner)
-    dialogDescription.text = "deleteConfirmationMessage".localized
+    targetIconBack.setRoundBorders(backIconCornerRadius)
+    dialogDescriptionLabel.text = "deleteConfirmationMessage".localized
     targetTitleLabel.text = viewModel.targetDescription
     targetIcon.kf.setImage(with: viewModel.targetIcon)
   }
@@ -55,6 +60,7 @@ extension DeleteTargetConfirmationViewController: DeleteTargetConfirmationDelega
   func didUpdateDeleteTargetState() {
     switch viewModel.state {
     case .targetDeleted:
+      deleteTargetDelegate?.didTargetDelete()
       dismissController()
     case .targetLoaded:
       setUpView()

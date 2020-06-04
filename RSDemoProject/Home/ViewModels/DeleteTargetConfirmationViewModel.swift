@@ -19,17 +19,11 @@ protocol DeleteTargetConfirmationDelegate: class {
   func didUpdateState()
 }
 
-protocol DeleteTargetResponseDelegate: class {
-  func didTargetDelete()
-}
-
 class DeleteTargetConfirmationViewModel {
   var target: Target!
-  var responseDelegate: DeleteTargetResponseDelegate!
   
-  init(target: Target, response: DeleteTargetResponseDelegate) {
+  init(_ target: Target) {
     self.target = target
-    responseDelegate = response
   }
   
   var delegate: DeleteTargetConfirmationDelegate? {

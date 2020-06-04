@@ -111,9 +111,3 @@ class CreateTargetViewModel {
     return !error && selectedTopic != nil
   }
 }
-
-extension CreateTargetViewModel: TopicListResponseDelegate {
-  func didSelectTopic(_ topic: Topic) {
-    selectedTopic = topic
-  }
-}

@@ -69,13 +69,13 @@ class DeleteTargetViewController: UIViewController {
   
   @IBAction func deleteTarget(_ sender: Any) {
     navigateTo(
-      HomeRoutes.deleteTargetConfirmation(viewModel.target, response: self),
+      HomeRoutes.deleteTargetConfirmation(viewModel.target, delegate: self),
       withTransition: .modal(presentationStyle: .overCurrentContext)
     )
   }
 }
 
-extension DeleteTargetViewController: DeleteTargetResponseDelegate {
+extension DeleteTargetViewController: DeleteConfirmationDelegate {
   func didTargetDelete() {
     dismissController()
   }

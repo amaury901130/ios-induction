@@ -18,19 +18,12 @@ protocol TopicListDelegate: class {
   func didUpdateState()
 }
 
-protocol TopicListResponseDelegate: class {
-  func didSelectTopic(_ topic: Topic)
-}
-
 class TopicListViewModel {
   
   var topics: [Topic] = []
   
-  weak var responseDelegate: TopicListResponseDelegate?
-  
   var selectedTopic: Topic! {
     didSet {
-      responseDelegate?.didSelectTopic(selectedTopic)
       state = .didSelectTopic
     }
   }

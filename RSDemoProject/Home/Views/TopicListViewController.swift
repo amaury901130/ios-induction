@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol SelectTopicDelegate: class {
+  func didSelectTopic(_ topic: Topic)
+}
+
 class TopicListViewController: UIViewController {
   
   var viewModel: TopicListViewModel!
+  weak var topicListDelegate: SelectTopicDelegate?
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var dismissRegionView: UIView!
   
@@ -77,6 +82,7 @@ extension TopicListViewController: TopicListDelegate {
     case .didLoadTopics:
       tableView.reloadData()
     case .didSelectTopic:
+      topicListDelegate?.didSelectTopic(viewModel.selectedTopic)
       dismissController()
     case .none:
       break
