@@ -47,7 +47,7 @@ class DeleteTargetConfirmationViewController: UIViewController {
   }
   
   private func dismissController() {
-    dismiss(animated: true, completion: nil)
+    dismiss(animated: true)
   }
   
   private func setButtonsEnabled(_ enabled: Bool) {
