@@ -112,7 +112,7 @@ class CreateTargetViewController: UIViewController {
   
   @IBAction func selectTopic(_ sender: Any) {
     navigateTo(
-      HomeRoutes.topicSelection(viewModel),
+      HomeRoutes.topicSelection(self),
       withTransition: .modal(presentationStyle: .overCurrentContext)
     )
   }
@@ -160,5 +160,11 @@ extension CreateTargetViewController: CreateTargetDelegate {
       targetAreaField.showError(true)
     case .none: break
     }
+  }
+}
+
+extension CreateTargetViewController: SelectTopicDelegate {
+  func didSelectTopic(_ topic: Topic) {
+    viewModel.selectedTopic = topic
   }
 }

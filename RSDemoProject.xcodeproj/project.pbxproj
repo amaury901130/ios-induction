@@ -35,6 +35,8 @@
 		46139E412481A47300B97968 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46139E402481A47300B97968 /* EditProfileViewModel.swift */; };
 		46139E43248547CA00B97968 /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46139E42248547CA00B97968 /* UpdatePasswordViewController.swift */; };
 		46139E4524869D6400B97968 /* UpdatePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46139E4424869D6400B97968 /* UpdatePasswordViewModel.swift */; };
+		46139E4724882EED00B97968 /* DeleteTargetConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46139E4624882EED00B97968 /* DeleteTargetConfirmationViewController.swift */; };
+		46139E492488302300B97968 /* DeleteTargetConfirmationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46139E482488302300B97968 /* DeleteTargetConfirmationViewModel.swift */; };
 		462E0FF8245B066D0080A075 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462E0FF7245B066D0080A075 /* LocationManager.swift */; };
 		462E0FFA2461F71A0080A075 /* CreateTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462E0FF92461F71A0080A075 /* CreateTargetViewController.swift */; };
 		465021102448AE4600B35C95 /* CustomFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650210F2448AE4600B35C95 /* CustomFormField.swift */; };
@@ -144,6 +146,8 @@
 		46139E402481A47300B97968 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		46139E42248547CA00B97968 /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
 		46139E4424869D6400B97968 /* UpdatePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewModel.swift; sourceTree = "<group>"; };
+		46139E4624882EED00B97968 /* DeleteTargetConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTargetConfirmationViewController.swift; sourceTree = "<group>"; };
+		46139E482488302300B97968 /* DeleteTargetConfirmationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTargetConfirmationViewModel.swift; sourceTree = "<group>"; };
 		462E0FF7245B066D0080A075 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		462E0FF92461F71A0080A075 /* CreateTargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTargetViewController.swift; sourceTree = "<group>"; };
 		4650210F2448AE4600B35C95 /* CustomFormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFormField.swift; sourceTree = "<group>"; };
@@ -274,6 +278,7 @@
 				462E0FF92461F71A0080A075 /* CreateTargetViewController.swift */,
 				4607C5CB246D8BE900B1207F /* TopicListViewController.swift */,
 				46DFE61824784989007ADA5C /* DeleteTargetViewController.swift */,
+				46139E4624882EED00B97968 /* DeleteTargetConfirmationViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 				466717AC246B28C800007845 /* CreateTargetViewModel.swift */,
 				4607C5CD246D91DC00B1207F /* TopicListViewModel.swift */,
 				46DFE61A2478499E007ADA5C /* DeleteTargetViewModel.swift */,
+				46139E482488302300B97968 /* DeleteTargetConfirmationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -896,6 +902,7 @@
 				FEE8080C22A6AE9900743D1B /* TargetType+Base.swift in Sources */,
 				FE06840322CE7ED400C6294F /* R.generated.swift in Sources */,
 				462E0FF8245B066D0080A075 /* LocationManager.swift in Sources */,
+				46139E4724882EED00B97968 /* DeleteTargetConfirmationViewController.swift in Sources */,
 				FEE8080A22A6ACFF00743D1B /* APIService.swift in Sources */,
 				4607C5CC246D8BE900B1207F /* TopicListViewController.swift in Sources */,
 				FE4D635C22B2C75400685161 /* Navigator.swift in Sources */,
@@ -906,6 +913,7 @@
 				FE251D0722A7FE0F00E0DE90 /* DataExtension.swift in Sources */,
 				46DFE60B247301B9007ADA5C /* TargetResource.swift in Sources */,
 				FE583F1022AFC9FA00EF3CDA /* AnalyticsEvent.swift in Sources */,
+				46139E492488302300B97968 /* DeleteTargetConfirmationViewModel.swift in Sources */,
 				FE4D635E22B2CAFF00685161 /* AppNavigator.swift in Sources */,
 				E8FBB1C11DD21D18000D6740 /* SessionManager.swift in Sources */,
 				460F9853244F26AA001151F6 /* UIButtonExtension.swift in Sources */,

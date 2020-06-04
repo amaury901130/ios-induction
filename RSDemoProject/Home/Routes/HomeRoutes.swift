@@ -12,8 +12,9 @@ import UIKit
 enum HomeRoutes: Route {
   case main
   case createTarget
-  case topicSelection(_ delegate: TopicListResponseDelegate?)
+  case topicSelection(_ delegate: SelectTopicDelegate?)
   case deleteTarget(_ target: Target)
+  case deleteTargetConfirmation(_ target: Target, delegate: DeleteConfirmationDelegate)
   
   var screen: UIViewController {
     switch self {
@@ -33,8 +34,9 @@ enum HomeRoutes: Route {
       guard let topicSelection = R.storyboard.main.topicListViewController() else {
         return UIViewController()
       }
+      
+      topicSelection.topicListDelegate = delegate
       topicSelection.viewModel = TopicListViewModel()
-      topicSelection.viewModel.responseDelegate = delegate
       return topicSelection
     case .deleteTarget(let target):
       guard let deleteTarget = R.storyboard.main.deleteTargetViewController() else {
@@ -43,6 +45,16 @@ enum HomeRoutes: Route {
       
       deleteTarget.viewModel = DeleteTargetViewModel(target: target)
       return deleteTarget
+    case .deleteTargetConfirmation(let target, let delegate):
+      guard
+        let deleteTargetConfirmation = R.storyboard.main.deleteTargetConfirmationViewController()
+      else {
+        return UIViewController()
+      }
+      
+      deleteTargetConfirmation.deleteTargetDelegate = delegate
+      deleteTargetConfirmation.viewModel = DeleteTargetConfirmationViewModel(target)
+      return deleteTargetConfirmation
     }
   }
 }

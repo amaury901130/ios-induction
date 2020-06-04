@@ -54,17 +54,4 @@ class DeleteTargetViewModel {
   var targetTopic: Topic? {
     target.topic
   }
-  
-  func deleteTarget() {
-    networkState = .loading
-    TargetService.shared.deleteTarget(
-      target: target,
-      success: { [weak self] in
-        self?.networkState = .idle
-        self?.state = .targetDeleted
-      }, failure: { [weak self] error in
-        self?.networkState = .error(error.localizedDescription)
-      }
-    )
-  }
 }
