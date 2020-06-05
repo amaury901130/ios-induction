@@ -8,6 +8,14 @@
 
 import Foundation
 
-struct CreateTargetResponse: Codable {
-  //todo...
+class CreateTargetResponse: NSObject, Codable {
+  var target: Target
+  var matchedConversation: MatchConversation?
+  var matchedUser: User?
+
+  private enum CodingKeys: String, CodingKey {
+    case target
+    case matchedConversation = "match_conversation"
+    case matchedUser = "matched_user"
+  }
 }

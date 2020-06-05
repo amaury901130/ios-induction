@@ -96,7 +96,7 @@ class MainViewController: UIViewController {
   
   @objc private func showCreateTargetForm() {
     navigateTo(
-      HomeRoutes.createTarget,
+      HomeRoutes.createTarget(self),
       withTransition: .modal(presentationStyle: .overCurrentContext)
     )
   }
@@ -122,8 +122,17 @@ class MainViewController: UIViewController {
   }
 }
 
+extension MainViewController: TargetCreationDelegate {
+  func didCreateTargetResponse(targetResponse: CreateTargetResponse) {
+    viewModel.newTargetResponse = targetResponse
+  }
+}
+
 extension MainViewController: MKMapViewDelegate {
-  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+  func mapView(
+    _ mapView: MKMapView,
+    viewFor annotation: MKAnnotation
+  ) -> MKAnnotationView? {
     guard
       let customPointAnnotation = annotation as? PinAnnotation,
       let annotationView = customPointAnnotation.pinView
@@ -164,7 +173,10 @@ extension MainViewController: MKMapViewDelegate {
     }
   }
   
-  func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+  func mapView(
+    _ mapView: MKMapView,
+    rendererFor overlay: MKOverlay
+  ) -> MKOverlayRenderer {
     guard let circleOverlay = overlay as? MKCircle else {
       return MKOverlayRenderer()
     }
@@ -214,6 +226,14 @@ extension MainViewController: MainViewModelDelegate {
       
       showModalForSelectedTarget(target)
       reloadOverlay()
+    case .newMatchCreated:
+      guard let matchConversation = viewModel.matchConversation else {
+        return
+      }
+      navigateTo(
+        ChatRoutes.chatModal(conversation: matchConversation),
+        withTransition: .modal(presentationStyle: .overCurrentContext)
+      )
     case .none:
       break
     }

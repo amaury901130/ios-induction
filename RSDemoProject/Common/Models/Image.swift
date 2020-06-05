@@ -12,11 +12,17 @@ struct Image: Codable {
   var url: String?
   var normal: ImageVersion?
   var thumb: ImageVersion?
+  var normalUrl: String?
+  var smallUrl: String?
+  var originalUrl: String?
   
   private enum CodingKeys: String, CodingKey {
     case url
     case normal
     case thumb = "small_thumb"
+    case normalUrl = "normal_url"
+    case smallUrl = "small_thumb_url"
+    case originalUrl = "original_url"
   }
 }
 

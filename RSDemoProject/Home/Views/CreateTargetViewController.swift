@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol TargetCreationDelegate: class {
+  func didCreateTargetResponse(targetResponse: CreateTargetResponse)
+}
+
 class CreateTargetViewController: UIViewController {
   
   let contentHeight: CGFloat = 340
   let fieldLetterSpacing = 0.7
   var viewModel: CreateTargetViewModel!
+  weak var delegate: TargetCreationDelegate?
   
   @IBOutlet weak var targetAreaField: CustomFormField!
   @IBOutlet weak var targetTitleField: CustomFormField!
@@ -150,8 +155,9 @@ extension CreateTargetViewController: CreateTargetDelegate {
   func didUpdateCreateTargetState() {
     switch viewModel.state {
     case .targetCreated:
-      //todo: back with the target response
-      dismiss(animated: true, completion: nil)
+      if let newTargetResponse = viewModel.targetCreatedResponse {
+        delegate?.didCreateTargetResponse(targetResponse: newTargetResponse)
+      }
     case .didSelectTopic:
       updateTopicButton()
     case .errorTitle:

@@ -78,7 +78,7 @@ class CreateTargetViewModel {
     guard isTargetValid(), let topic = selectedTopic else {
       return
     }
-    
+
     TargetService.shared.createTarget(
       title: targetTitle,
       area: targetArea,
