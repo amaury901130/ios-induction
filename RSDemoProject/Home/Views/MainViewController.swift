@@ -123,7 +123,7 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: TargetCreationDelegate {
-  func didCreateTargetResponse(targetResponse: CreateTargetResponse) {
+  func didCreateTarget(targetResponse: TargetMatch) {
     viewModel.newTargetResponse = targetResponse
   }
 }

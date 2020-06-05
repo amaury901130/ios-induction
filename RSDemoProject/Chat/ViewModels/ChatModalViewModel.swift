@@ -8,30 +8,9 @@
 
 import Foundation
 
-protocol ChatModalDelegate: class {
-  func didModalState()
-}
-
-enum ChatModalState {
-  case conversationLoaded
-  case none
-}
-
 class ChatModalViewModel {
   var conversation: MatchConversation!
-  
-  var state: ChatModalState = .none {
-    didSet {
-      delegate?.didModalState()
-    }
-  }
-  
-  weak var delegate: ChatModalDelegate? {
-    didSet {
-      state = .conversationLoaded
-    }
-  }
-  
+
   required init(conversation: MatchConversation) {
     self.conversation = conversation
   }

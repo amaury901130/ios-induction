@@ -1305,8 +1305,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="happyFaceLeft" destination="0Ed-mX-iuT" id="Onm-dc-0h4"/>
-                        <outlet property="happyFaceRight" destination="VbU-6u-wIt" id="3gx-Yr-TnI"/>
+                        <outlet property="happyFaceLeftImage" destination="0Ed-mX-iuT" id="Onm-dc-0h4"/>
+                        <outlet property="happyFaceRightImage" destination="VbU-6u-wIt" id="3gx-Yr-TnI"/>
                         <outlet property="leftBubbleView" destination="6J4-QS-ZFq" id="IFg-Mp-da3"/>
                         <outlet property="rightBubbleView" destination="hqR-AJ-VVR" id="MiR-xk-Afh"/>
                         <outlet property="userAvatarImage" destination="hEy-89-H9N" id="AAE-3S-wio"/>

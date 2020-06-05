@@ -24,7 +24,7 @@ protocol CreateTargetDelegate: class {
 class CreateTargetViewModel {
 
   let areaUnit = "m"
-  var targetCreatedResponse: CreateTargetResponse?
+  var targetCreatedResponse: TargetMatch?
   
   private var targetLocation: CLLocation? {
     LocationManager.shared.currentLocation

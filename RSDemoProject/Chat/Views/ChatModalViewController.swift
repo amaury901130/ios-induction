@@ -17,12 +17,13 @@ class ChatModalViewController: UIViewController {
   @IBOutlet weak var userAvatarImage: UIImageView!
   @IBOutlet weak var rightBubbleView: UIView!
   @IBOutlet weak var leftBubbleView: UIView!
-  @IBOutlet weak var happyFaceRight: UIImageView!
-  @IBOutlet weak var happyFaceLeft: UIImageView!
+  @IBOutlet weak var happyFaceRightImage: UIImageView!
+  @IBOutlet weak var happyFaceLeftImage: UIImageView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     viewModel.delegate = self
+    setUpView()
   }
   
   func setUpView() {
@@ -30,8 +31,8 @@ class ChatModalViewController: UIViewController {
     rightBubbleView.layer.compositingFilter = "multiplyBlendMode"
     leftBubbleView.setRoundBorders(bubbleBorderRadius)
     
-    happyFaceLeft.image = R.image.happyFace()
-    happyFaceRight.image = R.image.happyFace()
+    happyFaceLeftImage.image = R.image.happyFace()
+    happyFaceRightImage.image = R.image.happyFace()
     
     userAvatarImage.setRoundBorders(avatarBorderRadius)
     userAvatarImage.kf.setImage(
@@ -43,16 +44,5 @@ class ChatModalViewController: UIViewController {
   
   @IBAction func skip(_ sender: Any) {
     dismiss(animated: true)
-  }
-}
-
-extension ChatModalViewController: ChatModalDelegate {
-  func didModalState() {
-    switch viewModel.state {
-    case .conversationLoaded:
-      setUpView()
-    case .none:
-      break
-    }
   }
 }

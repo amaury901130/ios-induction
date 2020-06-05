@@ -66,7 +66,7 @@ class MainViewModel {
     }
   }
   
-  var newTargetResponse: CreateTargetResponse? {
+  var newTargetResponse: TargetMatch? {
     didSet {
       createdTarget = newTargetResponse?.target
       matchConversation = newTargetResponse?.matchedConversation

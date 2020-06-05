@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CreateTargetResponse: NSObject, Codable {
+class TargetMatch: NSObject, Codable {
   var target: Target
   var matchedConversation: MatchConversation?
   var matchedUser: User?
