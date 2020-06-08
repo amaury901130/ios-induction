@@ -18,7 +18,7 @@ class TargetService: BaseApiService<TargetResource> {
     topic: Topic,
     latitude: Double,
     longitude: Double,
-    success: @escaping (_ response: CreateTargetResponse) -> Void,
+    success: @escaping (_ response: TargetMatch) -> Void,
     failure: @escaping (_ error: Error) -> Void
   ) {
     request(
@@ -29,7 +29,7 @@ class TargetService: BaseApiService<TargetResource> {
         latitude: latitude,
         longitude: longitude
       ),
-      onSuccess: { (result: CreateTargetResponse, _) -> Void in
+      onSuccess: { (result: TargetMatch, _) -> Void in
         success(result)
     },
       onFailure: { error, _ in

@@ -24,7 +24,7 @@ protocol CreateTargetDelegate: class {
 class CreateTargetViewModel {
 
   let areaUnit = "m"
-  var targetCreatedResponse: CreateTargetResponse?
+  var targetMatch: TargetMatch?
   
   private var targetLocation: CLLocation? {
     LocationManager.shared.currentLocation
@@ -78,7 +78,7 @@ class CreateTargetViewModel {
     guard isTargetValid(), let topic = selectedTopic else {
       return
     }
-    
+
     TargetService.shared.createTarget(
       title: targetTitle,
       area: targetArea,
@@ -87,7 +87,7 @@ class CreateTargetViewModel {
       longitude: LocationManager.shared.currentLocation.coordinate.longitude,
       success: { [weak self] response in
         self?.networkState = .idle
-        self?.targetCreatedResponse = response
+        self?.targetMatch = response
         self?.state = .targetCreated
       },
       failure: { [weak self] error in

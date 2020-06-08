@@ -13,6 +13,7 @@ enum MainViewModelState {
   case locationUpdated
   case targetsLoaded
   case targetSelected
+  case newMatchCreated
 }
 
 protocol MainViewModelDelegate: class {
@@ -26,6 +27,12 @@ class MainViewModel {
   private var page = 1
   var defaultMapRadius = 200
   var userTargets: [Target] = []
+  
+  var createdTarget: Target? {
+    didSet {
+      loadTargets()
+    }
+  }
   
   var userAvatar: String? {
     UserDataManager.currentUser?.avatar?.thumb?.url
@@ -58,6 +65,17 @@ class MainViewModel {
       delegate?.didUpdateMainState()
     }
   }
+  
+  var newTargetMatch: TargetMatch? {
+    didSet {
+      createdTarget = newTargetMatch?.target
+      matchConversation = newTargetMatch?.matchedConversation
+      matchConversation?.user = newTargetMatch?.matchedUser
+      state = .newMatchCreated
+    }
+  }
+  
+  var matchConversation: MatchConversation?
   
   private func loadTopics() {
     networkState = .loading

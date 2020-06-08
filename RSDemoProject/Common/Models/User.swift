@@ -12,9 +12,9 @@ struct User: Codable {
   var id: Int
   var username: String?
   var email: String?
-  var provider: String
-  var uid: String
-  var allowPasswordChange = false
+  var provider: String?
+  var uid: String?
+  var allowPasswordChange: Bool? = false
   var firstName: String
   var lastName: String
   var gender: String?

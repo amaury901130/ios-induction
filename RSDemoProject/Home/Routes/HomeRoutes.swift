@@ -11,7 +11,7 @@ import UIKit
 
 enum HomeRoutes: Route {
   case main
-  case createTarget
+  case createTarget(_ delegate: TargetCreationDelegate?)
   case topicSelection(_ delegate: SelectTopicDelegate?)
   case deleteTarget(_ target: Target)
   case deleteTargetConfirmation(_ target: Target, delegate: DeleteConfirmationDelegate)
@@ -24,11 +24,12 @@ enum HomeRoutes: Route {
       }
       main.viewModel = MainViewModel()
       return main
-    case .createTarget:
+    case .createTarget(let delegate):
       guard let createTarget = R.storyboard.main.createTargetViewController() else {
         return UIViewController()
       }
       createTarget.viewModel = CreateTargetViewModel()
+      createTarget.delegate = delegate
       return createTarget
     case .topicSelection(let delegate):
       guard let topicSelection = R.storyboard.main.topicListViewController() else {
