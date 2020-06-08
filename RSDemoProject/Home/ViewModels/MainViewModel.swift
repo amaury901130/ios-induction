@@ -66,11 +66,11 @@ class MainViewModel {
     }
   }
   
-  var newTargetResponse: TargetMatch? {
+  var newTargetMatch: TargetMatch? {
     didSet {
-      createdTarget = newTargetResponse?.target
-      matchConversation = newTargetResponse?.matchedConversation
-      matchConversation?.user = newTargetResponse?.matchedUser
+      createdTarget = newTargetMatch?.target
+      matchConversation = newTargetMatch?.matchedConversation
+      matchConversation?.user = newTargetMatch?.matchedUser
       state = .newMatchCreated
     }
   }

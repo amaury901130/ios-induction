@@ -22,7 +22,6 @@ class ChatModalViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    viewModel.delegate = self
     setUpView()
   }
   

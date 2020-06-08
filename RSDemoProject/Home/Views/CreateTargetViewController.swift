@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TargetCreationDelegate: class {
-  func didCreateTarget(targetResponse: TargetMatch)
+  func didCreateTarget(targetMatch: TargetMatch)
 }
 
 class CreateTargetViewController: UIViewController {
@@ -155,8 +155,8 @@ extension CreateTargetViewController: CreateTargetDelegate {
   func didUpdateCreateTargetState() {
     switch viewModel.state {
     case .targetCreated:
-      if let newTargetResponse = viewModel.targetCreatedResponse {
-        delegate?.didCreateTarget(targetResponse: newTargetResponse)
+      if let newTargetResponse = viewModel.targetMatch {
+        delegate?.didCreateTarget(targetMatch: newTargetResponse)
       }
     case .didSelectTopic:
       updateTopicButton()

@@ -123,8 +123,8 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: TargetCreationDelegate {
-  func didCreateTarget(targetResponse: TargetMatch) {
-    viewModel.newTargetResponse = targetResponse
+  func didCreateTarget(targetMatch: TargetMatch) {
+    viewModel.newTargetMatch = targetMatch
   }
 }
 
