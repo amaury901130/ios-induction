@@ -127,14 +127,9 @@ class MainViewController: UIViewController {
     }
   }
   
-  func showUnreadMessages() {
-    guard viewModel.unreadMessages > 0 else {
-      unreadMessagesLabel.isHidden = true
-      return
-    }
-
-    unreadMessagesLabel.text = String(viewModel.unreadMessages)
-    unreadMessagesLabel.isHidden = false
+  func toogleUnreadMessages() {
+    unreadMessagesLabel.isHidden = viewModel.unreadMessages <= 0
+    unreadMessagesLabel.text = "\(viewModel.unreadMessages)"
   }
 }
 
@@ -251,7 +246,7 @@ extension MainViewController: MainViewModelDelegate {
         withTransition: .modal(presentationStyle: .overCurrentContext)
       )
     case .conversationsCountLoaded:
-      showUnreadMessages()
+      toogleUnreadMessages()
     case .none:
       break
     }
