@@ -14,7 +14,7 @@ enum MainViewModelState {
   case targetsLoaded
   case targetSelected
   case newMatchCreated
-  case conversationsLoaded
+  case conversationsCountLoaded
 }
 
 protocol MainViewModelDelegate: class {
@@ -28,7 +28,6 @@ class MainViewModel {
   private var page = 1
   var defaultMapRadius = 200
   var userTargets: [Target] = []
-  var conversations: [Conversation] = []
   
   var createdTarget: Target? {
     didSet {
@@ -37,7 +36,7 @@ class MainViewModel {
   }
   
   var unreadMessages: Int {
-    conversations.reduce(0) { $0 + $1.unreadMessages }
+    UserDataManager.unreadConversations
   }
   
   var userAvatar: String? {
@@ -99,16 +98,11 @@ class MainViewModel {
     )
   }
   
-  private func proccessConversations(_ conversations: [Conversation]) {
-    self.conversations = conversations
-    state = .conversationsLoaded
-  }
-  
   private func loadConversations() {
     ConversationService.shared.getConversations(
-      { [weak self] conversations in
+      { [weak self] _ in
         self?.networkState = .idle
-        self?.proccessConversations(conversations)
+        self?.state = .conversationsCountLoaded
       }, failure: { [weak self] error in
         self?.networkState = .error(error.localizedDescription)
     })

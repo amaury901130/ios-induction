@@ -28,6 +28,11 @@ class UserDataManager: NSObject {
     }
   }
   
+  static var unreadConversations: Int {
+    get { return UserDefaults.standard.integer(forKey: "user_unread_conversations") }
+    set { UserDefaults.standard.set(newValue, forKey: "user_unread_conversations") }
+  }
+  
   class func deleteUser() {
     UserDefaults.standard.removeObject(forKey: "RSDemoProject-user")
   }

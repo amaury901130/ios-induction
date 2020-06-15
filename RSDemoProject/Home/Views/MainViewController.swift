@@ -129,10 +129,10 @@ class MainViewController: UIViewController {
   
   func showUnreadMessages() {
     guard viewModel.unreadMessages > 0 else {
-      unreadMessagesLabel.isHidden = false
+      unreadMessagesLabel.isHidden = true
       return
     }
-    
+
     unreadMessagesLabel.text = String(viewModel.unreadMessages)
     unreadMessagesLabel.isHidden = false
   }
@@ -250,7 +250,7 @@ extension MainViewController: MainViewModelDelegate {
         ChatRoutes.chatModal(conversation: matchConversation),
         withTransition: .modal(presentationStyle: .overCurrentContext)
       )
-    case .conversationsLoaded:
+    case .conversationsCountLoaded:
       showUnreadMessages()
     case .none:
       break
