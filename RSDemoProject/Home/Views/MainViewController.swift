@@ -12,7 +12,7 @@ import MapKit
 class MainViewController: UIViewController {
   
   let mainTitleSpacing = 1.95
-  let conversationCount: CGFloat = 6
+  let conversationCountRadius: CGFloat = 6
   let createTargetLabelSpacing = 1.65
   
   var viewModel: MainViewModel!
@@ -62,7 +62,7 @@ class MainViewController: UIViewController {
       profileButton.kf.setImage(with: URL(string: avatar), for: .normal)
     }
     
-    unreadMessagesLabel.setRoundBorders(conversationCount)
+    unreadMessagesLabel.setRoundBorders(conversationCountRadius)
     unreadMessagesLabel.textColor = .white
     unreadMessagesLabel.isHidden = true
   }
@@ -128,12 +128,12 @@ class MainViewController: UIViewController {
   }
   
   func showUnreadMessages() {
-    guard let unreadMessages = viewModel.unreadMessages, unreadMessages > 0 else {
+    guard viewModel.unreadMessages > 0 else {
       unreadMessagesLabel.isHidden = false
       return
     }
     
-    unreadMessagesLabel.text = String(unreadMessages)
+    unreadMessagesLabel.text = String(viewModel.unreadMessages)
     unreadMessagesLabel.isHidden = false
   }
 }

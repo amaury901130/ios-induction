@@ -20,10 +20,9 @@ class ConversationService: BaseApiService<ConversationResource>  {
       for: .getConversations,
       onSuccess: { (result: [Conversation], _) -> Void in
         success(result)
-    },
-      onFailure: { error, _ in
-        failure(error)
-    })
+      },
+      onFailure: { error, _ in failure(error) }
+    )
   }
   
   func getMessages(
@@ -37,9 +36,8 @@ class ConversationService: BaseApiService<ConversationResource>  {
       at: "messages",
       onSuccess: { (result: [Message], _) -> Void in
         success(result)
-    },
-      onFailure: { error, _ in
-        failure(error)
-    })
+      },
+      onFailure: { error, _ in failure(error) }
+    )
   }
 }

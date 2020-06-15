@@ -15,12 +15,12 @@ enum ConversationResource: TargetType {
   case getMessages(conversationId: Int, page: Int = 1)
   
   var path: String {
-    let conversatioBaseUrl = "match_conversations"
+    let conversationBaseUrl = "match_conversations"
     switch self {
     case .getConversations:
-      return conversatioBaseUrl
+      return conversationBaseUrl
     case .getMessages(let conversationId, let page):
-      return "\(conversatioBaseUrl)/\(conversationId)/messages?page=\(page)"
+      return "\(conversationBaseUrl)/\(conversationId)/messages?page=\(page)"
     }
   }
   

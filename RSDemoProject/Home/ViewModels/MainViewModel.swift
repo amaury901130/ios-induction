@@ -28,7 +28,7 @@ class MainViewModel {
   private var page = 1
   var defaultMapRadius = 200
   var userTargets: [Target] = []
-  var conversations: [Conversation]?
+  var conversations: [Conversation] = []
   
   var createdTarget: Target? {
     didSet {
@@ -36,8 +36,8 @@ class MainViewModel {
     }
   }
   
-  var unreadMessages: Int? {
-    conversations?.reduce(0) { $0 + $1.unreadMessages }
+  var unreadMessages: Int {
+    conversations.reduce(0) { $0 + $1.unreadMessages }
   }
   
   var userAvatar: String? {
