@@ -14,6 +14,7 @@ enum MainViewModelState {
   case targetsLoaded
   case targetSelected
   case newMatchCreated
+  case conversationsCountLoaded
 }
 
 protocol MainViewModelDelegate: class {
@@ -32,6 +33,10 @@ class MainViewModel {
     didSet {
       loadTargets()
     }
+  }
+  
+  var unreadMessages: Int {
+    UserDataManager.unreadConversations
   }
   
   var userAvatar: String? {
@@ -93,6 +98,16 @@ class MainViewModel {
     )
   }
   
+  private func loadConversations() {
+    ConversationService.shared.getConversations(
+      { [weak self] _ in
+        self?.networkState = .idle
+        self?.state = .conversationsCountLoaded
+      }, failure: { [weak self] error in
+        self?.networkState = .error(error.localizedDescription)
+    })
+  }
+  
   private func loadTargets() {
     networkState = .loading
     TargetService.shared.getTargets(
@@ -100,7 +115,7 @@ class MainViewModel {
         self?.page += 1
         self?.userTargets = targets
         self?.state = .targetsLoaded
-        self?.networkState = .idle
+        self?.loadConversations()
       },
       failure: { [weak self] error in
         self?.networkState = .error(error.localizedDescription)

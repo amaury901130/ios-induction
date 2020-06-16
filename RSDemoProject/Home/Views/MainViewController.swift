@@ -12,6 +12,7 @@ import MapKit
 class MainViewController: UIViewController {
   
   let mainTitleSpacing = 1.95
+  let conversationCountRadius: CGFloat = 6
   let createTargetLabelSpacing = 1.65
   
   var viewModel: MainViewModel!
@@ -21,6 +22,7 @@ class MainViewController: UIViewController {
   @IBOutlet weak var createTargetLabel: UILabel!
   @IBOutlet weak var createNewTarget: UIView!
   @IBOutlet weak var profileButton: UIButton!
+  @IBOutlet weak var unreadMessagesLabel: UILabel!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -59,6 +61,10 @@ class MainViewController: UIViewController {
     if let avatar = viewModel.userAvatar {
       profileButton.kf.setImage(with: URL(string: avatar), for: .normal)
     }
+    
+    unreadMessagesLabel.setRoundBorders(conversationCountRadius)
+    unreadMessagesLabel.textColor = .white
+    unreadMessagesLabel.isHidden = true
   }
   
   @objc private func centerMap(gestureRecognizer: UIGestureRecognizer) {
@@ -119,6 +125,11 @@ class MainViewController: UIViewController {
         )
       )
     }
+  }
+  
+  func toogleUnreadMessages() {
+    unreadMessagesLabel.isHidden = viewModel.unreadMessages <= 0
+    unreadMessagesLabel.text = "\(viewModel.unreadMessages)"
   }
 }
 
@@ -234,6 +245,8 @@ extension MainViewController: MainViewModelDelegate {
         ChatRoutes.chatModal(conversation: matchConversation),
         withTransition: .modal(presentationStyle: .overCurrentContext)
       )
+    case .conversationsCountLoaded:
+      toogleUnreadMessages()
     case .none:
       break
     }

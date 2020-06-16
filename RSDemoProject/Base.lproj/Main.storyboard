@@ -239,6 +239,17 @@
                                         </constraints>
                                         <state key="normal" image="menuChat"/>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FqO-9w-gU6">
+                                        <rect key="frame" x="382" y="8" width="12" height="12"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.77647058820000003" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="12" id="FNd-mj-c8i"/>
+                                            <constraint firstAttribute="width" constant="12" id="ROD-w8-iDd"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="8"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -249,6 +260,8 @@
                                     <constraint firstItem="rfc-0H-buH" firstAttribute="centerY" secondItem="UEo-WD-D7N" secondAttribute="centerY" id="fmO-ZX-PDv"/>
                                     <constraint firstItem="0JM-AU-gFo" firstAttribute="centerY" secondItem="UEo-WD-D7N" secondAttribute="centerY" id="h3P-Uh-S6W"/>
                                     <constraint firstAttribute="height" constant="40" id="m1D-y0-pNA"/>
+                                    <constraint firstItem="Yll-jo-73X" firstAttribute="top" secondItem="FqO-9w-gU6" secondAttribute="bottom" constant="-8" id="n8s-2b-XPH"/>
+                                    <constraint firstItem="Yll-jo-73X" firstAttribute="leading" secondItem="FqO-9w-gU6" secondAttribute="trailing" constant="-8" id="tfX-QB-vwm"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -273,6 +286,7 @@
                         <outlet property="mainTitle" destination="0JM-AU-gFo" id="STA-3x-NdL"/>
                         <outlet property="mapView" destination="AJc-DD-T0z" id="Oc4-Jh-ZOo"/>
                         <outlet property="profileButton" destination="rfc-0H-buH" id="w2l-2U-VbZ"/>
+                        <outlet property="unreadMessagesLabel" destination="FqO-9w-gU6" id="EMt-tl-1Ba"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OC1-lK-F6L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

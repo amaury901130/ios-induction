@@ -52,6 +52,10 @@
 		466717AD246B28C800007845 /* CreateTargetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466717AC246B28C800007845 /* CreateTargetViewModel.swift */; };
 		466717AF246B3F1700007845 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466717AE246B3F1700007845 /* Topic.swift */; };
 		466717B1246C4DE500007845 /* ImageAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466717B0246C4DE500007845 /* ImageAnnotationView.swift */; };
+		4668D2F124915D290002964A /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668D2F024915D290002964A /* Conversation.swift */; };
+		4668D2F324915DFE0002964A /* ConversationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668D2F224915DFE0002964A /* ConversationService.swift */; };
+		4668D2F524915E110002964A /* ConversationResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668D2F424915E110002964A /* ConversationResource.swift */; };
+		4668D2F72491625D0002964A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668D2F62491625D0002964A /* Message.swift */; };
 		46DFE60924730188007ADA5C /* TargetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60824730188007ADA5C /* TargetService.swift */; };
 		46DFE60B247301B9007ADA5C /* TargetResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60A247301B9007ADA5C /* TargetResource.swift */; };
 		46DFE60F2473073C007ADA5C /* TargetMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60E2473073C007ADA5C /* TargetMatch.swift */; };
@@ -167,6 +171,10 @@
 		466717AC246B28C800007845 /* CreateTargetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTargetViewModel.swift; sourceTree = "<group>"; };
 		466717AE246B3F1700007845 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		466717B0246C4DE500007845 /* ImageAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAnnotationView.swift; sourceTree = "<group>"; };
+		4668D2F024915D290002964A /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		4668D2F224915DFE0002964A /* ConversationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationService.swift; sourceTree = "<group>"; };
+		4668D2F424915E110002964A /* ConversationResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationResource.swift; sourceTree = "<group>"; };
+		4668D2F62491625D0002964A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		46DFE60824730188007ADA5C /* TargetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetService.swift; sourceTree = "<group>"; };
 		46DFE60A247301B9007ADA5C /* TargetResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetResource.swift; sourceTree = "<group>"; };
 		46DFE60E2473073C007ADA5C /* TargetMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetMatch.swift; sourceTree = "<group>"; };
@@ -573,6 +581,8 @@
 				466717AE246B3F1700007845 /* Topic.swift */,
 				46DFE61224747DC2007ADA5C /* Target.swift */,
 				46139E4A248993A100B97968 /* MatchConversation.swift */,
+				4668D2F024915D290002964A /* Conversation.swift */,
+				4668D2F62491625D0002964A /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -595,6 +605,8 @@
 				4607C5D4246DB7C200B1207F /* TopicResource.swift */,
 				46DFE60824730188007ADA5C /* TargetService.swift */,
 				46DFE60A247301B9007ADA5C /* TargetResource.swift */,
+				4668D2F224915DFE0002964A /* ConversationService.swift */,
+				4668D2F424915E110002964A /* ConversationResource.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -851,7 +863,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -919,6 +931,7 @@
 				9B8D307020AB47E90050697F /* JSONEncodingExtension.swift in Sources */,
 				4607C5D5246DB7C200B1207F /* TopicResource.swift in Sources */,
 				46139E412481A47300B97968 /* EditProfileViewModel.swift in Sources */,
+				4668D2F524915E110002964A /* ConversationResource.swift in Sources */,
 				FE4D636422B2CDF700685161 /* ViewModelState.swift in Sources */,
 				46DFE61324747DC2007ADA5C /* Target.swift in Sources */,
 				E81171921DE5EFB7003D3DF5 /* UIViewControllerExtension.swift in Sources */,
@@ -926,6 +939,7 @@
 				9B3AA3991ED35007005A4D26 /* SignInViewController.swift in Sources */,
 				46139E5124899CDA00B97968 /* ChatRoutes.swift in Sources */,
 				4607C5CE246D91DC00B1207F /* TopicListViewModel.swift in Sources */,
+				4668D2F324915DFE0002964A /* ConversationService.swift in Sources */,
 				E8FBB1BF1DD21A32000D6740 /* Session.swift in Sources */,
 				460F98552451E37E001151F6 /* ValidationPatterns.swift in Sources */,
 				0A6990351F9F82A300F4BAC7 /* UIApplicationExtension.swift in Sources */,
@@ -945,6 +959,8 @@
 				466717AB246B03CB00007845 /* PinAnnotation.swift in Sources */,
 				9B5EAB4A232C146D00B9CE3C /* UITextFieldExtension.swift in Sources */,
 				4607C5DA246DC4F800B1207F /* TopicResponse.swift in Sources */,
+				4668D2F72491625D0002964A /* Message.swift in Sources */,
+				4668D2F124915D290002964A /* Conversation.swift in Sources */,
 				9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */,
 				46DFE61924784989007ADA5C /* DeleteTargetViewController.swift in Sources */,
 				FEE8080C22A6AE9900743D1B /* TargetType+Base.swift in Sources */,
