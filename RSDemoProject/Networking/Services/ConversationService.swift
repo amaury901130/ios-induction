@@ -20,14 +20,8 @@ class ConversationService: BaseApiService<ConversationResource>  {
       for: .getConversations,
       at: "matches",
       onSuccess: { (result: [Conversation], _) -> Void in
-        var unread = 0
-
-        result.forEach { conversation in
-          unread += conversation.unreadMessages
-          conversation.save()
-        }
-
-        UserDataManager.unreadConversations = unread
+        DBManager.sharedInstance.save(result)
+        UserDataManager.unreadConversations = result.reduce(0) { $0 + $1.unreadMessages }
         success(result)
       },
       onFailure: { error, _ in failure(error) }

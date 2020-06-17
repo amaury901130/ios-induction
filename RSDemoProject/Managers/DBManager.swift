@@ -10,23 +10,14 @@ import Foundation
 import RealmSwift
 
 class DBManager {
-  var appDB: Realm?
-  
-  private static var shared: DBManager!
-  static func sharedInstance() -> DBManager {
-    if let instance = shared {
-      return instance
-    }
-    
-    shared = DBManager()
-    return shared
-  }
+  var appDB: Realm!
+  static let sharedInstance = DBManager()
   
   init() {
     appDB = try? Realm()
   }
   
-  func add(_ model: Object) {
+  func add(_ model: [Object]) {
     guard let db = appDB else {
       return
     }
@@ -36,18 +27,24 @@ class DBManager {
     
     do {
       try db.commitWrite()
-    } catch _ { }
+    } catch { }
   }
   
   func reset() {
+    guard let dbFile = Realm.Configuration.defaultConfiguration.fileURL else {
+      return
+    }
+    
     do {
-        try FileManager.default.removeItem(at: Realm.Configuration.defaultConfiguration.fileURL!)
+      try FileManager.default.removeItem(at: dbFile)
     } catch { }
   }
-}
-
-extension Object {
-  func save() {
-    DBManager.sharedInstance().add(self)
+  
+  func save(_ model: Object) {
+    add([model])
+  }
+  
+  func save(_ model: [Object]) {
+    add(model)
   }
 }
