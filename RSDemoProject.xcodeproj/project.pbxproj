@@ -56,6 +56,7 @@
 		4668D2F324915DFE0002964A /* ConversationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668D2F224915DFE0002964A /* ConversationService.swift */; };
 		4668D2F524915E110002964A /* ConversationResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668D2F424915E110002964A /* ConversationResource.swift */; };
 		4668D2F72491625D0002964A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668D2F62491625D0002964A /* Message.swift */; };
+		467D9349249924FF007FD650 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467D9348249924FF007FD650 /* DBManager.swift */; };
 		46DFE60924730188007ADA5C /* TargetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60824730188007ADA5C /* TargetService.swift */; };
 		46DFE60B247301B9007ADA5C /* TargetResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60A247301B9007ADA5C /* TargetResource.swift */; };
 		46DFE60F2473073C007ADA5C /* TargetMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60E2473073C007ADA5C /* TargetMatch.swift */; };
@@ -175,6 +176,7 @@
 		4668D2F224915DFE0002964A /* ConversationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationService.swift; sourceTree = "<group>"; };
 		4668D2F424915E110002964A /* ConversationResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationResource.swift; sourceTree = "<group>"; };
 		4668D2F62491625D0002964A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		467D9348249924FF007FD650 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		46DFE60824730188007ADA5C /* TargetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetService.swift; sourceTree = "<group>"; };
 		46DFE60A247301B9007ADA5C /* TargetResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetResource.swift; sourceTree = "<group>"; };
 		46DFE60E2473073C007ADA5C /* TargetMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetMatch.swift; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 				9B77E0741E2FB66F0020E450 /* UserDataManager.swift */,
 				462E0FF7245B066D0080A075 /* LocationManager.swift */,
 				4607C5D6246DBB5500B1207F /* TopicDataManager.swift */,
+				467D9348249924FF007FD650 /* DBManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -791,6 +794,8 @@
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RSFontSizes/RSFontSizes.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -806,6 +811,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSFontSizes.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -863,7 +870,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -976,6 +983,7 @@
 				460F98572457ADEA001151F6 /* Image.swift in Sources */,
 				FE251D0722A7FE0F00E0DE90 /* DataExtension.swift in Sources */,
 				46DFE60B247301B9007ADA5C /* TargetResource.swift in Sources */,
+				467D9349249924FF007FD650 /* DBManager.swift in Sources */,
 				FE583F1022AFC9FA00EF3CDA /* AnalyticsEvent.swift in Sources */,
 				46139E492488302300B97968 /* DeleteTargetConfirmationViewModel.swift in Sources */,
 				FE4D635E22B2CAFF00685161 /* AppNavigator.swift in Sources */,

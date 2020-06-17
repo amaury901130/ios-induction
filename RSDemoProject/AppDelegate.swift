@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import Firebase
 import IQKeyboardManagerSwift
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

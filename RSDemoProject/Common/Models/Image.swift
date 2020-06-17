@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Image: Codable {
-  var url: String?
-  var normal: ImageVersion?
-  var thumb: ImageVersion?
-  var normalUrl: String?
-  var smallUrl: String?
-  var originalUrl: String?
+class Image: Object, Codable {
+  @objc dynamic var url: String?
+  @objc dynamic var normal: ImageVersion?
+  @objc dynamic var thumb: ImageVersion?
+  @objc dynamic var normalUrl: String?
+  @objc dynamic var smallUrl: String?
+  @objc dynamic var originalUrl: String?
   
   private enum CodingKeys: String, CodingKey {
     case url
@@ -26,8 +27,8 @@ struct Image: Codable {
   }
 }
 
-struct ImageVersion: Codable {
-  var url: String?
+class ImageVersion: Object, Codable {
+  @objc dynamic var url: String?
   
   private enum CodingKeys: String, CodingKey {
      case url
