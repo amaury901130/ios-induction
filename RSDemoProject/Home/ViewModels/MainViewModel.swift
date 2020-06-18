@@ -56,7 +56,6 @@ class MainViewModel {
   weak var delegate: MainViewModelDelegate? {
     didSet {
       loadTopics()
-      getUser()
     }
   }
   
@@ -107,22 +106,6 @@ class MainViewModel {
       }, failure: { [weak self] error in
         self?.networkState = .error(error.localizedDescription)
     })
-  }
-  
-  private func getUser() {
-    guard let userId = UserDataManager.currentUser?.id else {
-      return
-    }
-    
-    UserService.sharedInstance.getMyProfile(
-      userId: userId,
-      success: { user in
-        UserDataManager.currentUser = user
-      },
-      failure: { [weak self] error in
-        self?.networkState = .error(error.localizedDescription)
-      }
-    )
   }
 
   private func loadTargets() {

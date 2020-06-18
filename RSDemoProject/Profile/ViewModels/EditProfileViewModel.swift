@@ -9,6 +9,7 @@
 import Foundation
 
 enum EditProfileState {
+  case profileLoaded
   case profileUpdated
   case profileLoggedOut
 }
@@ -34,9 +35,10 @@ class EditProfileViewModel {
         state = .profileLoggedOut
         return
       }
-
+      
       userName = user.username
       userEmail = user.email
+      getUser()
     }
   }
   
@@ -65,6 +67,27 @@ class EditProfileViewModel {
     }, failure: { [weak self] error in
       self?.networkState = .error(error.localizedDescription)
     })
+  }
+  
+  private func getUser() {
+    guard let userId = UserDataManager.currentUser?.id else {
+      return
+    }
+    
+    networkState = .loading
+    UserService.sharedInstance.getMyProfile(
+      userId: userId,
+      success: { [weak self] user in
+        UserDataManager.currentUser = user
+        self?.userName = user.username
+        self?.userEmail = user.email
+        self?.state = .profileLoaded
+        self?.networkState = .idle
+      },
+      failure: { [weak self] error in
+        self?.networkState = .error(error.localizedDescription)
+      }
+    )
   }
   
   func updateProfile() {
