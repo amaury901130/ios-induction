@@ -13,7 +13,7 @@ enum UserResource: TargetType {
   
   case login(String, String)
   case signup(String, String, String)
-  case profile
+  case profile(Int)
   case fbLogin(String)
   case logout
   case update(Int, String, String, Data?)
@@ -21,14 +21,13 @@ enum UserResource: TargetType {
   
   var path: String {
     let authBasePath = "/users"
-    let userBasePath = "/user"
     switch self {
     case .login:
       return "\(authBasePath)/sign_in"
     case .signup:
       return authBasePath
-    case .profile:
-      return "\(userBasePath)/profile"
+    case .profile(let id):
+      return "\(authBasePath)/\(id)"
     case .fbLogin:
       return "\(authBasePath)/facebook"
     case .logout:

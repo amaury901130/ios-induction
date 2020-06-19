@@ -7,19 +7,20 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct User: Codable {
-  var id: Int
-  var username: String?
-  var email: String?
-  var provider: String?
-  var uid: String?
-  var allowPasswordChange: Bool? = false
-  var firstName: String
-  var lastName: String
-  var gender: String?
-  var pushToken: String?
-  var avatar: Image?
+class User: Object, Codable {
+  @objc dynamic var id: Int
+  @objc dynamic var username: String?
+  @objc dynamic var email: String?
+  @objc dynamic var provider: String?
+  @objc dynamic var uid: String?
+  @objc dynamic var firstName: String?
+  @objc dynamic var lastName: String?
+  @objc dynamic var fullName: String?
+  @objc dynamic var gender: String?
+  @objc dynamic var pushToken: String?
+  @objc dynamic var avatar: Image?
 
   private enum CodingKeys: String, CodingKey {
     case id
@@ -31,7 +32,7 @@ struct User: Codable {
     case gender
     case email
     case avatar
-    case allowPasswordChange = "allow_password_change"
+    case fullName = "full_name"
     case pushToken = "push_token"
   }
 }

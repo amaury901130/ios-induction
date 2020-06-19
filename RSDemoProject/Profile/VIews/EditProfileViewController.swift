@@ -25,6 +25,7 @@ class EditProfileViewController: UIViewController {
     super.viewDidLoad()
     
     viewModel.delegate = self
+    viewModel.loadUser()
     setUpView()
     addListeners()
   }

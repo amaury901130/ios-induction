@@ -18,8 +18,9 @@ class ConversationService: BaseApiService<ConversationResource>  {
   ) {
     request(
       for: .getConversations,
+      at: "matches",
       onSuccess: { (result: [Conversation], _) -> Void in
-        //TODO save conversations in a db
+        DBManager.sharedInstance.save(result)
         UserDataManager.unreadConversations = result.reduce(0) { $0 + $1.unreadMessages }
         success(result)
       },

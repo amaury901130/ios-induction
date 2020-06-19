@@ -107,7 +107,7 @@ class MainViewModel {
         self?.networkState = .error(error.localizedDescription)
     })
   }
-  
+
   private func loadTargets() {
     networkState = .loading
     TargetService.shared.getTargets(

@@ -59,10 +59,11 @@ class UserService: BaseApiService<UserResource> {
   }
   
   func getMyProfile(
-    _ success: @escaping (_ user: User) -> Void,
+    userId: Int,
+    success: @escaping (_ user: User) -> Void,
     failure: @escaping (_ error: Error) -> Void
   ) {
-    request(for: .profile,
+    request(for: .profile(userId),
             at: "user",
             onSuccess: { (result: User, _) -> Void in
               success(result)

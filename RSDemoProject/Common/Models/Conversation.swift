@@ -7,19 +7,20 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Conversation: Codable {
-  var id: Int
-  var topicIcon: String
-  var lastMessage: String
-  var unreadMessages: Int
-  var user: User
+class Conversation: Object, Codable {
+  @objc dynamic var id: Int
+  @objc dynamic var topicIcon: String?
+  @objc dynamic var lastMessage: String?
+  @objc dynamic var unreadMessages: Int = 0
+  @objc dynamic var user: User?
   
   private enum CodingKeys: String, CodingKey {
     case id = "match_id"
     case topicIcon = "topic_icon"
     case lastMessage = "last_message"
-    case unreadMessages = "unread_message"
+    case unreadMessages = "unread_messages"
     case user
   }
 }
