@@ -38,7 +38,6 @@ class EditProfileViewModel {
       
       userName = user.username
       userEmail = user.email
-      getUser()
     }
   }
   
@@ -69,7 +68,7 @@ class EditProfileViewModel {
     })
   }
   
-  private func getUser() {
+  private func loadUser() {
     guard let userId = UserDataManager.currentUser?.id else {
       return
     }

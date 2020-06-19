@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 class DBManager {
-  var appDB: Realm?
+  var appDB: Realm!
   static let sharedInstance = DBManager()
   
   init() {
