@@ -68,7 +68,7 @@ class EditProfileViewModel {
     })
   }
   
-  private func loadUser() {
+  func loadUser() {
     guard let userId = UserDataManager.currentUser?.id else {
       return
     }

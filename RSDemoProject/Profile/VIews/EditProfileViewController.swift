@@ -146,6 +146,8 @@ extension EditProfileViewController: EditProfileViewModelDelegate {
       showMessage(title: "Success", message: "You profile has been updated")
     case .profileLoggedOut:
       logOut()
+    case .profileLoaded:
+      setUpView()
     case .none:
       break
     }

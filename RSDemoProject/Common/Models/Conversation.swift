@@ -11,7 +11,7 @@ import RealmSwift
 
 class Conversation: Object, Codable {
   @objc dynamic var id: Int
-  @objc dynamic var topicIcon: String?
+  @objc dynamic var topicIcon: String
   @objc dynamic var lastMessage: String?
   @objc dynamic var unreadMessages: Int = 0
   @objc dynamic var user: User?

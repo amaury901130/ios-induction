@@ -41,9 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootVC = AppNavigator.shared.rootViewController
     window?.rootViewController = rootVC
 
+    DBManager.sharedInstance.reset()
+
     return true
   }
-  
+
   func application(
     _ application: UIApplication, open url: URL,
     sourceApplication: String?, annotation: Any
@@ -55,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       annotation: annotation
     )
   }
-
+  
   func application(
         _ app: UIApplication,
         open url: URL,

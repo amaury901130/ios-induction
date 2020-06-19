@@ -16,7 +16,7 @@ class DBManager {
   init() {
     appDB = try? Realm()
   }
-  
+
   func add(_ model: [Object]) {
     guard let db = appDB else {
       return

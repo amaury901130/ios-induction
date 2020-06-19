@@ -44,6 +44,10 @@ class MainViewController: UIViewController {
     ))
   }
 
+  @IBAction func openConversations(_ sender: Any) {
+    navigateTo(ChatRoutes.conversations)
+  }
+  
   @IBAction func editProfile(_ sender: Any) {
     navigateTo(ProfileRoutes.editProfile, withTransition: .pushFromLeft)
   }
