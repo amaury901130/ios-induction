@@ -17,19 +17,22 @@ class ConversationTableViewCell: UITableViewCell {
   @IBOutlet weak var topicIcon: UIImageView!
   @IBOutlet weak var unreadMessagesLabel: UILabel!
   
-  var conversation: Conversation! {
+  var viewModel: ConversationViewModel!
+  
+  var row: Int! {
     didSet {
-      userNameLabel.text = conversation.user?.fullName
+      userNameLabel.text = viewModel?.getUserFullName(at: row)
       userAvatar.kf.setImage(
-        with: URL(string: conversation.user?.avatar?.smallUrl ?? ""),
+        with: viewModel?.getUserAvatar(at: row),
         placeholder: R.image.avatarPlaceholder()
       )
-      conversationLastMessageLabel.text = conversation.lastMessage ?? ""
-      topicIcon.kf.setImage(with: URL(string: conversation.topicIcon))
+      conversationLastMessageLabel.text = viewModel.latestMessage(at: row)
+      topicIcon.kf.setImage(with: viewModel.getTopicIcon(at: row))
       
-      unreadMessagesLabel.isHidden = conversation.unreadMessages == 0
+      let unreadMessages = viewModel.unreadMessage(at: row)
+      unreadMessagesLabel.isHidden = unreadMessages == 0
       unreadMessagesLabel.setRoundBorders(8)
-      unreadMessagesLabel.text = "\(conversation.unreadMessages)"
+      unreadMessagesLabel.text = "\(unreadMessages)"
     }
   }
 }

@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 class DBManager {
-  var appDB: Realm!
+  private var appDB: Realm!
   static let sharedInstance = DBManager()
   
   init() {
@@ -46,5 +46,9 @@ class DBManager {
   
   func save(_ model: [Object]) {
     add(model)
+  }
+  
+  func getObjects<Element: Object>(_ type: Element.Type) -> Results<Element> {
+    appDB.objects(type)
   }
 }

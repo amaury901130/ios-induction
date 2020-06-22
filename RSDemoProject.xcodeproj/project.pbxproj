@@ -71,6 +71,7 @@
 		46DFE61924784989007ADA5C /* DeleteTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE61824784989007ADA5C /* DeleteTargetViewController.swift */; };
 		46DFE61B2478499E007ADA5C /* DeleteTargetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE61A2478499E007ADA5C /* DeleteTargetViewModel.swift */; };
 		46DFE61D24786774007ADA5C /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE61C24786773007ADA5C /* EdgeInsetLabel.swift */; };
+		46F2895D24A0EA2800164F8B /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F2895C24A0EA2800164F8B /* ConversationViewModel.swift */; };
 		4AF323FC2D560D49FED0BE7F /* Pods_RSDemoProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2214860CE2390D2C2B6056B0 /* Pods_RSDemoProject.framework */; };
 		9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */; };
 		9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */; };
@@ -195,6 +196,7 @@
 		46DFE61824784989007ADA5C /* DeleteTargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTargetViewController.swift; sourceTree = "<group>"; };
 		46DFE61A2478499E007ADA5C /* DeleteTargetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTargetViewModel.swift; sourceTree = "<group>"; };
 		46DFE61C24786773007ADA5C /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
+		46F2895C24A0EA2800164F8B /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
 		492292317C9AA84D410C67C2 /* Pods-RSDemoProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSDemoProject.release.xcconfig"; path = "Target Support Files/Pods-RSDemoProject/Pods-RSDemoProject.release.xcconfig"; sourceTree = "<group>"; };
 		85FF9D270B540FD7BDB842CF /* Pods-RSDemoProject.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSDemoProject.staging.xcconfig"; path = "Target Support Files/Pods-RSDemoProject/Pods-RSDemoProject.staging.xcconfig"; sourceTree = "<group>"; };
 		9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -451,6 +453,7 @@
 			children = (
 				46139E5424899D2E00B97968 /* ChatModalViewModel.swift */,
 				467D9350249D1DEC007FD650 /* ConversationsViewModel.swift */,
+				46F2895C24A0EA2800164F8B /* ConversationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -989,6 +992,7 @@
 				FE06840322CE7ED400C6294F /* R.generated.swift in Sources */,
 				462E0FF8245B066D0080A075 /* LocationManager.swift in Sources */,
 				46139E4724882EED00B97968 /* DeleteTargetConfirmationViewController.swift in Sources */,
+				46F2895D24A0EA2800164F8B /* ConversationViewModel.swift in Sources */,
 				FEE8080A22A6ACFF00743D1B /* APIService.swift in Sources */,
 				4607C5CC246D8BE900B1207F /* TopicListViewController.swift in Sources */,
 				FE4D635C22B2C75400685161 /* Navigator.swift in Sources */,

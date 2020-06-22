@@ -51,7 +51,7 @@ extension ConversationsViewController: ConversationsViewModelDelegate {
       openChat()
     case .conversationsLoaded:
       conversationsTableView.reloadData()
-    case .none:
+    default:
       break
     }
   }
@@ -91,7 +91,9 @@ extension ConversationsViewController: UITableViewDelegate, UITableViewDataSourc
       return cell
     }
     
-    conversationCell.conversation = viewModel.getConversation(at: indexPath.row)
+    conversationCell.viewModel = viewModel
+    conversationCell.row = indexPath.row
+
     return conversationCell
   }
   

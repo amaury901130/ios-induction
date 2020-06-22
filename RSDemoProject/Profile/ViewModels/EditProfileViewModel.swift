@@ -62,6 +62,7 @@ class EditProfileViewModel {
     
     UserService.sharedInstance.logout({ [weak self] in
       self?.networkState = .idle
+      DBManager.sharedInstance.reset()
       self?.state = .profileLoggedOut
     }, failure: { [weak self] error in
       self?.networkState = .error(error.localizedDescription)

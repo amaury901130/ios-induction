@@ -41,8 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootVC = AppNavigator.shared.rootViewController
     window?.rootViewController = rootVC
 
-    DBManager.sharedInstance.reset()
-
     return true
   }
 

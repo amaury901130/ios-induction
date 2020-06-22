@@ -17,39 +17,31 @@ protocol ConversationsViewModelDelegate: class {
 enum ConversationsState {
   case conversationsLoaded
   case conversationSelected
+  case none
 }
 
-class ConversationsViewModel {
-  var conversations: Results<Conversation>!
+class ConversationsViewModel: ConversationViewModel {
   var selectedConversation: Conversation?
   weak var delegate: ConversationsViewModelDelegate?
   
-  var state: ConversationsState! {
-    didSet{
+  var state: ConversationsState = .none {
+    didSet {
       delegate?.didUpdateState()
     }
   }
   
   var networkState: ViewModelState = .idle {
-    didSet{
+    didSet {
       delegate?.didUpdateNetworkState()
     }
   }
   
-  var countConversations: Int {
-    conversations?.count ?? 0
-  }
-  
-  func getConversation(at index: Int) -> Conversation {
-    conversations[index]
-  }
-  
   func selectConversation(at index: Int) {
-    selectedConversation = conversations[index]
+    selectedConversation = conversations?[index]
     state = .conversationSelected
   }
   
   func loadConversations() {
-    conversations = DBManager.sharedInstance.appDB?.objects(Conversation.self)
+    conversations = DBManager.sharedInstance.getObjects(Conversation.self)
   }
 }
