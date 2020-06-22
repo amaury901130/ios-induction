@@ -21,7 +21,7 @@ enum ConversationsState {
 }
 
 class ConversationsViewModel {
-  var conversations: Results<Conversation>?
+  var conversations: Results<Conversation>!
   var selectedConversation: Conversation?
   weak var delegate: ConversationsViewModelDelegate?
   
@@ -47,10 +47,10 @@ class ConversationsViewModel {
   }
   
   var countConversations: Int {
-    conversations?.count ?? 0
+    conversations.count
   }
   
-  func getConversation(at index: Int) -> Conversation? {
-    conversations?[index]
+  func getConversation(at index: Int) -> Conversation {
+    conversations[index]
   }
 }
