@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 
 class User: Object, Codable {
+  
   @objc dynamic var id: Int
   @objc dynamic var username: String?
   @objc dynamic var email: String?
@@ -34,5 +35,9 @@ class User: Object, Codable {
     case avatar
     case fullName = "full_name"
     case pushToken = "push_token"
+  }
+  
+  override class func primaryKey() -> String? {
+    return "id"
   }
 }

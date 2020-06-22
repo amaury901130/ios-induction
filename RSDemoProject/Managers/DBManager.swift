@@ -14,7 +14,17 @@ class DBManager {
   static let sharedInstance = DBManager()
   
   init() {
-    appDB = try? Realm()
+    do {
+      let documentDirectory = try FileManager.default.url(
+        for: .documentDirectory,
+        in: .userDomainMask,
+        appropriateFor: nil,
+        create: false
+      )
+      
+      let url = documentDirectory.appendingPathComponent("targetDb.realm")
+      appDB = try? Realm(fileURL: url)
+    } catch { }
   }
 
   func add(_ model: [Object]) {
@@ -23,7 +33,7 @@ class DBManager {
     }
     
     db.beginWrite()
-    db.add(model)
+    db.add(model, update: .modified)
     
     do {
       try db.commitWrite()

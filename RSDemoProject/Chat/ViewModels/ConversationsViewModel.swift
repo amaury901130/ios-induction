@@ -20,7 +20,8 @@ enum ConversationsState {
   case none
 }
 
-class ConversationsViewModel: ConversationViewModel {
+class ConversationsViewModel {
+  var conversations: Results<Conversation>?
   var selectedConversation: Conversation?
   weak var delegate: ConversationsViewModelDelegate?
   
@@ -43,5 +44,13 @@ class ConversationsViewModel: ConversationViewModel {
   
   func loadConversations() {
     conversations = DBManager.sharedInstance.getObjects(Conversation.self)
+  }
+  
+  var countConversations: Int {
+    conversations?.count ?? 0
+  }
+  
+  func getConversation(at index: Int) -> Conversation? {
+    conversations?[index]
   }
 }

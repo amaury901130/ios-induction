@@ -91,9 +91,7 @@ extension ConversationsViewController: UITableViewDelegate, UITableViewDataSourc
       return cell
     }
     
-    conversationCell.viewModel = viewModel
-    conversationCell.row = indexPath.row
-
+    conversationCell.viewModel = ConversationViewModel(viewModel.getConversation(at: indexPath.row))
     return conversationCell
   }
   

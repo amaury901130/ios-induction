@@ -23,4 +23,8 @@ class Conversation: Object, Codable {
     case unreadMessages = "unread_messages"
     case user
   }
+  
+  override class func primaryKey() -> String? {
+    return "id"
+  }
 }

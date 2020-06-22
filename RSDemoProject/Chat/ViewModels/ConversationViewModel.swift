@@ -10,33 +10,29 @@ import Foundation
 import RealmSwift
 
 class ConversationViewModel {
-  var conversations: Results<Conversation>?
+  var conversation: Conversation?
   
-  var countConversations: Int {
-    conversations?.count ?? 0
+  init(_ conversation: Conversation?) {
+    self.conversation = conversation
+  }
+
+  func getUserAvatar() -> URL? {
+    URL(string: conversation?.user?.avatar?.smallUrl ?? "")
   }
   
-  func getConversation(at index: Int) -> Conversation? {
-    conversations?[index]
+  func getUserFullName() -> String {
+    conversation?.user?.fullName ?? ""
   }
   
-  func getUserAvatar(at index: Int) -> URL? {
-    URL(string: conversations?[index].user?.avatar?.smallUrl ?? "")
+  func getTopicIcon() -> URL? {
+    URL(string: conversation?.topicIcon ?? "")
   }
   
-  func getUserFullName(at index: Int) -> String {
-    conversations?[index].user?.fullName ?? ""
+  func latestMessage() -> String? {
+    conversation?.lastMessage
   }
   
-  func getTopicIcon(at index: Int) -> URL? {
-    URL(string: conversations?[index].topicIcon ?? "")
-  }
-  
-  func latestMessage(at index: Int) -> String? {
-    conversations?[index].lastMessage
-  }
-  
-  func unreadMessage(at index: Int) -> Int {
-    conversations?[index].unreadMessages ?? 0
+  func unreadMessage() -> Int {
+    conversation?.unreadMessages ?? 0
   }
 }
