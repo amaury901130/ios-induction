@@ -32,7 +32,11 @@ class ConversationsViewController: UIViewController {
   }
   
   func openChat() {
-    //TODO: open chat view controller
+    guard let selectedConversation = viewModel.selectedConversation else {
+      return
+    }
+    
+    navigateTo(ChatRoutes.chat(selectedConversation))
   }
   
   @IBAction func openUserSettings(_ sender: Any) {

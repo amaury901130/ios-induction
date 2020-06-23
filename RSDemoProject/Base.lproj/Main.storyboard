@@ -1064,6 +1064,24 @@
             </objects>
             <point key="canvasLocation" x="3047.826086956522" y="614.0625"/>
         </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="0ye-ZL-pWR">
+            <objects>
+                <viewController storyboardIdentifier="ChatViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KGn-9C-XlW" customClass="ChatViewController" customModule="RSDemoProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="txV-rh-f9b"/>
+                        <viewControllerLayoutGuide type="bottom" id="QVE-pk-bLM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VbY-tk-Geb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PAR-QF-Tju" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3841" y="615"/>
+        </scene>
         <!--Topic List View Controller-->
         <scene sceneID="RNk-Tu-eIC">
             <objects>

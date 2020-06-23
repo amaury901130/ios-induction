@@ -12,6 +12,7 @@ import UIKit
 enum ChatRoutes: Route {
   case chatModal(conversation: MatchConversation)
   case conversations
+  case chat(_ conversation: Conversation)
   
   var screen: UIViewController {
     switch self {
@@ -27,6 +28,12 @@ enum ChatRoutes: Route {
       }
       conversation.viewModel = ConversationsViewModel()
       return conversation
+    case .chat(let conversation):
+      guard let chat = R.storyboard.main.chatViewController() else {
+        return UIViewController()
+      }
+      chat.viewModel = ChatViewModel(conversation)
+      return chat
     }
   }
 }
