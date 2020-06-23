@@ -31,6 +31,6 @@ class ImageVersion: Object, Codable {
   @objc dynamic var url: String?
   
   private enum CodingKeys: String, CodingKey {
-     case url
-   }
+    case url
+  }
 }

@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     return true
   }
-  
+
   func application(
     _ application: UIApplication, open url: URL,
     sourceApplication: String?, annotation: Any
@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       annotation: annotation
     )
   }
-
+  
   func application(
         _ app: UIApplication,
         open url: URL,

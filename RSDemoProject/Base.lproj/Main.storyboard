@@ -238,6 +238,9 @@
                                             <constraint firstAttribute="height" constant="16" id="rsM-30-1D3"/>
                                         </constraints>
                                         <state key="normal" image="menuChat"/>
+                                        <connections>
+                                            <action selector="openConversations:" destination="w6u-rK-12N" eventType="touchUpInside" id="uOG-ga-mQ9"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FqO-9w-gU6">
                                         <rect key="frame" x="382" y="8" width="12" height="12"/>
@@ -981,6 +984,86 @@
             </objects>
             <point key="canvasLocation" x="2218.4000000000001" y="614.84257871064472"/>
         </scene>
+        <!--Conversations View Controller-->
+        <scene sceneID="yCg-Fs-Pag">
+            <objects>
+                <viewController storyboardIdentifier="ConversationsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sFd-Pb-1cH" customClass="ConversationsViewController" customModule="RSDemoProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zAz-aV-GLe"/>
+                        <viewControllerLayoutGuide type="bottom" id="ac3-0b-XKR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="24D-9q-4NG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaw-bH-zhz">
+                                <rect key="frame" x="0.0" y="91" width="414" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Yof-s6-Nn4"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kth-Wr-lnp">
+                                <rect key="frame" x="194" y="59" width="26" height="17"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jL2-zg-MLh">
+                                <rect key="frame" x="0.0" y="92" width="414" height="770"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="taH-PD-yI5">
+                                <rect key="frame" x="12" y="56" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="R5q-UM-ynM"/>
+                                    <constraint firstAttribute="width" constant="24" id="sUT-K4-aho"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="AvatarPlaceholder"/>
+                                <connections>
+                                    <action selector="openUserSettings:" destination="sFd-Pb-1cH" eventType="touchUpInside" id="GmF-Hw-BAV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJ8-lT-vJj">
+                                <rect key="frame" x="378" y="56" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="6GD-hb-rMt"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="bL7-8j-7LW"/>
+                                    <constraint firstAttribute="height" constant="24" id="woa-dv-qrr"/>
+                                    <constraint firstAttribute="width" constant="24" id="y5v-BQ-XkJ"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="MapIcon"/>
+                                <connections>
+                                    <action selector="backToMap:" destination="sFd-Pb-1cH" eventType="touchUpInside" id="hzW-Wh-gsv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="taH-PD-yI5" firstAttribute="leading" secondItem="24D-9q-4NG" secondAttribute="leading" constant="12" id="5iG-aC-suB"/>
+                            <constraint firstItem="ac3-0b-XKR" firstAttribute="top" secondItem="jL2-zg-MLh" secondAttribute="bottom" id="9KF-YS-0pz"/>
+                            <constraint firstAttribute="trailing" secondItem="AJ8-lT-vJj" secondAttribute="trailing" constant="12" id="CBM-hC-qXq"/>
+                            <constraint firstItem="kaw-bH-zhz" firstAttribute="top" secondItem="taH-PD-yI5" secondAttribute="bottom" constant="11" id="FaU-qm-8fy"/>
+                            <constraint firstItem="jL2-zg-MLh" firstAttribute="top" secondItem="kaw-bH-zhz" secondAttribute="bottom" id="IaE-fE-um2"/>
+                            <constraint firstItem="kaw-bH-zhz" firstAttribute="top" secondItem="kth-Wr-lnp" secondAttribute="bottom" constant="15" id="Lwi-u2-qB0"/>
+                            <constraint firstItem="taH-PD-yI5" firstAttribute="top" secondItem="zAz-aV-GLe" secondAttribute="bottom" constant="12" id="UIh-qI-AHX"/>
+                            <constraint firstItem="jL2-zg-MLh" firstAttribute="leading" secondItem="24D-9q-4NG" secondAttribute="leading" id="a8f-W5-Mdy"/>
+                            <constraint firstAttribute="trailing" secondItem="jL2-zg-MLh" secondAttribute="trailing" id="bpp-lb-Zwk"/>
+                            <constraint firstItem="AJ8-lT-vJj" firstAttribute="top" secondItem="zAz-aV-GLe" secondAttribute="bottom" constant="12" id="nSm-fV-lsc"/>
+                            <constraint firstAttribute="trailing" secondItem="kaw-bH-zhz" secondAttribute="trailing" id="pUx-qy-y60"/>
+                            <constraint firstItem="kth-Wr-lnp" firstAttribute="centerX" secondItem="24D-9q-4NG" secondAttribute="centerX" id="pnS-Ev-6js"/>
+                            <constraint firstItem="kth-Wr-lnp" firstAttribute="top" secondItem="zAz-aV-GLe" secondAttribute="bottom" constant="15" id="yEK-WI-nP7"/>
+                            <constraint firstItem="kaw-bH-zhz" firstAttribute="leading" secondItem="24D-9q-4NG" secondAttribute="leading" id="zHK-IR-EQi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="conversationsTableView" destination="jL2-zg-MLh" id="Sb6-45-cWG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ih0-0P-7OX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3047.826086956522" y="614.0625"/>
+        </scene>
         <!--Topic List View Controller-->
         <scene sceneID="RNk-Tu-eIC">
             <objects>
@@ -1335,6 +1418,7 @@
     <resources>
         <image name="AvatarPlaceholder" width="83" height="83"/>
         <image name="BackArrow" width="9.5" height="19.5"/>
+        <image name="MapIcon" width="19" height="23"/>
         <image name="happyFace" width="26" height="25"/>
         <image name="menuChat" width="28" height="23"/>
         <image name="menuProfile" width="23" height="23"/>

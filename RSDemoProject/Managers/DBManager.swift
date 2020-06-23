@@ -10,20 +10,30 @@ import Foundation
 import RealmSwift
 
 class DBManager {
-  var appDB: Realm!
+  private var appDB: Realm!
   static let sharedInstance = DBManager()
   
   init() {
-    appDB = try? Realm()
+    do {
+      let documentDirectory = try FileManager.default.url(
+        for: .documentDirectory,
+        in: .userDomainMask,
+        appropriateFor: nil,
+        create: false
+      )
+      
+      let url = documentDirectory.appendingPathComponent("targetDb.realm")
+      appDB = try? Realm(fileURL: url)
+    } catch { }
   }
-  
+
   func add(_ model: [Object]) {
     guard let db = appDB else {
       return
     }
     
     db.beginWrite()
-    db.add(model)
+    db.add(model, update: .modified)
     
     do {
       try db.commitWrite()
@@ -46,5 +56,9 @@ class DBManager {
   
   func save(_ model: [Object]) {
     add(model)
+  }
+  
+  func getObjects<Element: Object>(_ type: Element.Type) -> Results<Element> {
+    appDB.objects(type)
   }
 }
