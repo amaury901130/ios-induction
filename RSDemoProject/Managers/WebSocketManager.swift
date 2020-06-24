@@ -9,8 +9,8 @@
 import Foundation
 import Starscream
 
-class WSS: WebSocketDelegate {
-  static let shared = WSS()
+class WebSocketManager: WebSocketDelegate {
+  static let shared = WebSocketManager()
   
   var url: URL? {
     let baseUrlString = Bundle.main.object(forInfoDictionaryKey: "WebSocket URL")
@@ -35,50 +35,48 @@ class WSS: WebSocketDelegate {
     return baseHeaders
   }
   
-  var ws: WebSocket!
-  weak var delegate: WSSDelegate?
+  var webSocket: WebSocket!
+  weak var delegate: WebSocketManagerDelegate?
   
   func connect() {
     guard let wsUrl = url else {
-      delegate?.onConnectionError("wss_error_url".localized)
+      delegate?.socketDidError("wss_error_url".localized)
       return
     }
     
-    if ws == nil {
-      ws = WebSocket(request: URLRequest(url: wsUrl))
-      ws.delegate = self
+    if webSocket == nil {
+      webSocket = WebSocket(request: URLRequest(url: wsUrl))
+      webSocket.delegate = self
     }
     
-    ws.request.allHTTPHeaderFields = headers
-    ws.connect()
+    webSocket.request.allHTTPHeaderFields = headers
+    webSocket.connect()
   }
   
   func disconnect() {
-    ws.disconnect()
+    webSocket.disconnect()
   }
   
   func send(text: String, conversation: Conversation, completion: (() -> Void)?) {
     guard let message = getFormattedMessage(content: text, conversationId: conversation.id) else {
-      delegate?.onConnectionError("wss_error_bad_format".localized)
+      delegate?.socketDidError("wss_error_bad_format".localized)
       return
     }
     
-    ws.write(string: message, completion: completion)
+    webSocket.write(string: message, completion: completion)
   }
   
   private func getFormattedMessage(
     content: String,
     conversationId: Int
   ) -> String? {
-    let message: [String : String] = [
+    let message: [String: String] = [
       "action": "send_message",
       "content": content,
       "match_conversation_id": "\(conversationId)"
     ]
-    
-    let jsonData = try? JSONEncoder().encode(message)
-    
-    guard let data = jsonData else {
+
+    guard let data = try? JSONEncoder().encode(message) else {
       return nil
     }
     
@@ -88,19 +86,19 @@ class WSS: WebSocketDelegate {
   func didReceive(event: WebSocketEvent, client: WebSocket) {
     switch event {
     case .connected:
-      delegate?.onConnected()
+      delegate?.socketDidConnect()
     case .disconnected(let reason, _):
-      delegate?.onDisconnected(reason)
+      delegate?.socketDidDisconnect(reason)
     case .text(let string):
-      delegate?.onText(string)
+      delegate?.onMessageReceived(string)
     default: break
     }
   }
 }
 
-protocol WSSDelegate {
-  func onConnected()
-  func onDisconnected(_ reason: String?)
-  func onConnectionError(_ reason: String)
-  func onText(_ text: String)
+protocol WebSocketManagerDelegate {
+  func socketDidConnect()
+  func socketDidDisconnect(_ reason: String?)
+  func socketDidError(_ reason: String)
+  func onMessageReceived(_ text: String)
 }

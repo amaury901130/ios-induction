@@ -9,8 +9,8 @@
 import Foundation
 
 enum ChatState {
-  case chatMessagesLoaded
-  case messageSended
+  case messagesLoaded
+  case messageSent
   case none
 }
 
@@ -25,10 +25,10 @@ class ChatViewModel {
     self.conversation = conversation
   }
   
-  var conversation: Conversation!
+  private var conversation: Conversation!
   var messages: [Message] = []
-  var page = 1
-  var webSocketManager = WSS.shared
+  private var page = 1
+  private var webSocketManager = WebSocketManager.shared
   weak var delegate: ChatViewModelDelegate?
   
   var topicIconURL: URL? {
@@ -64,7 +64,7 @@ class ChatViewModel {
       text: message,
       conversation: conversation,
       completion: { [weak self] in
-        self?.state = .messageSended
+        self?.state = .messageSent
       }
     )
   }
@@ -77,7 +77,7 @@ class ChatViewModel {
       success: { [weak self] newMessages in
         self?.page += 1
         self?.messages.append(contentsOf: newMessages)
-        self?.state = .chatMessagesLoaded
+        self?.state = .messagesLoaded
         self?.networkState = .idle
       },
       failure: { [weak self] error in
@@ -86,20 +86,20 @@ class ChatViewModel {
   }
 }
 
-extension ChatViewModel: WSSDelegate {
-  func onConnected() {
+extension ChatViewModel: WebSocketManagerDelegate {
+  func socketDidConnect() {
     //TODO
   }
   
-  func onDisconnected(_ reason: String?) {
+  func socketDidDisconnect(_ reason: String?) {
     //TODO
   }
   
-  func onConnectionError(_ reason: String) {
+  func socketDidError(_ reason: String) {
     networkState = .error(reason)
   }
 
-  func onText(_ text: String) {
+  func onMessageReceived(_ text: String) {
     //TODO
   }
 }
