@@ -9,12 +9,11 @@
 import Foundation
 
 struct APIRequestHeaders {
-  static var baseHeaders: [String: String] =
-    [
-      HTTPHeader.accept.rawValue: "application/json",
-      HTTPHeader.contentType.rawValue: "application/json"
-    ]
-
+  static let baseHeaders: [String: String] = [
+    HTTPHeader.accept.rawValue: "application/json",
+    HTTPHeader.contentType.rawValue: "application/json"
+  ]
+  
   static var sessionHeaders: [String: String]? {
     if let session = SessionManager.currentSession {
       return Self.baseHeaders + [
