@@ -49,7 +49,7 @@ class WebSocketManager: WebSocketDelegate {
       webSocket.delegate = self
     }
     
-    webSocket.request.allHTTPHeaderFields = headers
+    webSocket.request.allHTTPHeaderFields = APIClient.getHeaders()
     webSocket.connect()
   }
   
@@ -96,7 +96,7 @@ class WebSocketManager: WebSocketDelegate {
   }
 }
 
-protocol WebSocketManagerDelegate {
+protocol WebSocketManagerDelegate: class {
   func socketDidConnect()
   func socketDidDisconnect(_ reason: String?)
   func socketDidError(_ reason: String)

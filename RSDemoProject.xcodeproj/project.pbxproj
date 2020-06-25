@@ -61,6 +61,7 @@
 		467D934D249D1764007FD650 /* ConversationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467D934B249D1764007FD650 /* ConversationTableViewCell.xib */; };
 		467D934F249D1DDA007FD650 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467D934E249D1DDA007FD650 /* ConversationsViewController.swift */; };
 		467D9351249D1DEC007FD650 /* ConversationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467D9350249D1DEC007FD650 /* ConversationsViewModel.swift */; };
+		46A25B3124A50C630039EF61 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A25B3024A50C630039EF61 /* APIClient.swift */; };
 		46DFE60924730188007ADA5C /* TargetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60824730188007ADA5C /* TargetService.swift */; };
 		46DFE60B247301B9007ADA5C /* TargetResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60A247301B9007ADA5C /* TargetResource.swift */; };
 		46DFE60F2473073C007ADA5C /* TargetMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60E2473073C007ADA5C /* TargetMatch.swift */; };
@@ -189,6 +190,7 @@
 		467D934B249D1764007FD650 /* ConversationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationTableViewCell.xib; sourceTree = "<group>"; };
 		467D934E249D1DDA007FD650 /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		467D9350249D1DEC007FD650 /* ConversationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
+		46A25B3024A50C630039EF61 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		46DFE60824730188007ADA5C /* TargetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetService.swift; sourceTree = "<group>"; };
 		46DFE60A247301B9007ADA5C /* TargetResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetResource.swift; sourceTree = "<group>"; };
 		46DFE60E2473073C007ADA5C /* TargetMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetMatch.swift; sourceTree = "<group>"; };
@@ -569,6 +571,7 @@
 				9BFA84F11C776817009F64E4 /* Services */,
 				FEE8080922A6ACFF00743D1B /* APIService.swift */,
 				FEE8080B22A6AE9900743D1B /* TargetType+Base.swift */,
+				46A25B3024A50C630039EF61 /* APIClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1003,6 +1006,7 @@
 				FE06840322CE7ED400C6294F /* R.generated.swift in Sources */,
 				46F2896124A27DBA00164F8B /* ChatViewController.swift in Sources */,
 				462E0FF8245B066D0080A075 /* LocationManager.swift in Sources */,
+				46A25B3124A50C630039EF61 /* APIClient.swift in Sources */,
 				46139E4724882EED00B97968 /* DeleteTargetConfirmationViewController.swift in Sources */,
 				46F2895D24A0EA2800164F8B /* ConversationViewModel.swift in Sources */,
 				FEE8080A22A6ACFF00743D1B /* APIService.swift in Sources */,

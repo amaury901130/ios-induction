@@ -21,7 +21,7 @@ enum TopicResource: TargetType {
   }
   
   var headers: [String: String]? {
-    getHeaders()
+    APIClient.getHeaders()
   }
   
   var task: Task {

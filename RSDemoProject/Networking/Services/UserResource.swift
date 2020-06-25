@@ -53,7 +53,7 @@ enum UserResource: TargetType {
   }
   
   var headers: [String: String]? {
-    getHeaders()
+    APIClient.getHeaders()
   }
   
   var task: Task {
