@@ -53,7 +53,7 @@ enum UserResource: TargetType {
   }
   
   var headers: [String: String]? {
-    getHeaders()
+    APIRequestHeaders.sessionHeaders
   }
   
   var task: Task {

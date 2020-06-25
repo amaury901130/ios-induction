@@ -21,7 +21,7 @@ enum TopicResource: TargetType {
   }
   
   var headers: [String: String]? {
-    getHeaders()
+    APIRequestHeaders.sessionHeaders
   }
   
   var task: Task {

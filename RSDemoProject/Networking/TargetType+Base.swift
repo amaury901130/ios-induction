@@ -20,7 +20,7 @@ extension TargetType {
   }
 
   var headers: [String: String]? {
-    return getHeaders()
+    return APIRequestHeaders.sessionHeaders
   }
 
   var sampleData: Data { return Data() }
@@ -29,25 +29,6 @@ extension TargetType {
 
 // MARK: TargetType helpers
 extension TargetType {
-
-  static private var baseHeaders: [String: String] {
-    return [
-      HTTPHeader.accept.rawValue: "application/json",
-      HTTPHeader.contentType.rawValue: "application/json"
-    ]
-  }
-
-  public func getHeaders() -> [String: String]? {
-    if let session = SessionManager.currentSession {
-      return Self.baseHeaders + [
-        HTTPHeader.uid.rawValue: session.uid ?? "",
-        HTTPHeader.client.rawValue: session.client ?? "",
-        HTTPHeader.token.rawValue: session.accessToken ?? ""
-      ]
-    }
-    return Self.baseHeaders
-  }
-
   public func requestParameters(parameters: [String: Any]) -> Task {
     return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
   }

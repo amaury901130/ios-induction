@@ -17,5 +17,8 @@ target 'RSDemoProject' do
   pod 'FBSDKLoginKit', '~> 5.5.0'
   # Image loader ---
   pod 'Kingfisher', '~> 5.14.0'
+  # Data Base manager ---
   pod 'RealmSwift', '~> 5.0.3'
+  # Web Socket client ---
+  pod 'Starscream', '~> 4.0.0'
 end

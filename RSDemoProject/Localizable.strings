@@ -39,3 +39,5 @@
 "messageBodyPasswordSuccess" = "Password Updated";
 
 "deleteConfirmationMessage" = "Remember that if you delete it, \n you wont be able to chat with \n it's matches anymore";
+"wss_error_url" = "Web Socket URL error";
+"wss_error_bad_format" = "Bad format message";
