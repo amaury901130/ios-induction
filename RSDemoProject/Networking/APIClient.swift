@@ -10,7 +10,7 @@ import Foundation
 
 class APIClient {
   static private var baseHeaders: [String: String] {
-    return [
+    [
       HTTPHeader.accept.rawValue: "application/json",
       HTTPHeader.contentType.rawValue: "application/json"
     ]

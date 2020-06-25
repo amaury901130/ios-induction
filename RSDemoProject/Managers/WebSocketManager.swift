@@ -17,24 +17,6 @@ class WebSocketManager: WebSocketDelegate {
     return URL(string: baseUrlString as? String ?? "")
   }
   
-  private var baseHeaders: [String: String] {
-    return [
-      HTTPHeader.accept.rawValue: "application/json",
-      HTTPHeader.contentType.rawValue: "application/json"
-    ]
-  }
-  
-  var headers: [String: String] {
-    if let session = SessionManager.currentSession {
-      return baseHeaders + [
-        HTTPHeader.uid.rawValue: session.uid ?? "",
-        HTTPHeader.client.rawValue: session.client ?? "",
-        HTTPHeader.token.rawValue: session.accessToken ?? ""
-      ]
-    }
-    return baseHeaders
-  }
-  
   var webSocket: WebSocket!
   weak var delegate: WebSocketManagerDelegate?
   
