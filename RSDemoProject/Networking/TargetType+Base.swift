@@ -20,7 +20,7 @@ extension TargetType {
   }
 
   var headers: [String: String]? {
-    return APIClient.getHeaders()
+    return APIRequestHeaders.sessionHeaders
   }
 
   var sampleData: Data { return Data() }

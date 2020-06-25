@@ -8,15 +8,14 @@
 
 import Foundation
 
-class APIClient {
-  static private var baseHeaders: [String: String] {
+struct APIRequestHeaders {
+  static var baseHeaders: [String: String] =
     [
       HTTPHeader.accept.rawValue: "application/json",
       HTTPHeader.contentType.rawValue: "application/json"
     ]
-  }
 
-  static public func getHeaders() -> [String: String]? {
+  static var sessionHeaders: [String: String]? {
     if let session = SessionManager.currentSession {
       return Self.baseHeaders + [
         HTTPHeader.uid.rawValue: session.uid ?? "",

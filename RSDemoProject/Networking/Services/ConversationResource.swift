@@ -25,7 +25,7 @@ enum ConversationResource: TargetType {
   }
   
   var headers: [String: String]? {
-    APIClient.getHeaders()
+    APIRequestHeaders.sessionHeaders
   }
   
   var method: Moya.Method {

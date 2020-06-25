@@ -31,7 +31,7 @@ class WebSocketManager: WebSocketDelegate {
       webSocket.delegate = self
     }
     
-    webSocket.request.allHTTPHeaderFields = APIClient.getHeaders()
+    webSocket.request.allHTTPHeaderFields = APIRequestHeaders.sessionHeaders
     webSocket.connect()
   }
   
