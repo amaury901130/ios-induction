@@ -59,6 +59,14 @@ class ChatViewModel {
     webSocketManager.disconnect()
   }
   
+  var countMessages: Int   {
+    messages.count
+  }
+  
+  func getMessage(at position: Int) -> Message {
+    messages[position]
+  }
+  
   func sendMessage(message: String) {
     webSocketManager.send(
       text: message,
