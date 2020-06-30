@@ -16,7 +16,7 @@ class ChatItemTableViewCell: UITableViewCell {
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var messageLeftLabel: EdgeInsetLabel!
   
-  let round: CGFloat = 8
+  let roundMessageCorner: CGFloat = 8
   
   var viewModel: MessageViewModel! {
     didSet {
@@ -26,10 +26,10 @@ class ChatItemTableViewCell: UITableViewCell {
       messageRightLabel.isHidden = !viewModel.isMyMessage
       
       if viewModel.isMyMessage {
-        messageRightLabel.setRoundBorders(round)
+        messageRightLabel.setRoundBorders(roundMessageCorner)
         messageRightLabel.text = viewModel.content
       } else {
-        messageLeftLabel.setRoundBorders(round)
+        messageLeftLabel.setRoundBorders(roundMessageCorner)
         messageLeftLabel.text = viewModel.content
       }
     }

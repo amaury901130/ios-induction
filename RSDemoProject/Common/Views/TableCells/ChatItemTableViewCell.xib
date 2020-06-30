@@ -51,7 +51,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="02:00 PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AuW-F0-q9Y">
-                        <rect key="frame" x="208" y="47.5" width="39" height="10.5"/>
+                        <rect key="frame" x="208" y="45.5" width="39" height="12.5"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="9Fk-Ng-GFo"/>
                         </constraints>
@@ -59,7 +59,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Estoy buscando compannero de viaje" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JQ-7n-yMc" customClass="EdgeInsetLabel" customModule="RSDemoProject" customModuleProvider="target">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Estoy buscando compannero de viaje" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JQ-7n-yMc" customClass="EdgeInsetLabel" customModule="RSDemoProject" customModuleProvider="target">
                         <rect key="frame" x="254" y="8" width="180" height="50"/>
                         <color key="backgroundColor" red="0.94117647059999998" green="0.78039215689999997" blue="0.21960784310000001" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

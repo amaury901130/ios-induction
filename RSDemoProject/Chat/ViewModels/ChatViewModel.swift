@@ -59,12 +59,16 @@ class ChatViewModel {
     webSocketManager.disconnect()
   }
   
-  var countMessages: Int   {
+  var messagesCount: Int {
     messages.count
   }
   
-  func getMessage(at position: Int) -> Message {
-    messages[position]
+  func getMessage(at index: Int) -> Message? {
+    guard index < messagesCount else {
+      return nil
+    }
+    
+    return messages[index]
   }
   
   func sendMessage(message: String) {
@@ -76,9 +80,10 @@ class ChatViewModel {
       }
     )
   }
-
+  
   func loadMessages() {
     networkState = .loading
+    
     ConversationService.shared.getMessages(
       conversationId: conversation.id,
       page: page,
@@ -106,7 +111,7 @@ extension ChatViewModel: WebSocketManagerDelegate {
   func socketDidError(_ reason: String) {
     networkState = .error(reason)
   }
-
+  
   func onMessageReceived(_ text: String) {
     //TODO
   }

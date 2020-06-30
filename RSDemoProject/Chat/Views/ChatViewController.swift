@@ -13,19 +13,34 @@ class ChatViewController: UIViewController {
   let sendMessagesButtonRadius: CGFloat = 17
   
   @IBOutlet weak var userNameLabel: UILabel!
-  @IBOutlet weak var topicIconImage: UIImageView!
+  @IBOutlet weak var topicIconImageView: UIImageView!
   @IBOutlet weak var backButton: UIButton!
   @IBOutlet weak var targetDeletedErrorLabel: UILabel!
   @IBOutlet weak var chatTableView: UITableView!
   @IBOutlet weak var chatMessageTextField: UITextField!
   @IBOutlet weak var sendMessageButton: UIButton!
   
+  let tableCellIdentifier = ChatItemTableViewCell.identifier
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    setUpTableView()
     viewModel.delegate = self
     viewModel.connect()
-    
     setUpView()
+    viewModel.loadMessages()
+  }
+  
+  func setUpTableView() {
+    let nib = UINib(nibName: tableCellIdentifier, bundle: nil)
+    chatTableView.register(
+      nib,
+      forCellReuseIdentifier: tableCellIdentifier
+    )
+
+    chatTableView.dataSource = self
+    chatTableView.delegate = self
   }
   
   func setUpView() {
@@ -33,16 +48,7 @@ class ChatViewController: UIViewController {
     sendMessageButton.setImage(R.image.backArrow(), for: .normal)
     
     userNameLabel.text = viewModel.userName
-    topicIconImage.kf.setImage(with: viewModel.topicIconURL)
-    
-    let nib = UINib(nibName: ChatItemTableViewCell.identifier, bundle: nil)
-    chatTableView.register(
-      nib,
-      forCellReuseIdentifier: ChatItemTableViewCell.identifier
-    )
-    chatTableView.dataSource = self
-    chatTableView.delegate = self
-    chatTableView.separatorColor = .none
+    topicIconImageView.kf.setImage(with: viewModel.topicIconURL)
   }
   
   @IBAction func backButton(_ sender: Any) {
@@ -54,11 +60,10 @@ extension ChatViewController: ChatViewModelDelegate {
   func didUpdateState() {
     switch viewModel.state {
     case .messageSent:
-      //todo
+      //TODO: 
       break
     case .messagesLoaded:
-      //todo
-      break
+      chatTableView.reloadData()
     case .none:
       break
     }
@@ -83,7 +88,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     _ tableView: UITableView,
     numberOfRowsInSection section: Int
   ) -> Int {
-    viewModel.countMessages
+    viewModel.messagesCount
   }
   
   func tableView(
@@ -91,15 +96,18 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     cellForRowAt indexPath: IndexPath
   ) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(
-      withIdentifier: ChatItemTableViewCell.identifier,
+      withIdentifier: tableCellIdentifier,
       for: indexPath
     )
-    
-    guard let messageCell = cell as? ChatItemTableViewCell else {
+
+    guard
+      let messageCell = cell as? ChatItemTableViewCell,
+      let message = viewModel.getMessage(at: indexPath.row)
+    else {
       return cell
     }
     
-    messageCell.viewModel = MessageViewModel(viewModel.getMessage(at: indexPath.row))
+    messageCell.viewModel = MessageViewModel(message)
     return messageCell
   }
 }
