@@ -65,6 +65,7 @@
 		46B18DC224AB893F0080DF1A /* ChatItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B18DC024AB893F0080DF1A /* ChatItemTableViewCell.swift */; };
 		46B18DC324AB893F0080DF1A /* ChatItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46B18DC124AB893F0080DF1A /* ChatItemTableViewCell.xib */; };
 		46B18DC924AB8B670080DF1A /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B18DC824AB8B670080DF1A /* MessageViewModel.swift */; };
+		46B18DCB24ABCA8A0080DF1A /* FormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B18DCA24ABCA8A0080DF1A /* FormatterExtension.swift */; };
 		46DFE60924730188007ADA5C /* TargetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60824730188007ADA5C /* TargetService.swift */; };
 		46DFE60B247301B9007ADA5C /* TargetResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60A247301B9007ADA5C /* TargetResource.swift */; };
 		46DFE60F2473073C007ADA5C /* TargetMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DFE60E2473073C007ADA5C /* TargetMatch.swift */; };
@@ -197,6 +198,7 @@
 		46B18DC024AB893F0080DF1A /* ChatItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItemTableViewCell.swift; sourceTree = "<group>"; };
 		46B18DC124AB893F0080DF1A /* ChatItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatItemTableViewCell.xib; sourceTree = "<group>"; };
 		46B18DC824AB8B670080DF1A /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		46B18DCA24ABCA8A0080DF1A /* FormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterExtension.swift; sourceTree = "<group>"; };
 		46DFE60824730188007ADA5C /* TargetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetService.swift; sourceTree = "<group>"; };
 		46DFE60A247301B9007ADA5C /* TargetResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetResource.swift; sourceTree = "<group>"; };
 		46DFE60E2473073C007ADA5C /* TargetMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetMatch.swift; sourceTree = "<group>"; };
@@ -684,6 +686,7 @@
 				460F9852244F26AA001151F6 /* UIButtonExtension.swift */,
 				4652204C245A711E00960D60 /* MKMapViewExtension.swift */,
 				46DFE6102473272A007ADA5C /* UIColorExtension.swift */,
+				46B18DCA24ABCA8A0080DF1A /* FormatterExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1046,6 +1049,7 @@
 				E8FBB1C11DD21D18000D6740 /* SessionManager.swift in Sources */,
 				460F9853244F26AA001151F6 /* UIButtonExtension.swift in Sources */,
 				465021102448AE4600B35C95 /* CustomFormField.swift in Sources */,
+				46B18DCB24ABCA8A0080DF1A /* FormatterExtension.swift in Sources */,
 				460F9866245A1325001151F6 /* MainViewController.swift in Sources */,
 				9BE3669F1F10175E007CAECD /* Base64Media.swift in Sources */,
 				46B18DC924AB8B670080DF1A /* MessageViewModel.swift in Sources */,
