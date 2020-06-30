@@ -33,6 +33,6 @@ enum ConversationResource: TargetType {
   }
   
   var task: Task {
-    return .requestPlain
+    .requestPlain
   }
 }

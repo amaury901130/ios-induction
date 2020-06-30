@@ -28,7 +28,6 @@ class ConversationsViewController: UIViewController {
     )
     conversationsTableView.dataSource = self
     conversationsTableView.delegate = self
-    conversationsTableView.separatorColor = .none
   }
   
   func openChat() {

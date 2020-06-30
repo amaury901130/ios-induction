@@ -12,7 +12,7 @@ struct Message: Codable {
   var id: Int
   var content: String
   var date: Date
-  var user: User
+  var user: User?
   
   private enum CodingKeys: String, CodingKey {
     case id
