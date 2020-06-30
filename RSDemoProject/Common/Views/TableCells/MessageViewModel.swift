@@ -10,18 +10,19 @@ import Foundation
 
 class MessageViewModel {
   var message: Message
-  let formatter = DateFormatter()
+  static let formatter: DateFormatter {
+    let format = DateFormatter()
+    
+    format.locale = Locale(identifier: "en_US_POSIX")
+    format.dateFormat = "h:mm a"
+    format.amSymbol = "AM"
+    format.pmSymbol = "PM"
+    
+    return format
+  }
   
   init(_ message: Message) {
     self.message = message
-    setUpDateFormat()
-  }
-  
-  private func setUpDateFormat() {
-    formatter.locale = Locale(identifier: "en_US_POSIX")
-    formatter.dateFormat = "h:mm a"
-    formatter.amSymbol = "AM"
-    formatter.pmSymbol = "PM"
   }
   
   var content: String {
@@ -29,7 +30,7 @@ class MessageViewModel {
   }
   
   var time: String {
-    return formatter.string(from: message.date)
+    return MessageViewModel.formatter.string(from: message.date)
   }
   
   var isMyMessage: Bool {
